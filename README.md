@@ -31,6 +31,7 @@ and Much More ...
 ### [🔥 Get Startup Pro](https://nextjstemplates.com/templates/saas-starter-startup)
 
 [![Startup Pro](https://raw.githubusercontent.com/NextJSTemplates/startup-nextjs/main/startup-pro.webp)](https://nextjstemplates.com/templates/saas-starter-startup)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io?ref=badge_shield)
 
 Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startup websites. Comes with with Authentication, Database, Blog, and all the essential integrations necessary for SaaS business sites.
 
@@ -54,6 +55,9 @@ Startup Pro - Expertly crafted for fully-functional, high-performing SaaS startu
 
 ### 📄 License
 Startup is 100% free and open-source, feel free to use with your personal and commercial projects.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io?ref=badge_large)
 
 ### 💜 Support
 If you like the template, please star this repository to inspire the team to create more stuff like this and reach more users like you!
