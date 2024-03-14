@@ -1,6 +1,6 @@
-import SectionTitle from "../Common/SectionTitle";
-import SingleBlog from "./SingleBlog";
-import blogData from "./blogData";
+import SectionTitle from '../Common/SectionTitle';
+import SingleBlog from './SingleBlog';
+import blogData from './blogData';
 
 const Blog = () => {
   return (
@@ -11,7 +11,7 @@ const Blog = () => {
       <div className="container">
         <SectionTitle
           title="Our Latest Blogs"
-          paragraph="There are many variations of passages of Lorem Ipsum available but the majority have suffered alteration in some form."
+          paragraph="Latest technical articles and news about programming, design, business, and more."
           center
         />
 

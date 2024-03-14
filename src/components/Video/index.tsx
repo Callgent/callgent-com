@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useState } from "react";
-import SectionTitle from "../Common/SectionTitle";
+import Image from 'next/image';
+import { useState } from 'react';
+import SectionTitle from '../Common/SectionTitle';
 
-import ModalVideo from "react-modal-video";
+import ModalVideo from 'react-modal-video';
 
 const Video = () => {
   const [isOpen, setOpen] = useState(false);
@@ -26,7 +26,7 @@ const Video = () => {
               data-wow-delay=".15s"
             >
               <div className="relative aspect-[77/40] items-center justify-center">
-                <Image src="/images/video/video.jpg" alt="video image" fill />
+                <Image src="/images/video/video.jpg" alt="video image" fill sizes="(max-width: 640px) 100vw, 50vw" />
                 <div className="absolute right-0 top-0 flex h-full w-full items-center justify-center">
                   <button
                     aria-label="video play button"

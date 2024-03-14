@@ -1,8 +1,8 @@
-"use client";
-import { useState } from "react";
-import SectionTitle from "../Common/SectionTitle";
-import OfferList from "./OfferList";
-import PricingBox from "./PricingBox";
+'use client';
+import { useState } from 'react';
+import SectionTitle from '../Common/SectionTitle';
+import OfferList from './OfferList';
+import PricingBox from './PricingBox';
 
 const Pricing = () => {
   const [isMonthly, setIsMonthly] = useState(true);
@@ -23,8 +23,8 @@ const Pricing = () => {
               onClick={() => setIsMonthly(true)}
               className={`${
                 isMonthly
-                  ? "pointer-events-none text-primary"
-                  : "text-dark dark:text-white"
+                  ? 'pointer-events-none text-primary'
+                  : 'text-dark dark:text-white'
               } mr-4 cursor-pointer text-base font-semibold`}
             >
               Monthly
@@ -37,7 +37,7 @@ const Pricing = () => {
                 <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
                 <div
                   className={`${
-                    isMonthly ? "" : "translate-x-full"
+                    isMonthly ? '' : 'translate-x-full'
                   } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
                 >
                   <span className="active h-4 w-4 rounded-full bg-white"></span>
@@ -48,8 +48,8 @@ const Pricing = () => {
               onClick={() => setIsMonthly(false)}
               className={`${
                 isMonthly
-                  ? "text-dark dark:text-white"
-                  : "pointer-events-none text-primary"
+                  ? 'text-dark dark:text-white'
+                  : 'pointer-events-none text-primary'
               } ml-4 cursor-pointer text-base font-semibold`}
             >
               Yearly
@@ -60,8 +60,8 @@ const Pricing = () => {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
             packageName="Lite"
-            price={isMonthly ? "40" : "120"}
-            duration={isMonthly ? "mo" : "yr"}
+            price={isMonthly ? '40' : '120'}
+            duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
           >
             <OfferList text="All UI Components" status="active" />
@@ -73,8 +73,8 @@ const Pricing = () => {
           </PricingBox>
           <PricingBox
             packageName="Basic"
-            price={isMonthly ? "399" : "789"}
-            duration={isMonthly ? "mo" : "yr"}
+            price={isMonthly ? '399' : '789'}
+            duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
           >
             <OfferList text="All UI Components" status="active" />
@@ -86,8 +86,8 @@ const Pricing = () => {
           </PricingBox>
           <PricingBox
             packageName="Plus"
-            price={isMonthly ? "589" : "999"}
-            duration={isMonthly ? "mo" : "yr"}
+            price={isMonthly ? '589' : '999'}
+            duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
           >
             <OfferList text="All UI Components" status="active" />

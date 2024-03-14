@@ -1,84 +1,121 @@
-import { Menu } from "@/types/menu";
+import { Menu } from '@/types/menu';
 
 const menuData: Menu[] = [
   {
-    id: 1,
-    title: "Home",
-    path: "/",
-    newTab: false,
-  },
-  {
     id: 2,
-    title: "About",
-    path: "/about",
-    newTab: false,
-  },
-  {
-    id: 33,
-    title: "Blog",
-    path: "/blog",
-    newTab: false,
-  },
-  {
-    id: 3,
-    title: "Support",
-    path: "/contact",
-    newTab: false,
-  },
-  {
-    id: 4,
-    title: "Pages",
+    title: 'Solutions',
     newTab: false,
     submenu: [
       {
         id: 41,
-        title: "About Page",
-        path: "/about",
+        title: 'About',
+        path: '/about',
         newTab: false,
-      },
-      {
-        id: 42,
-        title: "Contact Page",
-        path: "/contact",
-        newTab: false,
+        description:'The main ‘thrust’ is to focus on educating attendees'
       },
       {
         id: 43,
-        title: "Blog Grid Page",
-        path: "/blog",
+        title: 'Blog',
+        path: '/blog',
         newTab: false,
+        description:'The main ‘thrust’ is to focus on educating attendees'
       },
       {
         id: 44,
-        title: "Blog Sidebar Page",
-        path: "/blog-sidebar",
+        title: 'Career',
+        path: '/blog-sidebar',
+        newTab: false,
+        description:'The main ‘thrust’ is to focus on educating attendees'
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Tutorials',
+    path: process.env.NEXT_PUBLIC_GETTING_STARTED_PATH,
+    newTab: false,
+    curTab: true,
+  },
+  {
+    id: 2,
+    title: 'Developers',
+    path: process.env.NEXT_PUBLIC_DEVELOPERS_PATH,
+    newTab: false,
+    curTab: true,
+  },
+  {
+    id: 33,
+    title: 'Blog',
+    path: process.env.NEXT_PUBLIC_BLOG_URL,
+    newTab: false,
+    curTab: true,
+  },
+  {
+    id: 3,
+    title: 'Pricing',
+    path: '/pricing',
+    newTab: false,
+  },
+  {
+    id: 9,
+    title: 'Feedback',
+    path: '/feedback',
+    mobel: true,
+    newTab: false,
+  },
+  {
+    id: 7,
+    title: 'auth',
+    mobel: true,
+    newTab: false,
+    submenu: [
+      {
+        id: 81,
+        title: 'Sign In',
+        path: '/signin',
         newTab: false,
       },
       {
-        id: 45,
-        title: "Blog Details Page",
-        path: "/blog-details",
-        newTab: false,
-      },
-      {
-        id: 46,
-        title: "Sign In Page",
-        path: "/signin",
-        newTab: false,
-      },
-      {
-        id: 47,
-        title: "Sign Up Page",
-        path: "/signup",
-        newTab: false,
-      },
-      {
-        id: 48,
-        title: "Error Page",
-        path: "/error",
+        id: 82,
+        title: 'Sign Up',
+        path: '/signup',
         newTab: false,
       },
     ],
   },
+  {
+    id: 8,
+    title: 'langs',
+    mobel: true,
+    newTab: false,
+    langs: true,
+    submenu: [
+      {
+        id: 81,
+        title: 'English',
+        path: '/en',
+        newTab: false,
+      },
+      {
+        id: 82,
+        title: '中文',
+        path: '/cn',
+        newTab: false,
+      },
+      {
+        id: 83,
+        title: 'Italiano',
+        path: '/it',
+        newTab: false,
+      },
+    ],
+  }
+
+  // {
+  //   id: 5,
+  //   title: "Contact",
+  //   path: "/contact",
+  //   newTab: false,
+  // },
 ];
 export default menuData;

@@ -1,6 +1,6 @@
-import { Blog } from "@/types/blog";
-import Image from "next/image";
-import Link from "next/link";
+import { Blog } from '@/types/blog';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const SingleBlog = ({ blog }: { blog: Blog }) => {
   const { title, image, paragraph, author, tags, publishDate } = blog;
@@ -14,7 +14,7 @@ const SingleBlog = ({ blog }: { blog: Blog }) => {
           <span className="absolute right-6 top-6 z-20 inline-flex items-center justify-center rounded-full bg-primary px-4 py-2 text-sm font-semibold capitalize text-white">
             {tags[0]}
           </span>
-          <Image src={image} alt="image" fill />
+          <Image src={image} alt="image" fill sizes="(max-width: 640px) 100vw, 50vw" />
         </Link>
         <div className="p-6 sm:p-8 md:px-6 md:py-8 lg:p-8 xl:px-5 xl:py-8 2xl:p-8">
           <h3>
@@ -32,7 +32,7 @@ const SingleBlog = ({ blog }: { blog: Blog }) => {
             <div className="mr-5 flex items-center border-r border-body-color border-opacity-10 pr-5 dark:border-white dark:border-opacity-10 xl:mr-3 xl:pr-3 2xl:mr-5 2xl:pr-5">
               <div className="mr-4">
                 <div className="relative h-10 w-10 overflow-hidden rounded-full">
-                  <Image src={author.image} alt="author" fill />
+                  <Image src={author.image} alt="author" fill sizes="(max-width: 640px) 100vw, 50vw" />
                 </div>
               </div>
               <div className="w-full">

@@ -1,14 +1,24 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
-    domains: ["localhost"],
+    domains: ["localhost", "dummyimage.com"],
+
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
+        protocol: "http",
+        hostname: "localhost",
       },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/en',
+        permanent: false, // 如果重定向是永久的，设置为true
+      },
+    ];
   },
 };
 

@@ -1,8 +1,15 @@
-"use client";
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+import { getCookie } from '@/util/cookie';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 const Footer = () => {
+  const [base, setBase] = useState('');
+  useEffect(() => {
+    const lang = getCookie('lang');
+    setBase('/' + lang);
+  }, []);
   return (
     <>
       <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -10,25 +17,24 @@ const Footer = () => {
           <div className="-mx-4 flex flex-wrap">
             <div className="w-full px-4 md:w-1/2 lg:w-4/12 xl:w-5/12">
               <div className="mb-12 max-w-[360px] lg:mb-16">
-                <Link href="/" className="mb-8 inline-block">
-                  <Image
-                    src="/images/logo/logo-2.svg"
-                    alt="logo"
-                    className="w-full dark:hidden"
-                    width={140}
-                    height={30}
-                  />
+                <Link
+                  href="/"
+                  className="header-logo flex items-center w-full mb-5"
+                >
                   <Image
                     src="/images/logo/logo.svg"
                     alt="logo"
-                    className="hidden w-full dark:block"
                     width={140}
-                    height={30}
+                    height={16}
+                    className="w-10 md:w-12 dark:invert"
                   />
+                  <div className="ml-2 text-2xl font-medium">
+                    Botlet.IO
+                  </div>
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Integer lobortis.
+                  Break the silos between Users & Systems.
+                  User-as-a-Service v.v., Service-as-a-User.
                 </p>
                 <div className="flex items-center">
                   <a
@@ -117,7 +123,7 @@ const Footer = () => {
                 <ul>
                   <li>
                     <Link
-                      href="/blog"
+                      href={base + '/blog'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Blog
@@ -125,7 +131,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href={base + '/pricing'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Pricing
@@ -133,7 +139,8 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+
+                      href={base + '/about'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       About
@@ -185,7 +192,7 @@ const Footer = () => {
                 <ul>
                   <li>
                     <Link
-                      href="/contact"
+                      href={base + '/contact'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Open Support Ticket
@@ -201,7 +208,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href={base + '/about'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       About
@@ -213,9 +220,9 @@ const Footer = () => {
           </div>
 
           <div className="h-px w-full bg-gradient-to-r from-transparent via-[#D2D8E183] to-transparent dark:via-[#959CB183]"></div>
-          <div className="py-8">
-            <p className="text-center text-base text-body-color dark:text-white">
-              Template by{" "}
+          <div className="py-2">
+            <p className="text-center text-base text-body-color dark:text-body-color-dark">
+              Template by{' '}
               <a
                 href="http://uideck.com"
                 target="_blank"
@@ -223,8 +230,8 @@ const Footer = () => {
                 className="hover:text-primary"
               >
                 UIdeck
-              </a>{" "}
-              and{" "}
+              </a>{' '}
+              and{' '}
               <a
                 href="https://nextjstemplates.com"
                 target="_blank"
@@ -247,7 +254,7 @@ const Footer = () => {
             <circle opacity="0.8" cx="49.5" cy="49.5" r="49.5" fill="#959CB1" />
             <mask
               id="mask0_94:899"
-              style={{ maskType: "alpha" }}
+              style={{ maskType: 'alpha' }}
               maskUnits="userSpaceOnUse"
               x="0"
               y="0"
