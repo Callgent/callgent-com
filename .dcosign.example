@@ -1,0 +1,4 @@
+# By creating `/.dcosign` file, you confirm to agree to the project DCO policy, read CONTRIBUTING.md for more info.
+# Please keep name and email `same` as your git account.
+NAME=Your Name
+EMAIL=your.email@example.com

@@ -1,4 +1,4 @@
-# [Botlet.IO](https://botlet.io)
+# [Botlet.IO](https://botlet.io) Portal Site
 
 <p align="center"><a href="#license">
 <a href="https://app.snyk.io/test/github/Botlet-IO/botlet-io" alt="FOSSA Status"><img src="https://snyk.io/test/github/Botlet-IO/botlet-io/badge.svg"/></a>
