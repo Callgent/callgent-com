@@ -12,6 +12,7 @@ Thank you for considering contributing to Botlet.IO! We appreciate your time and
     - [Reporting Bugs](#reporting-bugs)
     - [Suggesting Enhancements](#suggesting-enhancements)
     - [Pull Requests](#pull-requests)
+  - [Commit Message Convention](#commit-message-convention)
   - [Developer Certificate of Origin (DCO)](#developer-certificate-of-origin-dco)
 
 ## Code of Conduct
@@ -44,10 +45,51 @@ If you have an idea for a new feature or enhancement, please open an issue to di
 Before submitting a pull request, ensure that:
 
 - Your code follows the project's coding conventions and style guide.
-- Write clear and concise commit messages.
+- Write clear and concise commit messages following the `Angular Commit Message Convention`.
 - Include tests for your changes, if applicable.
 - Document any new features or changes in the project's documentation.
 - Be responsive to feedback and be willing to make changes to your pull request if requested.
+
+## Commit Message Convention
+
+We follow the [Angular Commit Message Convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) for writing commit messages. This convention helps maintain a consistent and informative commit history.
+The commit message should be structured as follows:
+
+```html
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+The `<type>` must be one of the following:
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing tests or correcting existing tests
+- **build**: Changes that affect the build system or external dependencies
+- **ci**: Changes to our CI configuration files and scripts
+- **chore**: Other changes that don't modify src or test files
+- **revert**: Reverts a previous commit
+The `<scope>` is optional and can be anything specifying the place of the commit change.
+The `<subject>` contains a succinct description of the change.
+The `<body>` can include a more detailed description of the change.
+The `<footer>` can contain information about breaking changes and is also the place to reference GitHub issues that this commit closes.
+
+Example:
+
+```text
+feat(data): add user data API
+
+Add user data API to data layer
+
+Close #123
+```
 
 ## Developer Certificate of Origin (DCO)
 
@@ -59,13 +101,13 @@ We require all contributors to sign the Developer Certificate of Origin (DCO) fo
 
 To sign off your contribution, add the following line at the end of **each** git commit message:
 
-```
+```text
 Signed-off-by: Your Name <your.email@example.com>
 ```
 
 You can automate this process by using the `-s` or `--signoff` flag when committing:
 
-```
+```bash
 git commit -s -m "Commit message"
 ```
 

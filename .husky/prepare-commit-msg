@@ -1,0 +1,1 @@
+node .husky/scripts/dco-sign.js "$1"

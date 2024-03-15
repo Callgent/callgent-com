@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+# husky
+.husky/_
+.dcosign
+
 # production
 /build
 
