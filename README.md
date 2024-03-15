@@ -26,7 +26,7 @@ This is the portal website of [Botlet.IO](https://botlet.io), gratefully forked 
 4. Integrate to [canny.io](https://developers.canny.io/install/widget/sso) SSO
 5. Start the Service
 
-    - Test Environment
+    - Development Environment
 
         ```bash
         npm i -g pnpm
@@ -48,3 +48,7 @@ This is the portal website of [Botlet.IO](https://botlet.io), gratefully forked 
         pnpm run lint
         pnpm run lint-fix
         ```
+
+## Contributing
+
+We welcome contributions from the community! Before submitting a pull request, please review our [Contributor Development Agreement (CDO)](CONTRIBUTING.md).
