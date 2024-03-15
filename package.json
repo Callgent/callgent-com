@@ -16,7 +16,7 @@
     "node": ">=18.17.0"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "1.9.5",
+    "@reduxjs/toolkit": "1.9.7",
     "accept-language": "^3.0.18",
     "axios": "^1.6.7",
     "i18next": "^23.10.0",
