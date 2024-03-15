@@ -52,3 +52,9 @@ This is the portal website of [Botlet.IO](https://botlet.io), gratefully forked 
 ## Contributing
 
 We welcome contributions from the community! Before submitting a pull request, please review our [Contributor Development Agreement (CDO)](CONTRIBUTING.md).
+
+### DCO Signoff
+
+The first time you commit to the repository, you need to sign the DCO manually, by creating `/.dcosign` file ( see `/.dcosign.example` ), filling it with your formal name and email address.
+
+Later on, each commit message will `automatically` include a `Signed-off-by` line, indicating that you have signed the DCO.

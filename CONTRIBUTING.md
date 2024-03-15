@@ -53,33 +53,12 @@ Before submitting a pull request, ensure that:
 ## Commit Message Convention
 
 We follow the [Angular Commit Message Convention](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit) for writing commit messages. This convention helps maintain a consistent and informative commit history.
-The commit message should be structured as follows:
 
-```html
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
+You may try interactive commit to learn more:
+
+```bash
+pnpm run commit
 ```
-
-The `<type>` must be one of the following:
-
-- **feat**: A new feature
-- **fix**: A bug fix
-- **docs**: Documentation only changes
-- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-- **refactor**: A code change that neither fixes a bug nor adds a feature
-- **perf**: A code change that improves performance
-- **test**: Adding missing tests or correcting existing tests
-- **build**: Changes that affect the build system or external dependencies
-- **ci**: Changes to our CI configuration files and scripts
-- **chore**: Other changes that don't modify src or test files
-- **revert**: Reverts a previous commit
-The `<scope>` is optional and can be anything specifying the place of the commit change.
-The `<subject>` contains a succinct description of the change.
-The `<body>` can include a more detailed description of the change.
-The `<footer>` can contain information about breaking changes and is also the place to reference GitHub issues that this commit closes.
 
 Example:
 
@@ -99,16 +78,10 @@ We require all contributors to sign the Developer Certificate of Origin (DCO) fo
 - The contribution does not infringe on any third-party's rights.
 - You have the necessary permissions to grant the rights required by the DCO.
 
-To sign off your contribution, add the following line at the end of **each** git commit message:
+The first time you commit your contribution, just create `/.dcosign` file to fill in your formal name and email address. Then each commit message will be automatically appended with:
 
 ```text
 Signed-off-by: Your Name <your.email@example.com>
-```
-
-You can automate this process by using the `-s` or `--signoff` flag when committing:
-
-```bash
-git commit -s -m "Commit message"
 ```
 
 For more information about the DCO, visit <https://developercertificate.org/>.
