@@ -210,7 +210,7 @@ function Header() {
               </div>
               <div className="flex items-center justify-end pr-3 lg:pr-0">
                 {!userData?.avatar && (
-                  <div className="flex min-w-40 ml-10 mr-2">
+                  <div className="flex ml-10 mr-2">
                     <Link
                       href={base + '/signin'}
                       className={`hidden mr-3 px-2 xl:px-5 py-3 text-base font-medium text-dark dark:text-white md:block bg-primary  ${curUrl === '/signin' ? 'bg-opacity-1' : ' bg-opacity-10'} `}

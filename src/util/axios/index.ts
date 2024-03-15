@@ -1,5 +1,5 @@
 import axioshead from 'axios';
-import { getCookie } from '../cookie';
+import { getCookie, deleteCookie } from '../cookie';
 
 const axios = axioshead.create({
     timeout: 20 * 1000,
