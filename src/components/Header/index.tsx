@@ -43,7 +43,7 @@ function Header() {
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
-  const handleSubmenu = (index) => {
+  const handleSubmenu = (index: number) => {
     if (openIndex === index) {
       setOpenIndex(-1);
     } else {
@@ -175,7 +175,7 @@ function Header() {
                               <div className="bg-white dark:bg-dark rounded-sm lg:shadow-2xl lg:rounded-lg lg:flex lg:justify-between duration-300  lg:group-hover:scale-105">
                                 {menuItem.submenu.map((submenuItem, index) => (
                                   <span
-                                    onClick={() => menuItem.langs ? changeLang(submenuItem.path) : changeRouter(submenuItem.path, menuItem.curTab)}
+                                    onClick={() => menuItem.langs ? changeLang(submenuItem.path) : changeRouter(submenuItem.path, submenuItem.curTab)}
                                     key={index}
                                     className="block cursor-pointer rounded py-2 lg:py-5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white
                                     lg:px-6 lg:w-1/3 lg:text-left"
