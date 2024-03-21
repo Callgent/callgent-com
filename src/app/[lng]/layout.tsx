@@ -14,7 +14,8 @@ import { getCookie, setCookie } from '@/util/cookie';
 const inter = Inter({ subsets: ['latin'] });
 import { fallbackLng } from '@/app/lib/i18n/settings';
 import Head from 'next/head';
-
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/react";
 const Setting = ({ children }) => {
   useEffect(() => {
     const lang = getCookie('lang');
@@ -24,6 +25,8 @@ const Setting = ({ children }) => {
   return (
     <>
       {children}
+      <SpeedInsights />
+      <Analytics />
     </>
   );
 };
