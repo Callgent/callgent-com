@@ -16,6 +16,7 @@ import { fallbackLng } from '@/app/lib/i18n/settings';
 import Head from 'next/head';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/react";
+import { GoogleTagManager } from '@next/third-parties/google';
 const Setting = ({ children }) => {
   useEffect(() => {
     const lang = getCookie('lang');
@@ -56,7 +57,7 @@ export default function RootLayout({ children, params: { lng } }: Readonly<{
         <title>Botlet.IO Home</title>
         <meta name="description" content="This is Botlet.IO Home Page for Botlet.IO" />
       </Head>
-
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTMID} />
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
         <Providers>
           <Setting>
