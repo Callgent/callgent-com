@@ -5,8 +5,9 @@ import Breadcrumb from '@/components/Common/Breadcrumb';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Page | Break the silos between Users & Systems',
-  description: 'About Page for Botlet.IO',
+  title: 'About Us | Botlet.IO - Bridging Users and Systems',
+  description: 'Discover how Botlet.IO is revolutionizing the way users interact with systems through innovative solutions. Learn about our mission, team, and the technology that drives us.',
+  keywords: 'Botlet.IO, about Botlet, user-system interaction, technology, innovation, team',
   // other metadata
 };
 

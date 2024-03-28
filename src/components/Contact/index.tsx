@@ -18,7 +18,7 @@ const Contact = () => {
                     src="/images/logo/logo.svg"
                     alt="logo"
                     style={{ transform: 'rotate(-135deg)' }}
-                    className="absolute -top-[13px] -right-[10px] dark:invert dark:opacity-70"
+                    className="absolute -top-[11px] -right-[11px] dark:invert dark:opacity-70"
                     width={140}
                     height={30}
                   />

@@ -11,21 +11,22 @@ const menuData: Menu[] = [
         title: 'About',
         path: '/about',
         newTab: false,
-        description:'The main ‘thrust’ is to focus on educating attendees'
+        description: 'The main ‘thrust’ is to focus on educating attendees'
       },
       {
         id: 43,
         title: 'Blog',
-        path: '/blog',
+        path: process.env.NEXT_PUBLIC_BLOG_URL,
+        curTab: true,
         newTab: false,
-        description:'The main ‘thrust’ is to focus on educating attendees'
+        description: 'The main ‘thrust’ is to focus on educating attendees'
       },
       {
         id: 44,
         title: 'Career',
         path: '/blog-sidebar',
         newTab: false,
-        description:'The main ‘thrust’ is to focus on educating attendees'
+        description: 'The main ‘thrust’ is to focus on educating attendees'
       },
     ],
   },
@@ -83,33 +84,33 @@ const menuData: Menu[] = [
       },
     ],
   },
-  {
-    id: 8,
-    title: 'langs',
-    mobel: true,
-    newTab: false,
-    langs: true,
-    submenu: [
-      {
-        id: 81,
-        title: 'English',
-        path: '/en',
-        newTab: false,
-      },
-      {
-        id: 82,
-        title: '中文',
-        path: '/cn',
-        newTab: false,
-      },
-      {
-        id: 83,
-        title: 'Italiano',
-        path: '/it',
-        newTab: false,
-      },
-    ],
-  }
+  // {
+  //   id: 8,
+  //   title: 'langs',
+  //   mobel: true,
+  //   newTab: false,
+  //   langs: true,
+  //   submenu: [
+  //     {
+  //       id: 81,
+  //       title: 'English',
+  //       path: '/en',
+  //       newTab: false,
+  //     },
+  //     {
+  //       id: 82,
+  //       title: '中文',
+  //       path: '/cn',
+  //       newTab: false,
+  //     },
+  //     {
+  //       id: 83,
+  //       title: 'Italiano',
+  //       path: '/it',
+  //       newTab: false,
+  //     },
+  //   ],
+  // }
 
   // {
   //   id: 5,

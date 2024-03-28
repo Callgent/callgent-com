@@ -16,7 +16,12 @@ const nextConfig = {
       {
         source: '/',
         destination: '/en',
-        permanent: false, // 如果重定向是永久的，设置为true
+        permanent: true,
+      },
+      {
+        source: '/discord',
+        destination: 'https://discord.com/invite/V9HKBukSRp',
+        permanent: false,
       },
     ];
   },

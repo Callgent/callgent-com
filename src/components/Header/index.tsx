@@ -43,7 +43,7 @@ function Header() {
 
   // submenu handler
   const [openIndex, setOpenIndex] = useState(-1);
-  const handleSubmenu = (index) => {
+  const handleSubmenu = (index: number) => {
     if (openIndex === index) {
       setOpenIndex(-1);
     } else {
@@ -175,7 +175,7 @@ function Header() {
                               <div className="bg-white dark:bg-dark rounded-sm lg:shadow-2xl lg:rounded-lg lg:flex lg:justify-between duration-300  lg:group-hover:scale-105">
                                 {menuItem.submenu.map((submenuItem, index) => (
                                   <span
-                                    onClick={() => menuItem.langs ? changeLang(submenuItem.path) : changeRouter(submenuItem.path, menuItem.curTab)}
+                                    onClick={() => menuItem.langs ? changeLang(submenuItem.path) : changeRouter(submenuItem.path, submenuItem.curTab)}
                                     key={index}
                                     className="block cursor-pointer rounded py-2 lg:py-5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white
                                     lg:px-6 lg:w-1/3 lg:text-left"
@@ -210,7 +210,7 @@ function Header() {
               </div>
               <div className="flex items-center justify-end pr-3 lg:pr-0">
                 {!userData?.avatar && (
-                  <div className="flex min-w-40 ml-10 mr-2">
+                  <div className="flex ml-10 mr-2">
                     <Link
                       href={base + '/signin'}
                       className={`hidden mr-3 px-2 xl:px-5 py-3 text-base font-medium text-dark dark:text-white md:block bg-primary  ${curUrl === '/signin' ? 'bg-opacity-1' : ' bg-opacity-10'} `}
