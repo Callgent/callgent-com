@@ -27,6 +27,7 @@ based on `Husky`
         ```json title=/package.json
         {
             "scripts": {
+                "commit": "git-cz",
                 "release": "standard-version"
             }
             "config": {
@@ -42,10 +43,9 @@ based on `Husky`
         ```.gitignore title=.gitignore
         # husky
         .husky/_
-        .dcosign
         ```
 
-4. create files:
+4. remove `.husky/pre-commit`, and create files:
 
     - /commitlint.config.js
 
@@ -56,7 +56,19 @@ based on `Husky`
     - /.husky/prepare-commit-msg
 
         ```bash title=/.husky/prepare-commit-msg
-        node .husky/scripts/dco-sign.js "$1"
+        # check 'Signed-off-by' in commit message
+        git_commit_message=$(cat $1)
+        if [[ "$git_commit_message" != *"Signed-off-by: "* ]]; then
+            echo
+            echo "\033[31mError\033[0m: Commit message is missing the Signed-off-by line."
+            echo "Please use 'git commit -s' to commit your changes."
+            echo "You can add it manually with 'git commit --amend -s'."
+            echo "Aborting commit."
+            echo
+            exit 1
+        fi
+
+        exit 0
         ```
 
     - /.husky/commit-msg
@@ -65,60 +77,13 @@ based on `Husky`
         npx --no-install commitlint --edit "$1"
         ```
 
-    - /.husky/scripts/dco-sign.js
+5. Now, commit with `-s`,
 
-        ```js title=/.husky/scripts/dco-sign.js
-        const fs = require('fs');
-        const path = require('path');
+    ```bash
+    git commit -s -m "Angular convention message"
+    ```
 
-        const dcoFilePath = path.join(__dirname, '../..', '.dcosign');
-
-        if (!fs.existsSync(dcoFilePath)) {
-        console.error('ERROR: .dcosign file is missing in the project root directory.');
-        console.error('Please create a .dcosign file with your NAME and EMAIL like this:');
-        console.error('NAME=Your Name');
-        console.error('EMAIL=your.email@example.com');
-        process.exit(1);
-        }
-
-        const dcoContent = fs.readFileSync(dcoFilePath, 'utf8');
-        const lines = dcoContent.split('\n');
-
-        const name = lines.find(line => line.startsWith('NAME=')).split('=')[1];
-        const email = lines.find(line => line.startsWith('EMAIL=')).split('=')[1];
-
-        if (!name || !email) {
-        console.error('ERROR: NAME or EMAIL is not properly defined in .dcosign.');
-        process.exit(1);
-        }
-
-        const msgFile = process.argv.length > 1 && process.argv[2];
-        if (msgFile) {
-        fs.readFile(msgFile, 'utf8', (err, data) => {
-            if (err) {
-            console.error('Error: failed to sign commit message.', err);
-            return;
-            }
-        
-            if (!data || !data.includes('Signed-off-by'))
-            fs.appendFileSync(msgFile, `\nSigned-off-by: ${name} <${email}>\n`);
-        });
-        } else
-        console.log(`DCO sign-off will use: ${name} <${email}>`);
-        ```
-
-    - /.dcosign
-
-        ```properties title=/.dcosign
-        # By creating this `/.dcosign` file, you confirm to agree to the project DCO policy, read CONTRIBUTING.md for more info.
-        # Please keep name and email `same` as your git account.
-
-        NAME=Your Name
-        EMAIL=your.email@example.com
-        ```
-
-5. Now:
    - the commit message is forced to the `Angular convention`
-   - commit message is automatically signed-off based on the `/.dcosign` file
+   - commit message is automatically DCO signed-off
    - you may also do interactive commit by `pnpm run commit`
    - you may generate a changelog with `pnpm run release`

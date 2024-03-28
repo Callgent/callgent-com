@@ -37,7 +37,7 @@ const menuData: Menu[] = [
     curTab: true,
   },
   {
-    id: 2,
+    id: 22,
     title: 'Developers',
     path: process.env.NEXT_PUBLIC_DEVELOPERS_PATH,
     newTab: false,

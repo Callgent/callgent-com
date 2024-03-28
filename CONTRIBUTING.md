@@ -78,7 +78,13 @@ We require all contributors to sign the Developer Certificate of Origin (DCO) fo
 - The contribution does not infringe on any third-party's rights.
 - You have the necessary permissions to grant the rights required by the DCO.
 
-The first time you commit your contribution, just create `/.dcosign` file to fill in your formal name and email address. Then each commit message will be automatically appended with:
+To signoff DCO, commit with `-s`:
+
+```bash
+git commit -s -m 'commit message'
+```
+
+The commit message will be automatically appended with:
 
 ```text
 Signed-off-by: Your Name <your.email@example.com>
