@@ -1,11 +1,7 @@
-import { Metadata } from 'next';
+// 'use client';
 import Link from 'next/link';
-export const metadata: Metadata = {
-    title: '404 Not Found | Botlet.IO',
-    description: 'The page you are looking for does not exist or has been moved.',
-    // other metadata
-};
-export default async function NotFoundPage() {
+
+const NotFoundPage = () => {
     return (
         <>
             <section className="relative z-10 pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
@@ -530,4 +526,6 @@ export default async function NotFoundPage() {
             </section>
         </>
     );
-}
+};
+
+export default NotFoundPage;

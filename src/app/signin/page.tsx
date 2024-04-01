@@ -2,22 +2,16 @@
 import Link from 'next/link';
 
 import OAuthButton from '@/components/Signin/oauth.button';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { UserSignin } from '@/types/user';
 import { ApiResponse, fetchSignin, fetchUserInfo } from '@/store/thunk';
-import { getCookie } from '@/util/cookie';
 import Head from 'next/head';
 
 const SigninPage = () => {
   const userRef = useRef(false);
   const dispatch = useDispatch<AppDispatch>();
-  const [base, setBase] = useState('');
-  useEffect(() => {
-    const lang = getCookie('lang') || 'en';
-    setBase('/' + lang);
-  }, []);
   const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -29,7 +23,7 @@ const SigninPage = () => {
         const payload = req.payload as ApiResponse<UserSignin>;
         if (payload.data) {
           dispatch(fetchUserInfo()).then(() => {
-            window.location.href = base + '/';
+            window.location.href = '/';
           });
         }
       });
@@ -143,7 +137,7 @@ const SigninPage = () => {
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
                   Don’t you have an account?{' '}
-                  <Link href={base + '/signup'} className="text-primary hover:underline">
+                  <Link href={'/signup'} className="text-primary hover:underline">
                     Sign up
                   </Link>
                 </p>

@@ -1,1 +1,1 @@
-export * from '@/app/lib/i18n/middleware';
+export * from '@/util/i18n/middleware';

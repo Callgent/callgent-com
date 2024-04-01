@@ -1,5 +1,4 @@
 'use client';
-import { getCookie } from '@/util/cookie';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { useTheme } from 'next-themes';
@@ -12,9 +11,8 @@ const Feedback = () => {
     useEffect(() => {
         const BoardToken = process.env.NEXT_PUBLIC_API_BOARDTOKEN;
         const userInfo = JSON.parse(localStorage.getItem('userinfo'));
-        const base = getCookie('lang');
         if (!userInfo) {
-            router.push('/' + base + '/signin');
+            router.push('/signin');
         } else {
             // https://developers.canny.io/install/widget/web
             (function (w: any, d, i, s) {
@@ -50,7 +48,7 @@ const Feedback = () => {
                 const Render = (ssoToken) => {
                     w.Canny('render', {
                         boardToken: BoardToken,
-                        basePath: '/' + base + '/feedback',
+                        basePath: '/feedback',
                         ssoToken: ssoToken,
                         theme: theme,
                     });

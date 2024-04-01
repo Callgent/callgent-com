@@ -8,6 +8,7 @@ export type Menu = {
   mobel?: boolean,
   langs?: boolean;
   description?: string;
+  isLogin?: boolean;
 };
 
 export type LanguageOption = {

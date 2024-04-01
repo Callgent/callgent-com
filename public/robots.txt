@@ -1,2 +1,9 @@
+# *
 User-agent: *
-Disallow:
+Allow: /
+
+# Host
+Host: http://localhost:3030
+
+# Sitemaps
+Sitemap: http://localhost:3030/sitemap.xml
