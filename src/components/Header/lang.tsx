@@ -1,22 +1,10 @@
 'use client';
-import { usePathname, useRouter } from 'next/navigation';
-import { languageOptions } from '@/app/lib/i18n';
-import { getCookie, setCookie } from '@/util/cookie';
-import { useEffect, useState } from 'react';
+import { languageOptions } from '@/util/i18n';
+import { setCookie } from '@/util/cookie';
 function SubmenuExample() {
-
-    const [base, setBase] = useState('');
-    useEffect(() => {
-        const lang = getCookie('lang');
-        setBase('/' + lang);
-    }, []);
-    const router = useRouter();
-    const pathname = usePathname();
 
     const changeLang = (newBase: string) => {
         setCookie('lang', newBase);
-        const path = '/' + newBase + pathname?.split(base)[1] || '';
-        router.push(path);
     };
 
     return (

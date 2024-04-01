@@ -1,21 +1,15 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
 import OAuthButton from '@/components/Signin/oauth.button';
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchSignup } from '@/store/thunk';
 import { AppDispatch, } from '@/store';
 import { UserSignup } from '@/types/user';
-import { getCookie, setCookie } from '@/util/cookie';
+import { setCookie } from '@/util/cookie';
 import Head from 'next/head';
 const SignupPage = () => {
   const userRef = useRef(false);
-  const [base, setBase] = useState('');
-  useEffect(() => {
-    const lang = getCookie('lang') || 'en';
-    setBase('/' + lang);
-  }, []);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -30,7 +24,7 @@ const SignupPage = () => {
           const token = req.payload as { meta: { token: string } };
 
           setCookie('jwt', token.meta.token);
-          window.location.href = base + '/';
+          window.location.href = '/';
         }
       });
     }
@@ -164,7 +158,7 @@ const SignupPage = () => {
                 </form>
                 <p className="text-center text-base font-medium text-body-color">
                   Already using Startup?{' '}
-                  <Link href={base + '/signin'} className="text-primary hover:underline">
+                  <Link href={'/signin'} className="text-primary hover:underline">
                     Sign in
                   </Link>
                 </p>

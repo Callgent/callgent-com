@@ -1,15 +1,8 @@
 'use client';
-import { getCookie } from '@/util/cookie';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 
 const Footer = () => {
-  const [base, setBase] = useState('');
-  useEffect(() => {
-    const lang = getCookie('lang');
-    setBase('/' + lang);
-  }, []);
   return (
     <>
       <footer className="relative z-10 bg-white pt-16 dark:bg-gray-dark md:pt-20 lg:pt-24">
@@ -142,7 +135,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href={base + '/pricing'}
+                      href={'/pricing'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Pricing
@@ -151,7 +144,7 @@ const Footer = () => {
                   <li>
                     <Link
 
-                      href={base + '/about'}
+                      href={'/about'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       About
@@ -169,7 +162,7 @@ const Footer = () => {
                 <ul>
                   <li>
                     <Link
-                      href="/"
+                      href="/terms-of-service"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       TOS
@@ -177,7 +170,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/privacy-policy"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Privacy Policy
@@ -185,7 +178,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/refund-policy"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Refund Policy
@@ -203,7 +196,7 @@ const Footer = () => {
                 <ul>
                   <li>
                     <Link
-                      href={base + '/contact'}
+                      href={'/contact'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Open Support Ticket
@@ -211,7 +204,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/terms-of-use"
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       Terms of Use
@@ -219,7 +212,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link
-                      href={base + '/about'}
+                      href={'/about'}
                       className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                     >
                       About

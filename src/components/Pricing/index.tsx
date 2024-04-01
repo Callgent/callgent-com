@@ -3,10 +3,14 @@ import { useState } from 'react';
 import SectionTitle from '../Common/SectionTitle';
 import OfferList from './OfferList';
 import PricingBox from './PricingBox';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 const Pricing = () => {
-  const [isMonthly, setIsMonthly] = useState(true);
-
+  const [isMonthly] = useState(true);
+  const { userData } = useSelector(
+    (state: RootState) => state.user
+  );
+  const email = userData?.email ? '?prefilled_email=' + userData?.email : '';
   return (
     <section id="pricing" className="relative z-10 py-16 md:py-20 lg:py-28">
       <div className="container">
@@ -17,7 +21,7 @@ const Pricing = () => {
           width="665px"
         />
 
-        <div className="w-full">
+        {/* <div className="w-full">
           <div className="mb-8 flex justify-center md:mb-12 lg:mb-16">
             <span
               onClick={() => setIsMonthly(true)}
@@ -55,51 +59,53 @@ const Pricing = () => {
               Yearly
             </span>
           </div>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
             packageName="Lite"
-            price={isMonthly ? '40' : '120'}
+            price={isMonthly ? ' 0 ' : '120'}
             duration={isMonthly ? 'mo' : 'yr'}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Basic package for small-scale projects."
+            title="Start Lite Trial"
+            priceUrl="/"
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="inactive" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="Create 2 bots" status="active" />
+            <OfferList text="limited to 50 tasks/day" status="active" />
+            <OfferList text="Limited to 50 tasks per bot per day" status="active" />
+            <OfferList text="Basic email support" status="active" />
+            <OfferList text="Free Lifetime Updates" status="active" />
           </PricingBox>
           <PricingBox
             packageName="Basic"
-            price={isMonthly ? '399' : '789'}
+            price={isMonthly ? ' 18 ' : '789'}
             duration={isMonthly ? 'mo' : 'yr'}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Standard package for growing businesses."
+            title="Start Basic Trial"
+            priceUrl={"https://buy.stripe.com/5kA02r5766Wd1zi289" + email}
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="inactive" />
+            <OfferList text="Create 5 bots" status="active" />
+            <OfferList text="each with 200 tasks/day" status="active" />
+            <OfferList text="Commercial use allowed" status="active" />
+            <OfferList text="Priority email support" status="active" />
+            <OfferList text="Within the first month" status="active" />
           </PricingBox>
           <PricingBox
             packageName="Plus"
-            price={isMonthly ? '589' : '999'}
+            price={isMonthly ? ' 28 ' : '999'}
             duration={isMonthly ? 'mo' : 'yr'}
-            subtitle="Lorem ipsum dolor sit amet adiscing elit Mauris egestas enim."
+            subtitle="Premium package for high-volume usage."
+            title="Start Plus Trial"
+            priceUrl={"https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email}
           >
-            <OfferList text="All UI Components" status="active" />
-            <OfferList text="Use with Unlimited Projects" status="active" />
-            <OfferList text="Commercial Use" status="active" />
-            <OfferList text="Email Support" status="active" />
-            <OfferList text="Lifetime Access" status="active" />
-            <OfferList text="Free Lifetime Updates" status="active" />
+            <OfferList text="Create 10 bots" status="active" />
+            <OfferList text="each with 300 tasks/day" status="active" />
+            <OfferList text="Commercial use allowed" status="active" />
+            <OfferList text="24/7 priority email support" status="active" />
+            <OfferList text="Within the first month" status="active" />
           </PricingBox>
         </div>
       </div>
-
       <div className="absolute bottom-0 left-0 z-[-1]">
         <svg
           width="239"

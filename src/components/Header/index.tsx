@@ -9,13 +9,12 @@ import menuData from './menuData';
 import Image from 'next/image';
 import Link from 'next/link';
 // import Lang from './lang';
-import { deleteCookie, getCookie } from '@/util/cookie';
+import { deleteCookie } from '@/util/cookie';
 import { fetchUserInfo } from '@/store/thunk';
 function Header() {
   const { userData } = useSelector(
     (state: RootState) => state.user
   );
-  const [base, setBase] = useState('');
   const usePathName = usePathname();
   const route = useRouter();
 
@@ -53,17 +52,15 @@ function Header() {
 
 
   const changeRouter = (path: string, curTab: boolean = false) => {
-    curTab ? window.location.href = path : route.push(base + path);
+    curTab ? window.location.href = path : route.push(path);
   };
 
   const changeLang = (newBase: string) => {
-    const routeaa = newBase + pathname?.split(base)[1] || '';
+    const routeaa = newBase + pathname;
     route.push(routeaa);
   };
 
   useEffect(() => {
-    const lang = getCookie('lang');
-    setBase('/' + lang);
     // Check login status
     dispatch(fetchUserInfo()).then(() => {
       dispatch(setInfo());
@@ -72,8 +69,8 @@ function Header() {
   const [curUrl, SetCururl] = useState('/signin');
 
   useEffect(() => {
-    SetCururl(pathname?.split(base)[1] || '');
-  }, [pathname, base]);
+    SetCururl(pathname);
+  }, [pathname]);
   const Logout = () => {
     deleteCookie('jwt');
     localStorage.removeItem('userinfo');
@@ -143,9 +140,8 @@ function Header() {
                           <span
                             onClick={() => changeRouter(menuItem.path, menuItem.curTab)}
                             className={`flex cursor-pointer py-2 text-base lg:mr-0 lg:inline-flex lg:px-0 lg:py-6 ${usePathName === menuItem.path
-                              ? 'text-primary dark:text-white'
-                              : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white'
-                              }`}
+                              ? 'text-primary dark:text-white' : 'text-dark hover:text-primary dark:text-white/70 dark:hover:text-white'}
+                            ${menuItem?.isLogin ? 'hidden' : null}`}
                           >
                             {menuItem.title}
                           </span>
@@ -212,13 +208,13 @@ function Header() {
                 {!userData?.avatar && (
                   <div className="flex ml-10 mr-2">
                     <Link
-                      href={base + '/signin'}
+                      href={'/signin'}
                       className={`hidden mr-3 px-2 xl:px-5 py-3 text-base font-medium text-dark dark:text-white md:block bg-primary  ${curUrl === '/signin' ? 'bg-opacity-1' : ' bg-opacity-10'} `}
                     >
                       Sign In
                     </Link>
                     <Link
-                      href={base + '/signup'}
+                      href={'/signup'}
                       className={`hidden px-2 xl:px-5 py-3 text-base font-medium text-dark dark:text-white md:block bg-primary ${curUrl !== '/signin' ? 'bg-opacity-1' : 'bg-opacity-10'} `}
                     >
                       Sign Up
@@ -229,7 +225,7 @@ function Header() {
                   {userData?.avatar &&
                     <div className=' hidden lg:block ml-4'>
                       <Link
-                        href={base + '/feedback'}
+                        href={'/feedback'}
                       >
                         <svg fill="currentColor" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2972" width="32" height="32">
                           <path d="M827.6992 165.1712H203.3152a101.5296 101.5296 0 0 0-101.376 101.376v389.6832A101.4784 101.4784 0 0 0 203.3152 757.76h10.8032v134.1952L434.8928 757.76h392.8064a101.4784 101.4784 0 0 0 101.376-101.376V266.5472a101.5296 101.5296 0 0 0-101.376-101.376z m-128.8704 184.7296a28.16 28.16 0 0 1 28.16-28.16h17.3056a28.16 28.16 0 0 1 28.16 28.16v67.584a28.16 28.16 0 0 1-28.16 28.16H727.04a28.16 28.16 0 0 1-28.16-28.16z m-321.4336 0a28.16 28.16 0 0 1 28.16-28.16h17.3056a28.2112 28.2112 0 0 1 28.2112 28.16v67.584A28.2112 28.2112 0 0 1 422.8608 445.44h-17.3056a28.16 28.16 0 0 1-28.16-28.16z m388.096 230.8096a403.0464 403.0464 0 0 1-189.0304 60.2112c-7.9872 0.512-16.0256 0.7168-24.0128 0.7168a403.0976 403.0976 0 0 1-164.4032-34.9696 28.16 28.16 0 1 1 23.04-51.2 341.8624 341.8624 0 0 0 161.9968 29.44 346.2144 346.2144 0 0 0 162.5088-51.7632 28.16 28.16 0 0 1 29.9008 47.7696z" p-id="2973"></path>
@@ -271,7 +267,7 @@ function Header() {
             </div>
           </div>
         </div>
-      </header>
+      </header >
     </>
   );
 };

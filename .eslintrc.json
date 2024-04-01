@@ -5,6 +5,7 @@
       "error",
       "always"
     ],
+    "react/no-unescaped-entities": "off",
     "no-unused-vars": "warn",
     "no-console": "off",
     "eqeqeq": [

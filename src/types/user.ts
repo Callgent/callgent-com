@@ -11,7 +11,8 @@ export type UserSignup = {
 
 
 export type UserResponse = {
-    avatar?: string
+    avatar?: string;
+    email?: string;
 }
 
 export type userSliceType = {
