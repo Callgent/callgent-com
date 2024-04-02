@@ -17,6 +17,9 @@
 
 # production
 /build
+/public/sitemap-0.xml
+/public/sitemap.xml
+/public/robots.txt
 
 # misc
 .DS_Store

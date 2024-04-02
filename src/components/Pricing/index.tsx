@@ -6,7 +6,7 @@ import PricingBox from './PricingBox';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 const Pricing = () => {
-  const [isMonthly] = useState(true);
+  const [isMonthly, setIsMonthly] = useState(true);
   const { userData } = useSelector(
     (state: RootState) => state.user
   );
@@ -21,15 +21,14 @@ const Pricing = () => {
           width="665px"
         />
 
-        {/* <div className="w-full">
+        <div className="w-full">
           <div className="mb-8 flex justify-center md:mb-12 lg:mb-16">
             <span
               onClick={() => setIsMonthly(true)}
-              className={`${
-                isMonthly
-                  ? 'pointer-events-none text-primary'
-                  : 'text-dark dark:text-white'
-              } mr-4 cursor-pointer text-base font-semibold`}
+              className={`${isMonthly
+                ? 'pointer-events-none text-primary'
+                : 'text-dark dark:text-white'
+                } mr-4 cursor-pointer text-base font-semibold`}
             >
               Monthly
             </span>
@@ -40,9 +39,8 @@ const Pricing = () => {
               <div className="relative">
                 <div className="h-5 w-14 rounded-full bg-[#1D2144] shadow-inner"></div>
                 <div
-                  className={`${
-                    isMonthly ? '' : 'translate-x-full'
-                  } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
+                  className={`${isMonthly ? '' : 'translate-x-full'
+                    } shadow-switch-1 absolute left-0 top-[-4px] flex h-7 w-7 items-center justify-center rounded-full bg-primary transition`}
                 >
                   <span className="active h-4 w-4 rounded-full bg-white"></span>
                 </div>
@@ -50,21 +48,20 @@ const Pricing = () => {
             </div>
             <span
               onClick={() => setIsMonthly(false)}
-              className={`${
-                isMonthly
-                  ? 'text-dark dark:text-white'
-                  : 'pointer-events-none text-primary'
-              } ml-4 cursor-pointer text-base font-semibold`}
+              className={`${isMonthly
+                ? 'text-dark dark:text-white'
+                : 'pointer-events-none text-primary'
+                } ml-4 cursor-pointer text-base font-semibold`}
             >
               Yearly
             </span>
           </div>
-        </div> */}
+        </div>
 
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
             packageName="Lite"
-            price={isMonthly ? ' 0 ' : '120'}
+            price={isMonthly ? ' 0 ' : '0'}
             duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Basic package for small-scale projects."
             title="Start Lite Trial"
@@ -78,32 +75,47 @@ const Pricing = () => {
           </PricingBox>
           <PricingBox
             packageName="Basic"
-            price={isMonthly ? ' 18 ' : '789'}
+            price={isMonthly ? ' 18 ' : '180'}
             duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Standard package for growing businesses."
             title="Start Basic Trial"
-            priceUrl={"https://buy.stripe.com/5kA02r5766Wd1zi289" + email}
+            priceUrl={isMonthly ? "https://buy.stripe.com/5kA02r5766Wd1zi289" + email : 'https://buy.stripe.com/4gw3eD7fe2FX1zi28d' + email}
           >
             <OfferList text="Create 5 bots" status="active" />
             <OfferList text="each with 200 tasks/day" status="active" />
             <OfferList text="Commercial use allowed" status="active" />
             <OfferList text="Priority email support" status="active" />
-            <OfferList text="Within the first month" status="active" />
+            <OfferList text="during your subscription period" status="active" />
           </PricingBox>
           <PricingBox
             packageName="Plus"
-            price={isMonthly ? ' 28 ' : '999'}
+            price={isMonthly ? ' 28 ' : '280'}
             duration={isMonthly ? 'mo' : 'yr'}
             subtitle="Premium package for high-volume usage."
             title="Start Plus Trial"
-            priceUrl={"https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email}
+            priceUrl={isMonthly ? "https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email : 'https://buy.stripe.com/6oE02rbvucgx7XG6os' + email}
           >
             <OfferList text="Create 10 bots" status="active" />
             <OfferList text="each with 300 tasks/day" status="active" />
             <OfferList text="Commercial use allowed" status="active" />
             <OfferList text="24/7 priority email support" status="active" />
-            <OfferList text="Within the first month" status="active" />
+            <OfferList text="during your subscription period" status="active" />
           </PricingBox>
+          <PricingBox
+            packageName="custom plan"
+            price={' ? '}
+            duration={isMonthly ? 'mo' : 'yr'}
+            subtitle="Customize your plan: contact sales for details."
+            title="Start Custom Trial"
+            priceUrl={'https://github.com/Botlet-IO/botlet-api'}
+          >
+            <OfferList text="Customize number of bots" status="active" />
+            <OfferList text="Customize tasks per bot per day" status="active" />
+            <OfferList text="Customize commercial use terms" status="active" />
+            <OfferList text="Customize support options" status="active" />
+            <OfferList text="during your subscription period" status="active" />
+          </PricingBox>
+
         </div>
       </div>
       <div className="absolute bottom-0 left-0 z-[-1]">
