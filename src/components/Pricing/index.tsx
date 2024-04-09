@@ -80,7 +80,7 @@ const Pricing = () => {
             duration={'mo'}
             subtitle="Standard package for growing businesses."
             title="Start Basic Trial"
-            priceUrl={isMonthly ? "https://buy.stripe.com/5kA02r5766Wd1zi289" + email : 'https://buy.stripe.com/28o2azfLK4O53HqfZ4' + email}
+            priceUrl={isMonthly ? "https://buy.stripe.com/5kA02r5766Wd1zi289" + email : 'https://buy.stripe.com/eVa16v8jieoFfq8fZ5' + email}
           >
             <OfferList text="Create 5 bots" status="active" />
             <OfferList text="each with 200 tasks/day" status="active" />
@@ -94,7 +94,7 @@ const Pricing = () => {
             duration={'mo'}
             subtitle="Premium package for high-volume usage."
             title="Start Plus Trial"
-            priceUrl={isMonthly ? "https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email : 'https://buy.stripe.com/6oE02rbvucgx7XG6os' + email}
+            priceUrl={isMonthly ? "https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email : 'https://buy.stripe.com/dR69D16baa8pguccMU' + email}
           >
             <OfferList text="Create 10 bots" status="active" />
             <OfferList text="each with 300 tasks/day" status="active" />
