@@ -2,8 +2,6 @@
 
 const nextConfig = {
   images: {
-    domains: ["localhost", "dummyimage.com"],
-
     remotePatterns: [
       {
         protocol: "http",

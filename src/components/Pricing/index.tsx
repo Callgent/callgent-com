@@ -6,7 +6,7 @@ import PricingBox from './PricingBox';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 const Pricing = () => {
-  const [isMonthly, setIsMonthly] = useState(true);
+  const [isMonthly, setIsMonthly] = useState(false);
   const { userData } = useSelector(
     (state: RootState) => state.user
   );
@@ -54,6 +54,7 @@ const Pricing = () => {
                 } ml-4 cursor-pointer text-base font-semibold`}
             >
               Yearly
+              <span className=' ml-2 text-sm'>Pay 10 get 12</span>
             </span>
           </div>
         </div>
@@ -61,11 +62,11 @@ const Pricing = () => {
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
           <PricingBox
             packageName="Lite"
-            price={isMonthly ? ' 0 ' : '0'}
-            duration={isMonthly ? 'mo' : 'yr'}
+            price=' free '
+            duration='mo'
             subtitle="Basic package for small-scale projects."
             title="Start Lite Trial"
-            priceUrl="/"
+            priceUrl=''
           >
             <OfferList text="Create 2 bots" status="active" />
             <OfferList text="limited to 50 tasks/day" status="active" />
@@ -75,11 +76,11 @@ const Pricing = () => {
           </PricingBox>
           <PricingBox
             packageName="Basic"
-            price={isMonthly ? ' 18 ' : '180'}
-            duration={isMonthly ? 'mo' : 'yr'}
+            price={isMonthly ? ' 18 ' : ' 15 '}
+            duration={'mo'}
             subtitle="Standard package for growing businesses."
             title="Start Basic Trial"
-            priceUrl={isMonthly ? "https://buy.stripe.com/5kA02r5766Wd1zi289" + email : 'https://buy.stripe.com/4gw3eD7fe2FX1zi28d' + email}
+            priceUrl={isMonthly ? "https://buy.stripe.com/5kA02r5766Wd1zi289" + email : 'https://buy.stripe.com/28o2azfLK4O53HqfZ4' + email}
           >
             <OfferList text="Create 5 bots" status="active" />
             <OfferList text="each with 200 tasks/day" status="active" />
@@ -89,8 +90,8 @@ const Pricing = () => {
           </PricingBox>
           <PricingBox
             packageName="Plus"
-            price={isMonthly ? ' 28 ' : '280'}
-            duration={isMonthly ? 'mo' : 'yr'}
+            price={isMonthly ? ' 28 ' : ' 23 '}
+            duration={'mo'}
             subtitle="Premium package for high-volume usage."
             title="Start Plus Trial"
             priceUrl={isMonthly ? "https://buy.stripe.com/9AQg1p2YY2FXa5O7su" + email : 'https://buy.stripe.com/6oE02rbvucgx7XG6os' + email}
@@ -104,7 +105,7 @@ const Pricing = () => {
           <PricingBox
             packageName="custom plan"
             price={' ? '}
-            duration={isMonthly ? 'mo' : 'yr'}
+            duration={'mo'}
             subtitle="Customize your plan: contact sales for details."
             title="Start Custom Trial"
             priceUrl={'https://github.com/Botlet-IO/botlet-api'}

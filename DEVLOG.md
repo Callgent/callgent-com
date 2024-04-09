@@ -87,3 +87,31 @@ based on `Husky`
    - commit message is automatically DCO signed-off
    - you may also do interactive commit by `pnpm run commit`
    - you may generate a changelog with `pnpm run release`
+
+### Configure your billing, we integrate stripe
+
+1. Create your product
+
+   ```
+   https://dashboard.stripe.com/products?active=true
+   ```
+
+2. Enter the newly created product and create a payment link
+
+   ```
+   https://buy.stripe.com/28o2azfLK4O53HqfZ4
+   ```
+
+3. Set up your subscription details
+
+   ```
+   https://dashboard.stripe.com/settings/billing/portal
+   ```
+
+4. Configure billing callback events
+
+   ```
+   https://dashboard.stripe.com/webhooks
+   ```
+
+   
