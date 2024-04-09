@@ -1,11 +1,6 @@
 {
-  "css.validate": false,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "editor.tabSize": 2,
-  "i18n-ally.localesPaths": [
-    "public/locales",
-    "src/app/lib/i18n"
-  ],
-  "i18n-ally.keystyle": "nested"
+    "i18n-ally.localesPaths": [
+        "public/locales",
+        "src/util/i18n"
+    ]
 }
