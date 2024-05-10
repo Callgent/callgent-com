@@ -18,7 +18,7 @@ const Hero = () => {
                   Encapsulate all your APPs/systems/services/even Users, as AI-powered Botlets.
                 </p>
                 <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  From now on, everybody can orchestrate an APP just like chatting in a group of users & botlets. Software development has never been so easy!
+                  From now on, everybody can orchestrate an application just like chatting in a group of users & botlets. Software development has never been so easy!
                 </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
