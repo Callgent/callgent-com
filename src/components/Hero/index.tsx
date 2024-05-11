@@ -15,21 +15,11 @@ const Hero = () => {
                   Service as a Callable Agent
                 </h1>
                 <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Encapsulate your service into a callgent,
-                </p >
-                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Now it can talk to a person in email or slack channels, or be
-                  invoked through code libs or restAPIs, ..
-                </p >
-                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  The callgent translates all these requests into executable
-                  invocations, and sends them to your API service, or even slack
-                  users to respond.
-                </p >
-                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Callgent's vision, is to break the silos among all systems and
-                  users!
-                </p >
+                  Encapsulate all your APPs/systems/services/even Users, as AI-powered Botlets.
+                </p>
+                <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                  From now on, everybody can orchestrate an application just like chatting in a group of users & botlets. Software development has never been so easy!
+                </p>
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
