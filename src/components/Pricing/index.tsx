@@ -98,7 +98,7 @@ const Pricing = () => {
             duration={'mo'}
             subtitle="Customize your plan: contact sales for details."
             title="Start Custom Trial"
-            priceUrl={'https://github.com/Botlet-IO/botlet-api'}
+            priceUrl={'https://github.com/Callgent/callgent-api'}
           >
             <OfferList text="Customize number of bots" status="active" />
             <OfferList text="Customize tasks per bot per day" status="active" />

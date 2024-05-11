@@ -22,7 +22,7 @@ const Footer = () => {
                     className="w-10 md:w-12 dark:invert"
                   />
                   <div className="ml-2 text-2xl font-medium">
-                    Botlet.IO
+                    Callgent
                   </div>
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
@@ -51,7 +51,7 @@ const Footer = () => {
                     </svg>
                   </a>
                   <a
-                    href="https://twitter.com/BotletIO"
+                    href="https://twitter.com/callgent"
                     aria-label="social-link"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -73,7 +73,7 @@ const Footer = () => {
                     </svg>
                   </a>
                   <a
-                    href="http://www.linkedin.com/in/BotletIO"
+                    href="http://www.linkedin.com/in/callgent"
                     aria-label="social-link"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -99,7 +99,7 @@ const Footer = () => {
                     </svg>
                   </a>
                   <a
-                    href="https://github.com/Botlet-IO/botlet-io"
+                    href="https://github.com/Callgent/callgent-com"
                     aria-label="social-link"
                     target="_blank"
                     rel="noopener noreferrer"

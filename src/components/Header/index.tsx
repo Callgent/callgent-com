@@ -72,9 +72,9 @@ function Header() {
     SetCururl(pathname);
   }, [pathname]);
   const Logout = () => {
-    deleteCookie('jwt');
+    deleteCookie('x-callgent-jwt');
     localStorage.removeItem('userinfo');
-    route.push('/en');
+    route.push('/');
     window.location.reload();
   };
   return (
@@ -101,7 +101,7 @@ function Header() {
                   className="w-10 md:w-12 dark:invert"
                 />
                 <div className="ml-1 text-xl lg:text-2xl font-medium lg:hidden  xl:block">
-                  Botlet.IO
+                  Callgent
                 </div>
               </Link>
             </div>

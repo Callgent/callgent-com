@@ -40,7 +40,7 @@ const Feedback = () => {
                 }
                 const user = {
                     avatarURL: userInfo.avatar, // optional, but preferred
-                    email: userInfo.uuid + '@botlet.io',
+                    email: userInfo.uuid + '@callgent.com',
                     id: userInfo.uuid,
                     name: userInfo.name,
                 };

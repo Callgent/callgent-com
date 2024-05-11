@@ -24,7 +24,7 @@ const TermsOfService = () => {
             </p>
             <h3 className="mt-8 text-2xl font-bold">3. Open Source License</h3>
             <p className="mt-4 text-gray-500">
-              Our project is licensed under the terms of the <a href="https://github.com/Botlet-IO/botlet-io/blob/main/LICENSE" className="text-blue-600 underline">MIT License</a>. You may use, copy, modify, and distribute the project, including in commercial applications, subject to the terms of the license.
+              Our project is licensed under the terms of the <a href="https://github.com/Callgent/callgent-docs/blob/main/LICENSE" className="text-blue-600 underline">MIT License</a>. You may use, copy, modify, and distribute the project, including in commercial applications, subject to the terms of the license.
             </p>
             <h3 className="mt-8 text-2xl font-bold">4. User Conduct</h3>
             <p className="mt-4 text-gray-500">
@@ -61,7 +61,7 @@ const TermsOfService = () => {
             </p>
             <h3 className="mt-8 text-2xl font-bold">10. Open Source Repository</h3>
             <p className="mt-4 text-gray-500">
-              The open-source repository for our project is available at <a href="https://github.com/Botlet-IO/botlet-io" className="text-blue-600 underline">this link</a>.
+              The open-source repository for our project is available at <a href="https://github.com/Callgent/callgent-com" className="text-blue-600 underline">this link</a>.
             </p>
           </div>
         </div>

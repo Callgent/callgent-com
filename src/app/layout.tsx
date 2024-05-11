@@ -47,8 +47,8 @@ export default function RootLayout({ children }: Readonly<{
   return (
     <html suppressHydrationWarning lang={lang} dir={dir(lang)}>
       <Head>
-        <title>Botlet.IO Home</title>
-        <meta name="description" content="This is Botlet.IO Home Page for Botlet.IO" />
+        <title>Callgent Home</title>
+        <meta name="description" content="This is Callgent Home Page for Callgent" />
       </Head>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTMID} />
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>

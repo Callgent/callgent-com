@@ -4,7 +4,7 @@ The security of our project is of the utmost importance to us. This document out
 
 ## Reporting a Vulnerability
 
-We appreciate the efforts of security researchers and the community who help us keep our projects safe. If you believe you've discovered a security vulnerability in one of our projects, please send an email to security@botlet.io.
+We appreciate the efforts of security researchers and the community who help us keep our projects safe. If you believe you've discovered a security vulnerability in one of our projects, please send an email to security@callgent.com.
 
 In your report, please include:
 

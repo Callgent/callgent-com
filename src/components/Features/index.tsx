@@ -8,7 +8,7 @@ const Features = () => {
       <div className="container">
         <SectionTitle
           title="Main Features"
-          paragraph="Botlet advanced features empowered by the SOTA GPT and Stable Diffusion models, to semantically handle requests and responses."
+          paragraph="Callgent advanced features empowered by the SOTA GPT and Stable Diffusion models, to semantically handle requests and responses."
           center
         />
 

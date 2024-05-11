@@ -1,24 +1,24 @@
-# [Botlet.IO](https://botlet.io) Portal Site
+# [callgent.com](https://callgent.com) Portal Site
 
 <p align="center">
-    <a href="https://botlet.io" target="_blank">
-        <img alt="Static Badge" src="https://img.shields.io/badge/IO-IO?logo=IO&logoColor=%20%23f5f5f5&label=Botlet&labelColor=%20%23155EEF&color=%23EAECF0"></a>
+    <a href="https://callgent.com" target="_blank">
+        <img alt="Static Badge" src="https://img.shields.io/badge/IO-IO?logo=IO&logoColor=%20%23f5f5f5&label=Callgent&labelColor=%20%23155EEF&color=%23EAECF0"></a>
     <a href="https://discord.gg/V9HKBukSRp" target="_blank">
         <img src="https://img.shields.io/discord/1215998670265127102?logo=discord"
             alt="chat on Discord"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=BotletIO" target="_blank">
-        <img src="https://img.shields.io/twitter/follow/BotletIO?style=social&logo=X"
+    <a href="https://twitter.com/intent/follow?screen_name=callgent" target="_blank">
+        <img src="https://img.shields.io/twitter/follow/callgent?style=social&logo=X"
             alt="follow on Twitter"></a>
-<a href="https://app.snyk.io/test/github/Botlet-IO/botlet-io" alt="FOSSA Status"><img src="https://snyk.io/test/github/Botlet-IO/botlet-io/badge.svg"/></a>
-<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io?ref=badge_shield&issueType=license" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FBotlet-IO%2Fbotlet-io.svg?type=shield&issueType=license"/></a>
-<a href="https://github.com/Botlet-IO/botlet-io/issues">
-<img src="https://img.shields.io/github/issues/Botlet-IO/botlet-io.svg" alt="GitHub issues" /></a>
-<a href="https://github.com/Botlet-IO/botlet-io/pulls">
-<img src="https://img.shields.io/github/issues-pr/Botlet-IO/botlet-io.svg" alt="GitHub pull requests" /></a>
+<a href="https://app.snyk.io/test/github/Callgent/callgent-com" alt="FOSSA Status"><img src="https://snyk.io/test/github/Callgent/callgent-com/badge.svg"/></a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fcallgent-com%2Fcallgent-com?ref=badge_shield&issueType=license" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcallgent-com%2Fcallgent-com.svg?type=shield&issueType=license"/></a>
+<a href="https://github.com/Callgent/callgent-com/issues">
+<img src="https://img.shields.io/github/issues/Callgent/callgent-com.svg" alt="GitHub issues" /></a>
+<a href="https://github.com/Callgent/callgent-com/pulls">
+<img src="https://img.shields.io/github/issues-pr/Callgent/callgent-com.svg" alt="GitHub pull requests" /></a>
 <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" height="20px">
 </p>
 
-This is the portal website of [Botlet.IO](https://botlet.io), gratefully forked from [NextJSTemplates](https://github.com/NextJSTemplates/startup-nextjs).
+This is the portal website of [Callgent](https://callgent.com), gratefully forked from [NextJSTemplates](https://github.com/NextJSTemplates/startup-nextjs).
 
 ## Development
 
@@ -26,8 +26,8 @@ This is the portal website of [Botlet.IO](https://botlet.io), gratefully forked 
 2. checkout the repository:
 
     ```bash
-    git clone https://github.com/Botlet-IO/botlet-io.git
-    cd botlet-io
+    git clone https://github.com/Callgent/callgent-com.git
+    cd callgent-com
     ```
 
 3. rename `.env.example` to `.env`

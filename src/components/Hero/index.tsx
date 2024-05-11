@@ -12,14 +12,24 @@ const Hero = () => {
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
                 <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                  Break the silos between Users & Systems
+                  Service as a Callable Agent
                 </h1>
                 <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  Encapsulate all your APPs/systems/services/even Users, as AI-powered Botlets.
-                </p>
-                <p className="mb-12 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                  From now on, everybody can orchestrate an APP just like chatting in a group of users & botlets. Software development has never been so easy!
-                </p>
+                  Encapsulate your service into a callgent,
+                </p >
+                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                  Now it can talk to a person in email or slack channels, or be
+                  invoked through code libs or restAPIs, ..
+                </p >
+                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                  The callgent translates all these requests into executable
+                  invocations, and sends them to your API service, or even slack
+                  users to respond.
+                </p >
+                <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
+                  Callgent's vision, is to break the silos among all systems and
+                  users!
+                </p >
                 <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                   <Link
                     href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
@@ -28,7 +38,7 @@ const Hero = () => {
                     🔥 Try it Now
                   </Link>
                   <Link
-                    href="https://github.com/Botlet-IO/botlet-api"
+                    href="https://github.com/Callgent/callgent-api"
                     className="inline-block rounded-sm bg-black px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
                   >
                     Star on GitHub

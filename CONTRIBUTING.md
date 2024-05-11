@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thank you for considering contributing to Botlet.IO! We appreciate your time and effort. This document provides guidelines to contribute to the project.
+Thank you for considering contributing to Callgent! We appreciate your time and effort. This document provides guidelines to contribute to the project.
 
 ## Table of Contents
 
@@ -34,7 +34,7 @@ There are several ways you can contribute to the project:
 
 ### Reporting Bugs
 
-If you encounter any issues, please [open an issue](https://github.com/botlet-io/botlet-api/issues) on the GitHub repository. Provide as much detail as possible, including steps to reproduce the issue if applicable.
+If you encounter any issues, please [open an issue](https://github.com/Callgent/callgent-api/issues) on the GitHub repository. Provide as much detail as possible, including steps to reproduce the issue if applicable.
 
 ### Suggesting Enhancements
 

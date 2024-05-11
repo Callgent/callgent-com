@@ -36,7 +36,7 @@ const SignupPage = () => {
     <>
       <Head>
         <title>Blog Sign up Page</title>
-        <meta name="description" content="This is Blog Sign up Page Page for Botlet.IO" />
+        <meta name="description" content="This is Blog Sign up Page Page for Callgent" />
       </Head>
       <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
         <div className="container">

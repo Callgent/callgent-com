@@ -24,7 +24,7 @@ const RefundPolicy = () => {
             </p>
             <h3 className="mt-8 text-2xl font-bold">Contact Us</h3>
             <p className="mt-4 text-gray-500">
-              If you have any questions or concerns about our refund policy, or if you would like to request a refund, please contact us through our GitHub repository at <a href="https://github.com/Botlet-IO/botlet-io" className="text-blue-500 underline">https://github.com/Botlet-IO/botlet-io</a>.
+              If you have any questions or concerns about our refund policy, or if you would like to request a refund, please contact us through our GitHub repository at <a href="https://github.com/Callgent/callgent-com" className="text-blue-500 underline">https://github.com/Callgent/callgent-com</a>.
             </p>
           </div>
         </div>

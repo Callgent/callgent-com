@@ -14,7 +14,7 @@ const featuresData: Feature[] = [
   ),
     title: 'Async Task Queue',
     paragraph:
-      'Each botlet has its builtin tasks queue. This makes it easy to send requests to systems or users in the same way. Every request task has complete lifecycle, so the whole process is reliable and consistent.',
+      'Each callgent has its builtin tasks queue. This makes it easy to send requests to systems or users in the same way. Every request task has complete lifecycle, so the whole process is reliable and consistent.',
   },
   {
     id: 1,
@@ -29,7 +29,7 @@ const featuresData: Feature[] = [
     ),
     title: 'Progressive Invocation',
     paragraph:
-      'Just like you are asking help from your friend, there are usually several rounds of interactive conversations, before the task is getting done. The botlet may require more context info before execution, automatically.',
+      'Just like you are asking help from your friend, there are usually several rounds of interactive conversations, before the task is getting done. The callgent may require more context info before execution, automatically.',
   },
   {
     id: 1,
@@ -44,7 +44,7 @@ const featuresData: Feature[] = [
     ),
     title: 'Polymorphic Interface',
     paragraph:
-      'You can interact with the botlet from its different endpoints, like using REST API, Email, SMS, as Web page, in your IM like Slack, or even in an AR/VR app.',
+      'You can interact with the callgent from its different endpoints, like using REST API, Email, SMS, as Web page, in your IM like Slack, or even in an AR/VR app.',
   },
   {
     id: 1,
@@ -74,7 +74,7 @@ const featuresData: Feature[] = [
     ),
     title: 'User-System Orchestration',
     paragraph:
-      'With the group of functional botlets and users, you can easily write a natural language play book, to orchestrate your users and botlets, and make them work together seamlessly.',
+      'With the group of functional callgents and users, you can easily write a natural language play book, to orchestrate your users and callgents, and make them work together seamlessly.',
   },
   {
     id: 1,
@@ -89,7 +89,7 @@ const featuresData: Feature[] = [
     ),
     title: 'Pure Event-Driven',
     paragraph:
-      'Any events, from real world, or third-party systems may trigger actions from the orchestrated botlets and triggers. Yes, we make the whole world an APP.',
+      'Any events, from real world, or third-party systems may trigger actions from the orchestrated callgents and triggers. Yes, we make the whole world an APP.',
   },
 ];
 export default featuresData;

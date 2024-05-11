@@ -15,8 +15,8 @@ const BotFlow = () => {
                     <div className="-mx-4 flex flex-wrap items-center">
                         <div className="w-full px-4 lg:w-1/2">
                             <SectionTitle
-                                title="Step 1: Create a botlet"
-                                paragraph="A botlet lets you chat with a service just like a friend;<br/>Or lets system invoke a user just like a service seamlessly."
+                                title="Step 1: Create a callgent"
+                                paragraph="A callgent lets you chat with a service just like a friend;<br/>Or lets system invoke a user just like a service seamlessly."
                                 titleSize="text-xl"
                                 mb="44px"
                             />
@@ -26,14 +26,14 @@ const BotFlow = () => {
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step1-w.png"
-                                    alt="create-botlet"
+                                    alt="create-callgent"
                                     fill
                                     className="mx-auto max-w-full drop-shadow-md dark:hidden lg:mr-0"
                                 />
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step1.png"
-                                    alt="create-botlet"
+                                    alt="create-callgent"
                                     fill
                                     className="mx-auto hidden max-w-full drop-shadow-md dark:block lg:mr-0"
                                 />
@@ -51,14 +51,14 @@ const BotFlow = () => {
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step2-w.png"
-                                    alt="connecting-to-botlet-owner"
+                                    alt="connecting-to-callgent-owner"
                                     fill
                                     className="mx-auto max-w-full  drop-shadow-md dark:hidden lg:mr-0"
                                 />
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step2.png"
-                                    alt="connecting-to-botlet-owner"
+                                    alt="connecting-to-callgent-owner"
                                     fill
                                     className="mx-auto hidden max-w-full drop-shadow-md dark:block lg:mr-0"
                                 />
@@ -67,8 +67,8 @@ const BotFlow = () => {
                         <div className="w-full px-4 lg:w-1/2 flex lg:justify-end">
                             <SectionTitle
                                 titleSize="text-xl"
-                                title="Step 2: Configure an owner for the botlet"
-                                paragraph="Connect the botlet to task owner, through `Receiver Endpoints`: Email, SMS, Slack channel, Twitter account, or your own API services...<br/>So that the tasks can be delivered to anywhere to be handled."
+                                title="Step 2: Configure an owner for the callgent"
+                                paragraph="Connect the callgent to task owner, through `Receiver Endpoints`: Email, SMS, Slack channel, Twitter account, or your own API services...<br/>So that the tasks can be delivered to anywhere to be handled."
                                 mb="44px"
                             />
                         </div>
@@ -82,8 +82,8 @@ const BotFlow = () => {
                         <div className="w-full px-4 lg:w-1/2">
                             <SectionTitle
                                 titleSize="text-xl"
-                                title="Step 3: Send a request to the botlet"
-                                paragraph="Now the botlet is ready to work, by accepting task requests from anywhere through `Calling Endpoints` in any form: API, Email, Web page, Slack...<br/>The CORE philosophy of Botlet.IO, is to break the silos between users and systems, with AI empowered `Semantical` and `Progressive` invocation techniques."
+                                title="Step 3: Send a request to the callgent"
+                                paragraph="Now the callgent is ready to work, by accepting task requests from anywhere through `Calling Endpoints` in any form: API, Email, Web page, Slack...<br/>The CORE philosophy of Callgent, is to break the silos between users and systems, with AI empowered `Semantical` and `Progressive` invocation techniques."
                                 mb="44px"
                             />
                         </div>
@@ -92,14 +92,14 @@ const BotFlow = () => {
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step3-w.png"
-                                    alt="calling-botlet"
+                                    alt="calling-callgent"
                                     fill
                                     className="mx-auto max-w-full drop-shadow-md dark:hidden lg:mr-0"
                                 />
                                 <Image
                                     sizes="(max-width: 640px) 100vw, 50vw"
                                     src="/images/steps/step3.png"
-                                    alt="calling-botlet"
+                                    alt="calling-callgent"
                                     fill
                                     className="mx-auto hidden max-w-full drop-shadow-md dark:block lg:mr-0"
                                 />
