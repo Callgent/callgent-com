@@ -26,8 +26,8 @@ const Footer = () => {
                   </div>
                 </Link>
                 <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                  Break the silos between Users & Systems.
-                  User-as-a-Service v.v., Service-as-a-User.
+                  Service as a Callable Agent.<br/>
+                  Break the silos among Users & Systems.
                 </p>
                 <div className="flex items-center">
                   <a

@@ -1,18 +1,30 @@
-import Blog from '@/components/Blog';
-import ScrollUp from '@/components/Common/ScrollUp';
-import Contact from '@/components/Contact';
-import Features from '@/components/Features';
-import Hero from '@/components/Hero';
-import { Metadata } from 'next';
-import BotFlow from '@/components/BotFlow';
+import Blog from "@/components/Blog";
+import ScrollUp from "@/components/Common/ScrollUp";
+import Contact from "@/components/Contact";
+import Features from "@/components/Features";
+import Hero from "@/components/Hero";
+import { Metadata } from "next";
+import BotFlow from "@/components/BotFlow";
 export const metadata: Metadata = {
-  title: 'Break the silos between Users & Systems',
-  description: 'User-as-a-Service v.v., Service-as-a-User',
-  // other metadata
+  title: "Service as a Callgent",
+  applicationName: "Callgent",
+  description:
+    "Revolutionize system integration with Callgent's AI-driven agent tools. Automate APIs, Slack, Emails, and more efficiently!",
+  keywords: [
+    "API Service Automation",
+    "Unified System Integration",
+    "Scalable Service Solutions",
+    "AI-driven API tools",
+    "customizable integration services",
+    "integration platform as a service",
+    "no-code API integration",
+    "smart automation tools",
+    "Cloud-based integration services",
+    "Multi-platform integration solutions",
+  ],
 };
 
 export default function Home() {
-
   return (
     <>
       <ScrollUp />
@@ -30,4 +42,3 @@ export default function Home() {
     </>
   );
 }
-
