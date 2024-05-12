@@ -10,7 +10,8 @@ const Feedback = () => {
     // Run the Canny script, integrating the feedback component.
     useEffect(() => {
         const BoardToken = process.env.NEXT_PUBLIC_API_BOARDTOKEN;
-        const userInfo = JSON.parse(localStorage.getItem('userinfo'));
+        let userInfo: any = localStorage.getItem('userinfo');
+        userInfo = userInfo && JSON.parse(userInfo);
         if (!userInfo) {
             router.push('/signin');
         } else {

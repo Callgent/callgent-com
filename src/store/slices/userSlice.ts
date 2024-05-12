@@ -14,11 +14,12 @@ const userSlice = createSlice({
       state.value++;
     },
     setInfo: (state) => {
-      const data = JSON.parse(localStorage.getItem('userinfo'));
-      if (data) {
+      let userInfo: any = localStorage.getItem('userinfo');
+      userInfo = userInfo && JSON.parse(userInfo);
+    if (userInfo) {
         state.userData = {
-          ...data,
-          avatar: data?.avatar !== null ? data.avatar : '/images/logo/logo-header.png'
+          ...userInfo,
+          avatar: userInfo?.avatar !== null ? userInfo.avatar : '/images/logo/logo-header.png'
         };
       }
     },
