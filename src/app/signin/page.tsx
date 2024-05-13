@@ -35,7 +35,6 @@ const SigninPage = () => {
       <Head>
         <title>Sign in - Service as a Callgent</title>
         <meta name="description" content="Signin to Service as a Callgent." />
-        <meta name="keywords" content="API Service Automation,Unified System Integration,Scalable Service Solutions,AI-driven API tools,customizable integration services,integration platform as a service,no-code API integration,smart automation tools,Cloud-based integration services,Multi-platform integration solutions"/>
       </Head>
       <section className="relative z-10 overflow-hidden pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
         <div className="container">

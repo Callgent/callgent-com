@@ -12,15 +12,14 @@ export const metadata: Metadata = {
     "Revolutionize system integration with Callgent's AI-driven agent tools. Automate APIs, Slack, Emails, and more efficiently!",
   keywords: [
     "API Service Automation",
-    "Unified System Integration",
-    "Scalable Service Solutions",
-    "AI-driven API tools",
-    "customizable integration services",
-    "integration platform as a service",
+    "Integration Platform as a Service",
     "no-code API integration",
     "smart automation tools",
     "Cloud-based integration services",
     "Multi-platform integration solutions",
+    "User as a Service",
+    "Service as a User",
+    "iPaaS",
   ],
 };
 
