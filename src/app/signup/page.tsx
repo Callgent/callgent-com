@@ -35,7 +35,7 @@ const SignupPage = () => {
   return (
     <>
       <Head>
-        <title>Signup for free | Service as a Callgent</title>
+        <title>Signup for free - Service as a Callgent</title>
         <meta name="description" content="Signup for free API service automation and unified system integration. It offers generous Free Plan!" />
         <meta name="keywords" content="API Service Automation,Unified System Integration,Scalable Service Solutions,AI-driven API tools,customizable integration services,integration platform as a service,no-code API integration,smart automation tools,Cloud-based integration services,Multi-platform integration solutions"/>
       </Head>

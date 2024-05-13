@@ -33,7 +33,7 @@ const SigninPage = () => {
   return (
     <>
       <Head>
-        <title>Sign in | Service as a Callgent</title>
+        <title>Sign in - Service as a Callgent</title>
         <meta name="description" content="Signin to Service as a Callgent." />
         <meta name="keywords" content="API Service Automation,Unified System Integration,Scalable Service Solutions,AI-driven API tools,customizable integration services,integration platform as a service,no-code API integration,smart automation tools,Cloud-based integration services,Multi-platform integration solutions"/>
       </Head>

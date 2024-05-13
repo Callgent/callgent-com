@@ -56,8 +56,8 @@ const Feedback = () => {
                 };
                 if (!cannyJwt) {
                     axios.post('/jwt', user).then((req) => {
-                        localStorage.setItem('canny', req.data.jwt);
-                        Render(req.data.jwt);
+                        req?.data?.jwt && localStorage.setItem('canny', req.data.jwt);
+                        Render(req?.data?.jwt);
                     });
                 } else {
                     Render(cannyJwt);

@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/Common/Breadcrumb';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About Us | Callgent - Bridging Users and Systems',
+  title: 'About Us - Service as a Callgent',
   description: 'Discover how Callgent is revolutionizing the way users interact with systems through innovative solutions. Learn about our mission, team, and the technology that drives us.',
   keywords: 'Callgent, about Callgent, user-system interaction, technology, innovation, team',
   // other metadata
