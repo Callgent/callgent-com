@@ -4,7 +4,7 @@ import Contact from '@/components/Contact';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Callgent - Connect with Our Team',
+  title: 'Connect with Our Team - Service as a Callgent',
   description: 'Reach out to the Callgent team for inquiries, support, or feedback. Find our email, phone number, and fill out the contact form to get in touch with us directly.',
   keywords: 'Callgent, contact, support, feedback, get in touch, customer service',
   // other metadata

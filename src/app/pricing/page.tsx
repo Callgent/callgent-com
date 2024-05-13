@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Pricing from "@/components/Pricing/index";
 
 export const metadata: Metadata = {
-  title: "Pricing | Service as a Callgent",
+  title: "Pricing - Service as a Callgent",
   description:
     "Explore our pricing plans and choose the one that suits you best. There is generous Free Plan for individuals and small businesses!",
   keywords: [
