@@ -1,0 +1,40 @@
+.fadeIn {
+    opacity: 0;
+    animation: fadeInAnimation 1s ease forwards;
+  }
+  
+  @keyframes fadeInAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  .text{
+      background-image: -webkit-linear-gradient(left, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-background-size: 200% 100%;
+      -webkit-animation:  maskedAnimation 4s infinite linear;
+  }
+  
+  @keyframes maskedAnimation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+  }
+  .backgroundimg {
+    width: 100%;
+    height: 300px;
+    background-image: url('/images/hero/beijing1.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }

@@ -1,6 +1,59 @@
-import Link from 'next/link';
+"use client";
+import Image from "next/image";
+import { useEffect, useState } from 'react';
+import './index.css';
 
 const Hero = () => {
+  const [visibleParagraphs, setVisibleParagraphs] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      event.preventDefault();
+
+      const delta = event.deltaY;
+      if (delta > 0) {
+        setVisibleParagraphs((prevVisibleParagraphs) => Math.min(prevVisibleParagraphs + 1, paragraphs.length));
+      }
+    };
+    const element = document.getElementById('container');
+    element.addEventListener('wheel', handleScroll);
+    return () => {
+      element.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
+
+  const paragraphs = [
+    "Encapsulate your service into a callgent,",
+    "Now it can talk to a person in email or slack channels, or be invoked through code libs or restAPIs, ..",
+    "The callgent translates all these requests into executable invocations, and sends them to your API service, or even slack users to respond.",
+    "Callgent's vision, is to break the silos among all systems and users!",
+  ];
+
+
+  const [visibleImage, setVisibleImage] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      event.preventDefault();
+
+      const delta = event.deltaY;
+      if (delta > 0) {
+        setVisibleImage((prevVisibleImage) => (prevVisibleImage + 1) % 4);
+      }
+    };
+    const element = document.getElementById('container');
+    element.addEventListener('wheel', handleScroll);
+    return () => {
+      element.removeEventListener('wheel', handleScroll);
+    };
+  }, []);
+
+  const images = [
+    "/images/hero/part1.png",
+    "/images/hero/part2.png",
+    "/images/hero/part1.png",
+    "/images/hero/part2.png",
+  ];
   return (
     <section
       id="home"
