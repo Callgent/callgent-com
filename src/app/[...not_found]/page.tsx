@@ -1,10 +1,15 @@
-// 'use client';
 import Link from 'next/link';
+
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'NotFound Us - Service as a Callgent',
+  description: 'Discover how Callgent is revolutionizing the way users interact with systems through innovative solutions. Learn about our mission, team, and the technology that drives us.',
+  keywords: 'Callgent, about Callgent, user-system interaction, technology, innovation, team',
+};
 
 const NotFoundPage = () => {
     return (
-        <>
-            <section className="relative z-10 pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
+        <section className="relative z-10 pb-16 pt-36 md:pb-20 lg:pb-28 lg:pt-[180px]">
                 <div className="container">
                     <div className="flex flex-wrap -mx-4">
                         <div className="w-full px-4">
@@ -524,7 +529,6 @@ const NotFoundPage = () => {
                     </svg>
                 </div>
             </section>
-        </>
     );
 };
 

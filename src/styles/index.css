@@ -31,3 +31,19 @@
     @apply opacity-100;
   }
 }
+@layer components {
+  .loader {
+    @apply border-2 border-t-2 border-gray-200 border-opacity-75 rounded-full w-12 h-12 inline-block;
+    border-top-color: theme('colors.gray.700');
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
