@@ -9,7 +9,7 @@ const Feedback = () => {
     const { theme } = useTheme();
     // Run the Canny script, integrating the feedback component.
     useEffect(() => {
-        const BoardToken = process.env.NEXT_PUBLIC_API_BOARDTOKEN;
+        const BoardToken = process.env.NEXT_PUBLIC_CANNY_API_BOARDTOKEN;
         let userInfo: any = localStorage.getItem('userinfo');
         userInfo = userInfo && JSON.parse(userInfo);
         if (!userInfo) {
@@ -23,7 +23,7 @@ const Feedback = () => {
                             e = d.createElement(s) as HTMLScriptElement;;
                         (e.type = "text/javascript"),
                             (e.async = !0),
-                            (e.src = "/feedback/sdk.js"),
+                            (e.src = "https://canny.io/sdk.js"),
                             f.parentNode.insertBefore(e, f);
                     }
                 }
@@ -47,6 +47,8 @@ const Feedback = () => {
                 };
                 const cannyJwt = localStorage.getItem('canny');
                 const Render = (ssoToken) => {
+                    console.log(BoardToken, ssoToken, theme);
+
                     w.Canny('render', {
                         boardToken: BoardToken,
                         basePath: '/feedback',

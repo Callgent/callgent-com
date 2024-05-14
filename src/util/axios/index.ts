@@ -17,11 +17,6 @@ axios.interceptors.response.use(
         return response;
     },
     error => {
-        if (error.response && error.response.status === 401) {
-            window.location.href = '/signin';
-        } else {
-            console.error('error:', error);
-        }
         return error;
     }
 );
