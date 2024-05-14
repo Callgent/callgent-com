@@ -1,4 +1,3 @@
-'use client';
 import { languageOptions } from '@/util/i18n';
 import { setCookie } from '@/util/cookie';
 function SubmenuExample() {
