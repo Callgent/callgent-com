@@ -51,8 +51,8 @@ export default function RootLayout({ children }: Readonly<{
         <title>Callgent Home</title>
         <meta name="description" content="This is Callgent Home Page for Callgent" />
       </Head>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTMID} />
       <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTMID} />
         <Providers>
           <Setting>
             <Header />
@@ -61,7 +61,6 @@ export default function RootLayout({ children }: Readonly<{
             <ScrollToTop />
           </Setting>
         </Providers>
-      </body>
       <Script
         id='tawk'
         strategy="afterInteractive"
@@ -76,6 +75,7 @@ export default function RootLayout({ children }: Readonly<{
           __html: `(function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "m9rdd2ip30");`,
         }}
       />
+      </body>
     </html>
   );
 }
