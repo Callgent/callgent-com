@@ -41,25 +41,6 @@
     }
 }
 
-.text {
-    background-image: linear-gradient(4deg, #0074ff, #00f2b5);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    background-size: 200%;
-    animation: maskedAnimation 0.8s infinite linear;
-}
-
-@keyframes maskedAnimation {
-    0% {
-        background-position: 100% 150%;
-    }
-
-    100% {
-        background-position: -100% -140%;
-    }
-}
-
-
 .fadeInImg img {
     opacity: 0;
     animation: fadeInImhAnimation 1s ease forwards;
@@ -74,5 +55,79 @@
     to {
         opacity: 1;
         transform: translateX(0) rotate(0deg);
+    }
+}
+
+.text1 {
+    background: linear-gradient(90deg,
+            #0980fe 0%,
+            #0089f3 32%,
+            #00f2b5 40%,
+            #0089f3 48%,
+            #0980fe 50%,
+            #007afb 75%,
+            #0980fe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 1s linear infinite;
+}
+
+.text2 {
+    background: linear-gradient(90deg,
+            #0980fe 0%,
+            #0089f3 32%,
+            #7ae7f8 40%,
+            #0089f3 48%,
+            #0980fe 50%,
+            #007afb 75%,
+            #0980fe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 1s linear infinite;
+}
+
+.text3 {
+    background: linear-gradient(90deg,
+            #0980fe 0%,
+            #0089f3 32%,
+            #ba03dc 40%,
+            #0089f3 48%,
+            #0980fe 50%,
+            #007afb 75%,
+            #0980fe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 1s linear infinite;
+}
+
+.text {
+    background: linear-gradient(90deg,
+            #b5650a 0%,
+            #cc730e 32%,
+            #f2d600 40%,
+            #cc730e 48%,
+            #b5650a 50%,
+            #7d480b 75%,
+            #b5650a 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 1s linear infinite;
+}
+
+.text-style h2 {
+    margin-top: 150px;
+}
+
+@keyframes shine {
+    to {
+        background-position: 100% 0;
     }
 }
