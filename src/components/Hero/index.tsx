@@ -98,7 +98,7 @@ const Hero = () => {
                   </div>
                 ))}
               </section>
-              <div className="flex mt-7 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <div className="flex pt-28 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Link
                   href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
                   className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
