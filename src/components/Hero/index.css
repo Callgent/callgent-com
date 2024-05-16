@@ -71,7 +71,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
-    animation: shine 1s linear infinite;
+    animation: shine 2s linear infinite;
 }
 
 .text2 {
@@ -87,7 +87,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
-    animation: shine 1s linear infinite;
+    animation: shine 2s linear infinite;
 }
 
 .text3 {
@@ -103,7 +103,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-size: 200% auto;
-    animation: shine 1s linear infinite;
+    animation: shine 2s linear infinite;
 }
 
 .text {
