@@ -90,7 +90,7 @@ const Hero = () => {
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h2>
 
-              <section id="content" class="pt-14">
+              <section id="content" className="pt-14">
                 {paragraphs.map((item, index) => (
                   <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
                     <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</h2>
