@@ -7,22 +7,22 @@ import './index.css';
 const Hero = () => {
   const paragraphs = [
     {
-      description: "Encapsulate your service into a callgent,",
+      description: "Encapsulate your service into a callgent",
       img: "/images/hero/bg1.png",
     },
     {
       description:
-        "Now it can talk to a person in email or slack channels, or be invoked through code libs or restAPIs, ..",
+        "Now you can chat to it by email or slack channels, or invoke it through code libs or restAPIs, ..",
       img: "/images/hero/bg2.png",
     },
     {
       description:
-        "The callgent translates all these requests into executable invocations, and sends them to your API service, or even slack users to respond.",
+        "The callgent translates the requests, then sends them to your service, or slack users to respond.",
       img: "/images/hero/bg3.png",
     },
     {
       description:
-        "Callgent's vision, is to break the silos among all systems and users!",
+        "Callgent aims to break the silos among all systems and users through AI Agent!",
       img: "/images/hero/bg4.png",
     },
   ];
