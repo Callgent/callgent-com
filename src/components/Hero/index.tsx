@@ -96,9 +96,9 @@ const Hero = () => {
               </h1>
               <section id="content">
                 {paragraphs.map((item, index) => (
-                  <div className="Container top-[200px] py-10 xl:py-20 fadeIn mt-[10vh] px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
-                    <div className='flex items-center text-left text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</div>
-                    <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[35vw]' src={item.img} alt="about-image" />
+                  <div className="Container top-[200px] py-4 xl:py-10 fadeIn mt-[10vh] px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
+                    <div className='flex mb-4 items-center text-left text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</div>
+                    <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
                   </div>
                 ))}
               </section>
