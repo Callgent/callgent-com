@@ -1,35 +1,104 @@
+'use client';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import './index.css';
 
 const Hero = () => {
+  const paragraphs = [
+    {
+      description: "Encapsulate your service into a callgent,",
+      img: "/images/hero/bg1.png",
+    },
+    {
+      description:
+        "Now it can talk to a person in email or slack channels, or be invoked through code libs or restAPIs, ..",
+      img: "/images/hero/bg2.png",
+    },
+    {
+      description:
+        "The callgent translates all these requests into executable invocations, and sends them to your API service, or even slack users to respond.",
+      img: "/images/hero/bg3.png",
+    },
+    {
+      description:
+        "Callgent's vision, is to break the silos among all systems and users!",
+      img: "/images/hero/bg4.png",
+    },
+  ];
+  const TitleRef = useRef(null);
+  const lastScrollPosition = useRef(0);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    const cardContainers = document.querySelectorAll(".Container");
+    const firstCardHeight = cardContainers[0].clientHeight;
+    const currentItem = scrollPosition / firstCardHeight;
+    const currentCardIndex = Math.floor(currentItem);
+    const deltaY = scrollPosition - (lastScrollPosition.current || 0);
+    lastScrollPosition.current = scrollPosition;
+    if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
+      TitleRef.current.classList.remove('sticky', 'top-[90px]');
+    } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
+      TitleRef.current.classList.add('sticky', 'top-[90px]');
+    }
+
+    if (currentCardIndex >= paragraphs.length || currentCardIndex < 0) {
+      return;
+    }
+    const lastCart: any = cardContainers[currentCardIndex - 1];
+    const currentCard: any = cardContainers[currentCardIndex];
+    const nextCard: any = cardContainers[currentCardIndex + 1];
+    const scale = 1 - (currentItem - currentCardIndex);
+    const images = document.querySelectorAll(".cartImg");
+    const currentImage = images[currentCardIndex];
+    if (scale > 0.8 && deltaY > 0) {
+      lastCart && lastCart.classList.add('fade-out');
+      lastCart && currentCard.classList.remove('fadeInImg');
+    } else if (deltaY < 0) {
+      nextCard && currentCard.classList.add('fadeInImg');
+      nextCard && currentCard.addEventListener('animationend', () => {
+        currentImage.classList.add('animate-wiggle');
+      });
+      nextCard && currentCard.classList.add('fadeIn');
+      currentCard.style.transform = `scale(1)`;
+    } else if (scale < 0.8 && deltaY > 0) {
+      currentCard.classList.remove('fadeIn', 'fade-out');
+    }
+  };
+
   return (
     <section
       id="home"
-      className="relative z-10 overflow-hidden bg-white pb-6 pt-[120px] dark:bg-gray-dark md:pb-[120px] md:pt-[150px] xl:pb-[120px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+      className="z-10 bg-white pb-6 pt-[150px] dark:bg-gray-dark md:pb-[120px]  xl:pb-[120px]  2xl:pb-[200px] "
     >
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="mx-auto max-w-[800px] text-center">
-              <h1 className="mb-5 text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight">
-                Service as a Callable Agent
-              </h1>
-              <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                Encapsulate your service into a callgent,
-              </p >
-              <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                Now it can talk to a person in email or slack channels, or be
-                invoked through code libs or restAPIs, ..
-              </p >
-              <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                The callgent translates all these requests into executable
-                invocations, and sends them to your API service, or even slack
-                users to respond.
-              </p >
-              <p className="mb-3 text-base !leading-relaxed text-body-color dark:text-body-color-dark sm:text-lg md:text-xl">
-                Callgent's vision, is to break the silos among all systems and
-                users!
-              </p >
-              <div className="flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+            <div className="relative mx-auto max-w-[70vw] text-center">
+              <h2
+                ref={TitleRef}
+                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
+              >
+                Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
+              </h2>
+
+              <section id="content">
+                {paragraphs.map((item, index) => (
+                  <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
+                    <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</h2>
+                    <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
+                  </div>
+                ))}
+              </section>
+              <div className="flex mt-7 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Link
                   href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
                   className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
@@ -48,245 +117,21 @@ const Hero = () => {
         </div>
       </div>
       <div className="absolute right-0 top-0 z-[-1] opacity-30 lg:opacity-100">
-        <svg
-          width="450"
-          height="556"
-          viewBox="0 0 450 556"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="277"
-            cy="63"
-            r="225"
-            fill="url(#paint0_linear_25:217)"
-          />
-          <circle
-            cx="17.9997"
-            cy="182"
-            r="18"
-            fill="url(#paint1_radial_25:217)"
-          />
-          <circle
-            cx="76.9997"
-            cy="288"
-            r="34"
-            fill="url(#paint2_radial_25:217)"
-          />
-          <circle
-            cx="325.486"
-            cy="302.87"
-            r="180"
-            transform="rotate(-37.6852 325.486 302.87)"
-            fill="url(#paint3_linear_25:217)"
-          />
-          <circle
-            opacity="0.8"
-            cx="184.521"
-            cy="315.521"
-            r="132.862"
-            transform="rotate(114.874 184.521 315.521)"
-            stroke="url(#paint4_linear_25:217)"
-          />
-          <circle
-            opacity="0.8"
-            cx="356"
-            cy="290"
-            r="179.5"
-            transform="rotate(-30 356 290)"
-            stroke="url(#paint5_linear_25:217)"
-          />
-          <circle
-            opacity="0.8"
-            cx="191.659"
-            cy="302.659"
-            r="133.362"
-            transform="rotate(133.319 191.659 302.659)"
-            fill="url(#paint6_linear_25:217)"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_25:217"
-              x1="-54.5003"
-              y1="-178"
-              x2="222"
-              y2="288"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-            <radialGradient
-              id="paint1_radial_25:217"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(17.9997 182) rotate(90) scale(18)"
-            >
-              <stop offset="0.145833" stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0.08" />
-            </radialGradient>
-            <radialGradient
-              id="paint2_radial_25:217"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(76.9997 288) rotate(90) scale(34)"
-            >
-              <stop offset="0.145833" stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0.08" />
-            </radialGradient>
-            <linearGradient
-              id="paint3_linear_25:217"
-              x1="226.775"
-              y1="-66.1548"
-              x2="292.157"
-              y2="351.421"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint4_linear_25:217"
-              x1="184.521"
-              y1="182.159"
-              x2="184.521"
-              y2="448.882"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="white" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint5_linear_25:217"
-              x1="356"
-              y1="110"
-              x2="356"
-              y2="470"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="white" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient
-              id="paint6_linear_25:217"
-              x1="118.524"
-              y1="29.2497"
-              x2="166.965"
-              y2="338.63"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
+        <Image
+          sizes="(max-width: 640px) 100vw, 50vw"
+          src="/images/hero/left.svg"
+          alt="about-image"
+          fill
+        />
       </div>
       <div className="absolute bottom-0 left-0 z-[-1] opacity-30 lg:opacity-100">
-        <svg
-          width="364"
-          height="201"
-          viewBox="0 0 364 201"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5.88928 72.3303C33.6599 66.4798 101.397 64.9086 150.178 105.427C211.155 156.076 229.59 162.093 264.333 166.607C299.076 171.12 337.718 183.657 362.889 212.24"
-            stroke="url(#paint0_linear_25:218)"
-          />
-          <path
-            d="M-22.1107 72.3303C5.65989 66.4798 73.3965 64.9086 122.178 105.427C183.155 156.076 201.59 162.093 236.333 166.607C271.076 171.12 309.718 183.657 334.889 212.24"
-            stroke="url(#paint1_linear_25:218)"
-          />
-          <path
-            d="M-53.1107 72.3303C-25.3401 66.4798 42.3965 64.9086 91.1783 105.427C152.155 156.076 170.59 162.093 205.333 166.607C240.076 171.12 278.718 183.657 303.889 212.24"
-            stroke="url(#paint2_linear_25:218)"
-          />
-          <path
-            d="M-98.1618 65.0889C-68.1416 60.0601 4.73364 60.4882 56.0734 102.431C120.248 154.86 139.905 161.419 177.137 166.956C214.37 172.493 255.575 186.165 281.856 215.481"
-            stroke="url(#paint3_linear_25:218)"
-          />
-          <circle
-            opacity="0.8"
-            cx="214.505"
-            cy="60.5054"
-            r="49.7205"
-            transform="rotate(-13.421 214.505 60.5054)"
-            stroke="url(#paint4_linear_25:218)"
-          />
-          <circle cx="220" cy="63" r="43" fill="url(#paint5_radial_25:218)" />
-          <defs>
-            <linearGradient
-              id="paint0_linear_25:218"
-              x1="184.389"
-              y1="69.2405"
-              x2="184.389"
-              y2="212.24"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_25:218"
-              x1="156.389"
-              y1="69.2405"
-              x2="156.389"
-              y2="212.24"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" />
-            </linearGradient>
-            <linearGradient
-              id="paint2_linear_25:218"
-              x1="125.389"
-              y1="69.2405"
-              x2="125.389"
-              y2="212.24"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" />
-            </linearGradient>
-            <linearGradient
-              id="paint3_linear_25:218"
-              x1="93.8507"
-              y1="67.2674"
-              x2="89.9278"
-              y2="210.214"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" stopOpacity="0" />
-              <stop offset="1" stopColor="#4A6CF7" />
-            </linearGradient>
-            <linearGradient
-              id="paint4_linear_25:218"
-              x1="214.505"
-              y1="10.2849"
-              x2="212.684"
-              y2="99.5816"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#4A6CF7" />
-              <stop offset="1" stopColor="#4A6CF7" stopOpacity="0" />
-            </linearGradient>
-            <radialGradient
-              id="paint5_radial_25:218"
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(220 63) rotate(90) scale(43)"
-            >
-              <stop offset="0.145833" stopColor="white" stopOpacity="0" />
-              <stop offset="1" stopColor="white" stopOpacity="0.08" />
-            </radialGradient>
-          </defs>
-        </svg>
+        <Image
+          sizes="(max-width: 640px) 100vw, 50vw"
+          src="/images/hero/right.svg"
+          alt="about-image"
+          fill
+          className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
+        />
       </div>
     </section>
   );

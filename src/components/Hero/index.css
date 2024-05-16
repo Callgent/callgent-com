@@ -1,0 +1,85 @@
+.Container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    transition: transform 0.5s ease;
+}
+
+.fade-out {
+    opacity: 0;
+    animation: fade-outAnimation 1s ease forwards;
+}
+
+@keyframes fade-outAnimation {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeInAnimation 1s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInImg img {
+    opacity: 0;
+    animation: fadeInImhAnimation 1s ease forwards;
+}
+
+@keyframes fadeInImhAnimation {
+    from {
+        opacity: 0;
+        transform: translateX(10%) rotate(15deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+.text {
+    background: linear-gradient(90deg,
+            #0980fe 0%,
+            #0089f3 32%,
+            #7ae7f8 40%,
+            #0089f3 48%,
+            #0980fe 50%,
+            #007afb 75%,
+            #0980fe 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 2s linear infinite;
+}
+
+.text-style h2 {
+    margin-top: 150px;
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% 0;
+    }
+}
