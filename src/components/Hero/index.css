@@ -59,22 +59,22 @@
 }
 
 .text {
-    background-image: linear-gradient(10deg, #001efd, #2344ff 25%, #2a5fff 50%, #387dff 75%, #a5c5ff);
+    background-image: linear-gradient(65deg, #001efd,#ebf146 25%, #3276f5 50%,#ede62b 75%, #9dc6ff);
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200%;
     /* 使背景图比文本宽 */
-    animation: maskedAnimation 2s infinite linear;
+    animation: maskedAnimation 5s infinite linear;
     /* 延长动画时间 */
 }
 
 @keyframes maskedAnimation {
     0% {
-        background-position: 200% 0;
+        background-position: 100% 150%;
     }
 
     100% {
-        background-position: -180% -130%;
+        background-position: -180% -140%;
     }
 }
 
