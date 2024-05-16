@@ -82,82 +82,14 @@ const Hero = () => {
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="text-style relative mx-auto max-w-[70vw] text-center">
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                <span className='text'>Service as a Callable Agent</span>
-              </h2>
+            <div className="relative mx-auto max-w-[70vw] text-center">
               <h2
                 ref={TitleRef}
                 className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
               >
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text'>Callable Agent</span>
-              </h2>
-              {/*  */}
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                <span className='text1'>Service as a Callable Agent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text1'>Call</span>able A<span className='text1'>gent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text1'>Callable Agent</span>
-              </h2>
-              {/*  */}
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                <span className='text3'>Service as a Callable Agent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text3'>Call</span>able A<span className='text3'>gent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text3'>Callable Agent</span>
-              </h2>
-              {/*  */}
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                <span className='text2'>Service as a Callable Agent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text2'>Call</span>able A<span className='text2'>gent</span>
-              </h2>
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
-                Service as a <span className='text2'>Callable Agent</span>
-              </h2>
+
               <section id="content">
                 {paragraphs.map((item, index) => (
                   <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>

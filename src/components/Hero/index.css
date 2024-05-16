@@ -58,23 +58,7 @@
     }
 }
 
-.text1 {
-    background: linear-gradient(90deg,
-            #0980fe 0%,
-            #0089f3 32%,
-            #00f2b5 40%,
-            #0089f3 48%,
-            #0980fe 50%,
-            #007afb 75%,
-            #0980fe 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: shine 2s linear infinite;
-}
-
-.text2 {
+.text {
     background: linear-gradient(90deg,
             #0980fe 0%,
             #0089f3 32%,
@@ -83,38 +67,6 @@
             #0980fe 50%,
             #007afb 75%,
             #0980fe 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: shine 2s linear infinite;
-}
-
-.text3 {
-    background: linear-gradient(90deg,
-            #0980fe 0%,
-            #0089f3 32%,
-            #ba03dc 40%,
-            #0089f3 48%,
-            #0980fe 50%,
-            #007afb 75%,
-            #0980fe 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% auto;
-    animation: shine 2s linear infinite;
-}
-
-.text {
-    background: linear-gradient(90deg,
-            #b5650a 0%,
-            #cc730e 32%,
-            #f2d600 40%,
-            #cc730e 48%,
-            #b5650a 50%,
-            #7d480b 75%,
-            #b5650a 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
