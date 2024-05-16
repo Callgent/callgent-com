@@ -1,35 +1,28 @@
 .Container {
-    /* height: calc(100vh - 650px); */
-    /* min-height: 55vh; */
     display: flex;
     align-items: center;
     justify-content: center;
     position: sticky;
     transition: transform 0.5s ease;
-    /* 添加缩放的过渡效果 */
 }
 
 .fade-out {
     opacity: 0;
     animation: fade-outAnimation 1s ease forwards;
-    /* 添加过渡动画效果 */
 }
 
 @keyframes fade-outAnimation {
     from {
         opacity: 1;
+        transform: scale(1);
     }
 
     to {
         opacity: 0;
+        transform: scale(0.9);
     }
 }
 
-
-.cart-img {
-    animation: shrinkAnimation 0.5s ease forwards;
-    /* 添加缩小动画 */
-}
 
 .fadeIn {
     opacity: 0;
@@ -48,24 +41,12 @@
     }
 }
 
-@keyframes shrinkAnimation {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(2);
-    }
-}
-
 .text {
-    background-image: linear-gradient(65deg, #001efd,#ebf146 25%, #3276f5 50%,#ede62b 75%, #9dc6ff);
+    background-image: linear-gradient(10deg, #001efd, #3276f5 50%, #9dc6ff);
     -webkit-text-fill-color: transparent;
     background-clip: text;
     background-size: 200%;
-    /* 使背景图比文本宽 */
     animation: maskedAnimation 5s infinite linear;
-    /* 延长动画时间 */
 }
 
 @keyframes maskedAnimation {
@@ -93,23 +74,5 @@
     to {
         opacity: 1;
         transform: translateX(0) rotate(0deg);
-    }
-}
-
-.wiggle img {
-    animation: wiggleanimation 3s ease-in-out infinite;
-}
-
-@keyframes wiggleanimation {
-    0% {
-        transform: translate(0px, 0px);
-    }
-
-    50% {
-        transform: translate(0px, 15px);
-    }
-
-    100% {
-        transform: translate(0px, 0px);
     }
 }

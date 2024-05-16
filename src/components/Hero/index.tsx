@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import './index.css';
@@ -28,7 +28,6 @@ const Hero = () => {
   ];
   const TitleRef = useRef(null);
   const lastScrollPosition = useRef(0);
-  const [isTitleSticky, setIsTitleSticky] = useState(false);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -47,9 +46,7 @@ const Hero = () => {
     lastScrollPosition.current = scrollPosition;
     if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
       TitleRef.current.classList.remove('sticky', 'top-[90px]');
-      TitleRef.current.classList.add('absolute');
     } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
-      TitleRef.current.classList.remove('absolute');
       TitleRef.current.classList.add('sticky', 'top-[90px]');
     }
 
@@ -62,10 +59,9 @@ const Hero = () => {
     const scale = 1 - (currentItem - currentCardIndex);
     const images = document.querySelectorAll(".cartImg");
     const currentImage = images[currentCardIndex];
-    if (scale > 0.92 && deltaY > 0) {
+    if (scale > 0.8 && deltaY > 0) {
       lastCart && lastCart.classList.add('fade-out');
       lastCart && currentCard.classList.remove('fadeInImg');
-      currentCard.style.transform = `scale(${scale.toFixed(3)})`;
     } else if (deltaY < 0) {
       nextCard && currentCard.classList.add('fadeInImg');
       nextCard && currentCard.addEventListener('animationend', () => {
@@ -73,9 +69,8 @@ const Hero = () => {
       });
       nextCard && currentCard.classList.add('fadeIn');
       currentCard.style.transform = `scale(1)`;
-    } else if (scale < 0.92 && deltaY > 0) {
+    } else if (scale < 0.8 && deltaY > 0) {
       currentCard.classList.remove('fadeIn', 'fade-out');
-      currentCard.style.transform = `scale(0.92)`;
     }
   };
 
@@ -90,7 +85,7 @@ const Hero = () => {
             <div className="relative mx-auto max-w-[70vw] text-center">
               <h1
                 ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight ${isTitleSticky ? 'sticky' : ''}`}
+                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
               >
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h1>
