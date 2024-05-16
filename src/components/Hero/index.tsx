@@ -45,7 +45,7 @@ const Hero = () => {
     const currentCardIndex = Math.floor(currentItem);
     const deltaY = scrollPosition - (lastScrollPosition.current || 0);
     lastScrollPosition.current = scrollPosition;
-    if (scrollPosition >= paragraphs.length * firstCardHeight - 150 && deltaY > 0) {
+    if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
       TitleRef.current.classList.remove('sticky', 'top-[90px]');
       TitleRef.current.classList.add('absolute');
     } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
