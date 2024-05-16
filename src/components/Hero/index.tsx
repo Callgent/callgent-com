@@ -9,25 +9,21 @@ const Hero = () => {
     {
       description: "Encapsulate your service into a callgent,",
       img: "/images/hero/bg1.png",
-      color: "red",
     },
     {
       description:
         "Now it can talk to a person in email or slack channels, or be invoked through code libs or restAPIs, ..",
       img: "/images/hero/bg2.png",
-      color: "blue",
     },
     {
       description:
         "The callgent translates all these requests into executable invocations, and sends them to your API service, or even slack users to respond.",
       img: "/images/hero/bg3.png",
-      color: "yellow",
     },
     {
       description:
         "Callgent's vision, is to break the silos among all systems and users!",
       img: "/images/hero/bg4.png",
-      color: "black",
     },
   ];
   const TitleRef = useRef(null);
@@ -50,13 +46,11 @@ const Hero = () => {
     const deltaY = scrollPosition - (lastScrollPosition.current || 0);
     lastScrollPosition.current = scrollPosition;
     if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
-      TitleRef.current.classList.remove('sticky');
-      TitleRef.current.classList.remove('top-[120px]');
+      TitleRef.current.classList.remove('sticky', 'top-[120px]');
       TitleRef.current.classList.add('absolute');
-    } else if (deltaY < 0) {
+    } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
       TitleRef.current.classList.remove('absolute');
-      TitleRef.current.classList.add('sticky');
-      TitleRef.current.classList.add('top-[120px]');
+      TitleRef.current.classList.add('sticky', 'top-[120px]');
     }
 
     if (currentCardIndex >= paragraphs.length || currentCardIndex < 0) {
@@ -68,9 +62,6 @@ const Hero = () => {
     const scale = 1 - (currentItem - currentCardIndex);
     const images = document.querySelectorAll(".cartImg");
     const currentImage = images[currentCardIndex];
-    // if (lastCart && nextCard) {
-    //   lastCart.classList.add('fade-out');
-    // }
     if (scale > 0.92 && deltaY > 0) {
       lastCart && lastCart.classList.add('fade-out');
       lastCart && currentCard.classList.remove('fadeInImg');
@@ -80,12 +71,10 @@ const Hero = () => {
       nextCard && currentCard.addEventListener('animationend', () => {
         currentImage.classList.add('animate-wiggle');
       });
-      // lastCart && lastCart.classList.remove('fade-out');
       nextCard && currentCard.classList.add('fadeIn');
-      // nextCard
       currentCard.style.transform = `scale(1)`;
     } else if (scale < 0.92 && deltaY > 0) {
-      currentCard.classList.remove('fadeIn');
+      currentCard.classList.remove('fadeIn', 'fade-out');
       currentCard.style.transform = `scale(0.92)`;
     }
   };
@@ -107,9 +96,9 @@ const Hero = () => {
               </h1>
               <section id="content">
                 {paragraphs.map((item, index) => (
-                  <div className="Container top-[200px] fadeIn mt-[10vh] px-4  xl:py-[14vw] border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
+                  <div className="Container top-[200px] py-10 xl:py-20 fadeIn mt-[10vh] px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
                     <div className='flex items-center text-left text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</div>
-                    <img className='cartImg w-[90vw] animate-wiggle xl:w-[45vw]' src={item.img} alt="about-image" />
+                    <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[35vw]' src={item.img} alt="about-image" />
                   </div>
                 ))}
               </section>

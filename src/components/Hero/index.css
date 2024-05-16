@@ -1,6 +1,6 @@
 .Container {
-    height: calc(100vh - 650px);
-    min-height: 65vh;
+    /* height: calc(100vh - 650px); */
+    /* min-height: 55vh; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,20 +59,22 @@
 }
 
 .text {
-    background-image: -webkit-linear-gradient(-60deg, #4db1f8, #37aafc 20%, #28a2fa 40%, #21a0fa 60%, #009bfb 80%);
+    background-image: linear-gradient(10deg, #0a27ff, #2344ff 25%, #2a5fff 50%, #387dff 75%, #7ba5f1);
     -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-background-size: 200% 100%;
-    -webkit-animation: maskedAnimation 3s infinite linear;
+    background-clip: text;
+    background-size: 200%;
+    /* 使背景图比文本宽 */
+    animation: maskedAnimation 3s infinite linear;
+    /* 延长动画时间 */
 }
 
 @keyframes maskedAnimation {
     0% {
-        background-position: 0 0;
+        background-position: 200% 0;
     }
 
     100% {
-        background-position: -100% 0;
+        background-position: -200% -150%;
     }
 }
 
