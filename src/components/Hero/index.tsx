@@ -7,9 +7,9 @@ import './index.css';
 const Hero = () => {
   const paragraphs = [
     {
-      description: "Encapsulate your service into a callgent,", // 描述
-      img: "/images/hero/bg1.png", // 图片路径
-      color: "red", // 颜色
+      description: "Encapsulate your service into a callgent,",
+      img: "/images/hero/bg1.png",
+      color: "red",
     },
     {
       description:
@@ -78,7 +78,6 @@ const Hero = () => {
     } else if (deltaY < 0) {
       nextCard && currentCard.classList.add('fadeInImg');
       nextCard && currentCard.addEventListener('animationend', () => {
-        // 添加下一个动画的类名
         currentImage.classList.add('animate-wiggle');
       });
       // lastCart && lastCart.classList.remove('fade-out');
