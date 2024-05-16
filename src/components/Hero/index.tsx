@@ -63,8 +63,8 @@ const Hero = () => {
       lastCart && lastCart.classList.add('fade-out');
       lastCart && currentCard.classList.remove('fadeInImg');
     } else if (deltaY < 0) {
-      nextCard && currentCard.classList.add('fadeInImg');
-      nextCard && currentCard.addEventListener('animationend', () => {
+      currentCard && currentCard.classList.add('fadeInImg');
+      currentCard && currentCard.addEventListener('animationend', () => {
         currentImage.classList.add('animate-wiggle');
       });
       nextCard && currentCard.classList.add('fadeIn');
@@ -83,16 +83,16 @@ const Hero = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="relative mx-auto max-w-[70vw] text-center">
-              <h1
+              <h2
                 ref={TitleRef}
                 className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
               >
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
-              </h1>
+              </h2>
               <section id="content">
                 {paragraphs.map((item, index) => (
                   <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
-                    <div className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</div>
+                    <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</h2>
                     <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
                   </div>
                 ))}
