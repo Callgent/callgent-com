@@ -63,8 +63,8 @@ const Hero = () => {
       lastCart && lastCart.classList.add('fade-out');
       lastCart && currentCard.classList.remove('fadeInImg');
     } else if (deltaY < 0) {
-      currentCard && currentCard.classList.add('fadeInImg');
-      currentCard && currentCard.addEventListener('animationend', () => {
+      nextCard && currentCard.classList.add('fadeInImg');
+      nextCard && currentCard.addEventListener('animationend', () => {
         currentImage.classList.add('animate-wiggle');
       });
       nextCard && currentCard.classList.add('fadeIn');
