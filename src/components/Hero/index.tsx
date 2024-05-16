@@ -45,12 +45,12 @@ const Hero = () => {
     const currentCardIndex = Math.floor(currentItem);
     const deltaY = scrollPosition - (lastScrollPosition.current || 0);
     lastScrollPosition.current = scrollPosition;
-    if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
-      TitleRef.current.classList.remove('sticky', 'top-[120px]');
+    if (scrollPosition >= paragraphs.length * firstCardHeight - 150 && deltaY > 0) {
+      TitleRef.current.classList.remove('sticky', 'top-[90px]');
       TitleRef.current.classList.add('absolute');
     } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
       TitleRef.current.classList.remove('absolute');
-      TitleRef.current.classList.add('sticky', 'top-[120px]');
+      TitleRef.current.classList.add('sticky', 'top-[90px]');
     }
 
     if (currentCardIndex >= paragraphs.length || currentCardIndex < 0) {
@@ -82,7 +82,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="z-10 bg-white pb-6 pt-[120px] dark:bg-gray-dark md:pb-[120px] md:pt-[150px] xl:pb-[120px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+      className="z-10 bg-white pb-6 pt-[150px] dark:bg-gray-dark md:pb-[120px]  xl:pb-[120px]  2xl:pb-[200px] "
     >
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
@@ -90,13 +90,13 @@ const Hero = () => {
             <div className="relative mx-auto max-w-[70vw] text-center">
               <h1
                 ref={TitleRef}
-                className={` sticky top-[120px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight ${isTitleSticky ? 'sticky' : ''}`}
+                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight ${isTitleSticky ? 'sticky' : ''}`}
               >
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h1>
               <section id="content">
                 {paragraphs.map((item, index) => (
-                  <div className="Container top-[200px] py-4 xl:py-6 2xl:py-8 fadeIn mt-[10vh] px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
+                  <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
                     <div className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</div>
                     <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
                   </div>
