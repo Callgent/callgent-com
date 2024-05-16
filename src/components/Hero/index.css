@@ -1,0 +1,113 @@
+.Container {
+    height: calc(100vh - 650px);
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    transition: transform 0.5s ease;
+    /* 添加缩放的过渡效果 */
+}
+
+.fade-out {
+    opacity: 0;
+    animation: fade-outAnimation 1s ease forwards;
+    /* 添加过渡动画效果 */
+}
+
+@keyframes fade-outAnimation {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
+.cart-img {
+    animation: shrinkAnimation 0.5s ease forwards;
+    /* 添加缩小动画 */
+}
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeInAnimation 1s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shrinkAnimation {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(2);
+    }
+}
+
+.text {
+    background-image: -webkit-linear-gradient(-60deg, #4db1f8, #37aafc 20%, #28a2fa 40%, #21a0fa 60%, #009bfb 80%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-background-size: 200% 100%;
+    -webkit-animation: maskedAnimation 3s infinite linear;
+}
+
+@keyframes maskedAnimation {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+
+.fadeInImg img {
+    opacity: 0;
+    animation: fadeInImhAnimation 1s ease forwards;
+}
+
+@keyframes fadeInImhAnimation {
+    from {
+        opacity: 0;
+        transform: translateX(10%) rotate(15deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+.wiggle img {
+    animation: wiggleanimation 3s ease-in-out infinite;
+}
+
+@keyframes wiggleanimation {
+    0% {
+        transform: translate(0px, 0px);
+    }
+
+    50% {
+        transform: translate(0px, 15px);
+    }
+
+    100% {
+        transform: translate(0px, 0px);
+    }
+}

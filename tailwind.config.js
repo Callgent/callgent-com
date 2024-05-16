@@ -33,6 +33,16 @@ module.exports = {
       // => @media (min-width: 1400px) { ... }
     },
     extend: {
+      keyframes: {
+        wiggle: {
+          '0%': { transform: 'translate(0px, 0px)' },
+          '50%': { transform: 'translate(0px, 15px)' },
+          '100%': { transform: 'translate(0px, 0px)' },
+        },
+      },
+      animation: {
+        wiggle: 'wiggle 3s ease-in-out infinite',
+      },
       colors: {
         current: "currentColor",
         transparent: "transparent",
