@@ -44,57 +44,66 @@ const Hero = () => {
     const currentCardIndex = Math.floor(currentItem);
     const deltaY = scrollPosition - (lastScrollPosition.current || 0);
     lastScrollPosition.current = scrollPosition;
-    if (scrollPosition >= paragraphs.length * firstCardHeight - 200 && deltaY > 0) {
+    if (scrollPosition >= paragraphs.length * firstCardHeight && deltaY > 0) {
       TitleRef.current.classList.remove('sticky', 'top-[90px]');
     } else if (scrollPosition <= paragraphs.length * firstCardHeight && deltaY < 0) {
       TitleRef.current.classList.add('sticky', 'top-[90px]');
     }
 
-    if (currentCardIndex >= paragraphs.length || currentCardIndex < 0) {
-      return;
-    }
-    const lastCart: any = cardContainers[currentCardIndex - 1];
+    if (currentCardIndex >= paragraphs.length || currentCardIndex < 0) { return; }
+
+    const lastCard: any = cardContainers[currentCardIndex - 1];
     const currentCard: any = cardContainers[currentCardIndex];
     const nextCard: any = cardContainers[currentCardIndex + 1];
     const scale = 1 - (currentItem - currentCardIndex);
     const images = document.querySelectorAll(".cartImg");
     const currentImage = images[currentCardIndex];
-    if (scale > 0.8 && deltaY > 0) {
-      lastCart && lastCart.classList.add('fade-out');
-      lastCart && currentCard.classList.remove('fadeInImg');
-    } else if (deltaY < 0) {
-      nextCard && currentCard.classList.add('fadeInImg');
-      nextCard && currentCard.addEventListener('animationend', () => {
+    const currentCardTop = cardContainers[3].getBoundingClientRect().top;
+    if (currentCardTop <= 250 && currentCardTop >= 230 && deltaY > 0) {
+      lastCard.classList.add('fade-out');
+      currentCard.classList.remove('fadeInImg');
+      return null;
+    } else if (currentCardTop >= 250 && currentCardTop <= 270 && deltaY < 0) {
+      lastCard.classList.add('fadeInImg');
+      lastCard.addEventListener('animationend', () => {
         currentImage.classList.add('animate-wiggle');
       });
-      nextCard && currentCard.classList.add('fadeIn');
-      currentCard.style.transform = `scale(1)`;
+      lastCard.classList.add('fadeIn');
+      lastCard.style.transform = `scale(1)`;
+      return null;
+    }
+    if (scale > 0.8 && deltaY > 0 && lastCard && nextCard) {
+      lastCard.classList.add('fade-out');
+      currentCard.classList.remove('fadeInImg');
     } else if (scale < 0.8 && deltaY > 0) {
       currentCard.classList.remove('fadeIn', 'fade-out');
+    } else if (deltaY < 0 && nextCard) {
+      currentCard.classList.add('fadeInImg');
+      currentCard.addEventListener('animationend', () => {
+        currentImage.classList.add('animate-wiggle');
+      });
+      currentCard.classList.add('fadeIn');
+      currentCard.style.transform = `scale(1)`;
     }
   };
 
   return (
     <section
       id="home"
-      className="z-10 bg-white pb-6 pt-[150px] dark:bg-gray-dark md:pb-[120px]  xl:pb-[120px]  2xl:pb-[200px] "
-    >
+      className="z-10 bg-white pb-6 pt-[150px] dark:bg-gray-dark md:pb-[120px]  xl:pb-[120px]  2xl:pb-[200px]">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
-            <div className="relative mx-auto max-w-[70vw] text-center">
-              <h2
-                ref={TitleRef}
-                className={` sticky top-[90px] text-3xl font-bold leading-tight text-black dark:text-white sm:text-4xl sm:leading-tight md:text-5xl md:leading-tight}`}
-              >
+            <div className="relative mx-auto md:max-w-[90vw] lg:max-w-[70vw] 2xl:max-w-[60vw] text-center">
+              <h2 ref={TitleRef}
+                className={`sticky top-[90px] text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-tight text-black dark:text-white sm:leading-tight  md:leading-tight}`}>
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h2>
-
               <section id="content">
                 {paragraphs.map((item, index) => (
-                  <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col xl:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
-                    <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-4xl'>{item.description}</h2>
-                    <img className='cartImg w-[90vw] animate-wiggle md:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
+                  <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col md:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
+                    <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-2xl'>{item.description}</h2>
+                    <img className='cartImg w-[90vw] animate-wiggle md:w-[50vw] lg:w-[45vw] xl:w-[40vw]' src={item.img} alt="about-image" />
                   </div>
                 ))}
               </section>
