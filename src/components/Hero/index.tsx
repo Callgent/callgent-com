@@ -7,22 +7,22 @@ import './index.css';
 const Hero = () => {
   const paragraphs = [
     {
-      description: "Encapsulate your service into a callgent,",
+      description: "Encapsulate your service into a callgent",
       img: "/images/hero/bg1.png",
     },
     {
       description:
-        "Now it can talk to a person in email or slack channels, or be invoked through code libs or restAPIs, ..",
+        "Now you can chat to it by email or slack channels, or invoke it through code libs or restAPIs, ..",
       img: "/images/hero/bg2.png",
     },
     {
       description:
-        "The callgent translates all these requests into executable invocations, and sends them to your API service, or even slack users to respond.",
+        "The callgent translates the requests, then sends them to your service, or slack users to respond.",
       img: "/images/hero/bg3.png",
     },
     {
       description:
-        "Callgent's vision, is to break the silos among all systems and users!",
+        "Callgent aims to break the silos among all systems and users through AI Agent!",
       img: "/images/hero/bg4.png",
     },
   ];
@@ -59,7 +59,7 @@ const Hero = () => {
     const images = document.querySelectorAll(".cartImg");
     const currentImage = images[currentCardIndex];
     const currentCardTop = cardContainers[3].getBoundingClientRect().top;
-    if (currentCardTop <= 250 && currentCardTop >= 230 && deltaY > 0) {
+    if (currentCardTop <= 270 && currentCardTop >= 250 && deltaY > 0) {
       lastCard.classList.add('fade-out');
       currentCard.classList.remove('fadeInImg');
       return null;
@@ -99,7 +99,7 @@ const Hero = () => {
                 className={`sticky top-[90px] text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-tight text-black dark:text-white sm:leading-tight  md:leading-tight}`}>
                 Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
               </h2>
-              <section id="content">
+              <section id="content" className="md:pt-14">
                 {paragraphs.map((item, index) => (
                   <div className="Container top-[180px] mt-12 py-4 xl:py-6 2xl:py-8 fadeIn px-4 border dark:border-slate-600 rounded-xl flex-col md:flex-row flex justify-center bg-white dark:bg-gray-dark" key={index}>
                     <h2 className='flex mb-4 items-center  text-base md:text-lg xl:text-xl 2xl:text-2xl'>{item.description}</h2>
@@ -107,7 +107,7 @@ const Hero = () => {
                   </div>
                 ))}
               </section>
-              <div className="flex mt-7 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
+              <div className="flex pt-7 md:pt-14 xl:28 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Link
                   href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
                   className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
