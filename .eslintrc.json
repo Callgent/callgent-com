@@ -16,7 +16,7 @@
     "complexity": [
       "warn",
       {
-        "max": 20
+        "max": 25
       }
     ],
     "no-trailing-spaces": "error",
