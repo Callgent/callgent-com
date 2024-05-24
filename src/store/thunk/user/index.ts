@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { UserSignup, UserSignin, UserResponse } from '@/types/user';
+import { UserSignup, UserSignin, UserResponse, ConfirmEmailParams } from '@/types/user';
 import { ApiResponse } from '..';
 import axios from '@/util/axios';
 import { deleteCookie } from '@/util/cookie';
@@ -45,6 +45,25 @@ export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
             return data;
         } catch (error) {
             return thunkAPI.rejectWithValue('Failed to fetch users');
+        }
+    }
+);
+
+// Confirm Email
+export const confirmEmail = createAsyncThunk<ApiResponse<UserResponse>, ConfirmEmailParams>(
+    'users/confirmEmail',
+    async ({ token, data }, thunkAPI) => {
+        try {
+            const response = await axios.patch(`/api/users/confirm-email/${token}`, JSON.stringify(data),
+                {
+                    headers: {
+                        'accept': '*/*',
+                        'Content-Type': 'application/json'
+                    }
+                });
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue('Failed to confirm email');
         }
     }
 );

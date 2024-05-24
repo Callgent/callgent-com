@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSignin, fetchSignup } from '../thunk';
+import { fetchSignin, fetchSignup, confirmEmail } from '../thunk';
 import { UserResponse, userSliceType } from '@/types/user';
 
 const userSlice = createSlice({
@@ -16,7 +16,7 @@ const userSlice = createSlice({
     setInfo: (state) => {
       let userInfo: any = localStorage.getItem('userinfo');
       userInfo = userInfo && JSON.parse(userInfo);
-    if (userInfo) {
+      if (userInfo) {
         state.userData = {
           ...userInfo,
           avatar: userInfo?.avatar !== null ? userInfo.avatar : '/images/logo/logo-header.png'

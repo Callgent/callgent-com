@@ -20,3 +20,8 @@ export type userSliceType = {
     loading: boolean,
     value: number,
 }
+
+export type ConfirmEmailParams = {
+    token: string;
+    data: string;
+}
