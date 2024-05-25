@@ -1,6 +1,7 @@
-
-import React from 'react';
-import Form from '@/components/confirm-email/form';
+import React, { Suspense } from 'react';
+// import Form from '@/components/confirm-email/form';
+import dynamic from 'next/dynamic';
+const Form = dynamic(() => import('@/components/confirm-email/form'), { ssr: false });
 
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ const ResetPage = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto max-w-[500px] rounded bg-white px-6 py-10 shadow-three dark:bg-dark sm:p-[60px]">
-              <Form />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Form />
+              </Suspense>
             </div>
           </div>
         </div>

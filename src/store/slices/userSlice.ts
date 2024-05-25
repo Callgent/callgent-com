@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchSignin, fetchSignup, confirmEmail } from '../thunk';
+import { fetchSignin, fetchSignup } from '../thunk';
 import { UserResponse, userSliceType } from '@/types/user';
 
 const userSlice = createSlice({
