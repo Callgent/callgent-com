@@ -6,8 +6,8 @@
     <a href="https://discord.gg/V9HKBukSRp" target="_blank">
         <img src="https://img.shields.io/discord/1215998670265127102?logo=discord"
             alt="chat on Discord"></a>
-    <a href="https://twitter.com/intent/follow?screen_name=callgent" target="_blank">
-        <img src="https://img.shields.io/twitter/follow/callgent?style=social&logo=X"
+    <a href="https://twitter.com/intent/follow?screen_name=callgent_com" target="_blank">
+        <img src="https://img.shields.io/twitter/follow/callgent_com?style=social&logo=X"
             alt="follow on Twitter"></a>
 <a href="https://app.snyk.io/test/github/Callgent/callgent-com" alt="FOSSA Status"><img src="https://snyk.io/test/github/Callgent/callgent-com/badge.svg"/></a>
 <a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fcallgent-com%2Fcallgent-com?ref=badge_shield&issueType=license" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcallgent-com%2Fcallgent-com.svg?type=shield&issueType=license"/></a>

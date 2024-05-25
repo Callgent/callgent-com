@@ -1,7 +1,7 @@
 import axioshead from 'axios';
 
 const axios = axioshead.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
+
 });
 
 axios.interceptors.request.use(

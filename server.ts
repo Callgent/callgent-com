@@ -1,3 +1,4 @@
+import { createProxyMiddleware } from "http-proxy-middleware";
 import express, { Request, Response } from 'express';
 import next from 'next';
 const dev = process.env.NODE_ENV !== 'production';
@@ -9,7 +10,15 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
     const env = process.env;
     const server = express();
+    const proxyTable = {
+        '/api': {
+            target: env.NEXT_PUBLIC_API_URL,
+            pathRewrite: { '^/api': '/api' },
+            changeOrigin: true
+        },
+    };
 
+    server.use('/api', createProxyMiddleware(proxyTable['/api']));
     var jwt = require('jsonwebtoken');
     var PrivateKey = env.NEXT_PUBLIC_CANNY_API_PRIVATEKEY;
     server.use(express.json());

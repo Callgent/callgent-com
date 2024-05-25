@@ -47,8 +47,6 @@ const Feedback = () => {
                 };
                 const cannyJwt = localStorage.getItem('canny');
                 const Render = (ssoToken) => {
-                    console.log(BoardToken, ssoToken, theme);
-
                     w.Canny('render', {
                         boardToken: BoardToken,
                         basePath: '/feedback',

@@ -24,11 +24,15 @@ const ResetPage = () => {
             setError('Passwords do not match');
             return;
         }
+
+
         setError(null);
         dispatch(confirmEmail({ token, data: formValues.password })).then((req) => {
             const { data } = req.payload as ApiResponse<UserResponse>;
             if (!data) {
                 setError(req.payload as string);
+            } else {
+                window.location.href = '/';
             }
         });
     };
@@ -37,6 +41,8 @@ const ResetPage = () => {
             const { data } = req.payload as ApiResponse<UserResponse>;
             if (!data) {
                 setError(req.payload as string);
+            } else {
+                window.location.href = '/';
             }
         });
     };
@@ -46,7 +52,7 @@ const ResetPage = () => {
             {resetPwd ? (
                 <>
                     <h3 className="mb-10 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                        Reset Your Password
+                        Reset your password
                     </h3>
                     <form onSubmit={resetSubmit}>
                         <div className="mb-8">
@@ -93,7 +99,7 @@ const ResetPage = () => {
                     <p className="mb-6 text-sm text-dark dark:text-white text-center">
                         Please click the button below to confirm your email address.
                     </p>
-                    {error && <p className="text-red-600 text-sm mt-2 text-center">{error}</p>}
+                    {error && <p className="text-red-600 text-sm  my-2 text-center">{error}</p>}
                     <button onClick={confirmSubmit} className="w-full rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
                         Confirm Email
                     </button>
