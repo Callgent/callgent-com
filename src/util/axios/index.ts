@@ -1,7 +1,7 @@
 import axioshead from 'axios';
 
 const axios = axioshead.create({
-    timeout: 20 * 1000,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 axios.interceptors.request.use(
     (config) => {

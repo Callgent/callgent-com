@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Form from '@/components/confirm/form';
+import Form from '@/components/confirm-email/form';
 
 import { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -16,9 +16,6 @@ const ResetPage = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
             <div className="mx-auto max-w-[500px] rounded bg-white px-6 py-10 shadow-three dark:bg-dark sm:p-[60px]">
-              <h3 className="mb-10 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                Reset in to your password
-              </h3>
               <Form />
             </div>
           </div>
