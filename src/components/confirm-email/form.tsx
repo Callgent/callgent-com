@@ -32,14 +32,14 @@ const ResetPage = () => {
                 window.location.href = '/';
             }
         }).catch(() => {
-            setError('Password reset failed, please try again later.');
+            setError('Password reset failed, please resend the validation Email and try again later.');
         });
     };
 
     return (
         <>
             <h3 className="mb-10 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                Reset in to your password
+                Reset your password
             </h3>
             <form onSubmit={onFormSubmit}>
                 <div className="mb-8">
