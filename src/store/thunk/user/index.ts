@@ -40,7 +40,7 @@ export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
                 localStorage.setItem('userinfo', JSON.stringify(data.data));
             } else {
                 localStorage.removeItem('userinfo');
-                deleteCookie('jwt');
+                deleteCookie('x-callgent-jwt');
             }
             return data;
         } catch (error) {
@@ -55,15 +55,13 @@ export const confirmEmail = createAsyncThunk<ApiResponse<UserResponse>, ConfirmE
     async ({ token, data }, thunkAPI) => {
         try {
             const response = await axios.patch(`/api/users/confirm-email/${token}`, JSON.stringify(data),
-                {
-                    headers: {
-                        'accept': '*/*',
-                        'Content-Type': 'application/json'
-                    }
-                });
+                { headers: { 'accept': '*/*', 'Content-Type': 'application/json' } });
             return response.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('Failed to confirm email');
+            if (error.status) {
+                return thunkAPI.rejectWithValue(error.data.message);
+            }
+            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
         }
     }
 );
