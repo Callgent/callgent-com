@@ -12,7 +12,7 @@ export const fetchSignup = createAsyncThunk<ApiResponse<UserResponse>, UserSignu
             const { data } = await axios.post('/api/auth/register', userData);
             return data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('Failed to fetch users');
+            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
         }
     }
 );
@@ -25,7 +25,10 @@ export const fetchSignin = createAsyncThunk<ApiResponse<UserResponse>, UserSigni
             const { data } = await axios.post('/api/auth/login', userData);
             return data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('Failed to fetch users');
+            if (error.status) {
+                return thunkAPI.rejectWithValue(error.data.message);
+            }
+            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
         }
     }
 );
@@ -44,7 +47,7 @@ export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
             }
             return data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('Failed to fetch users');
+            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
         }
     }
 );
@@ -62,6 +65,26 @@ export const confirmEmail = createAsyncThunk<ApiResponse<UserResponse>, ConfirmE
                 return thunkAPI.rejectWithValue(error.data.message);
             }
             return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
+        }
+    }
+);
+
+// Send a confirmation email
+export const sendConfirmEmail = createAsyncThunk<ApiResponse<any>, { email: string }>(
+    'users/sendConfirmEmail',
+    async (emailData, thunkAPI) => {
+        try {
+            const { data } = await axios.post('/api/users/send-confirm-email', {
+                email: emailData.email,
+                create: false,
+                resetPwd: true,
+            });
+            return data;
+        } catch (error) {
+            if (error.status) {
+                return thunkAPI.rejectWithValue(error.data.message);
+            }
+            return thunkAPI.rejectWithValue('Failed to send confirmation email');
         }
     }
 );

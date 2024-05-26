@@ -18,7 +18,7 @@ axios.interceptors.response.use(
         return response;
     },
     (error) => {
-        if (error.response) {
+        if (error.response.status !== 502) {
             return Promise.reject(error.response);
         } else {
             return Promise.reject({ message: 'The server is abnormal, please try again later' });
