@@ -34,8 +34,7 @@ const SigninPage = () => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const email = formData.get('email') as string;
-        // 这里可以调用发送重置密码邮件的API
-        console.log('Sending password reset email to:', email);
+
         dispatch(sendConfirmEmail({ email }))
             .then((req) => {
                 const { data } = req.payload as ApiResponse<UserResponse>;
