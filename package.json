@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "dev": "cross-env NODE_ENV=development ts-node server.ts",
+    "dev": "cross-env NODE_ENV=development next dev -p 3030",
     "build": "next build && next-sitemap --config next-sitemap.config.js",
-    "start": "cross-env NODE_ENV=production ts-node server.ts",
+    "start": "cross-env NODE_ENV=production next start -p 3030",
     "commit": "git-cz",
     "lint": "next lint --fix",
     "lint-fix": "eslint --fix .",

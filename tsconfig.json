@@ -12,7 +12,7 @@
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "CommonJS",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -23,6 +23,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/util/axios/index.js", "public/index.js", "server.ts", "public/feedback/sdk.js", "next.config.js", "postcss.config.js"],
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx", "src/util/axios/index.js", "public/index.js", "server111.ts", "public/feedback/sdk.js", "next.config.js", "postcss.config.js"],
   "exclude": ["node_modules"]
 }

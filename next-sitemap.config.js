@@ -4,7 +4,7 @@ module.exports = {
   robotsTxtOptions: {
     policies: [{ userAgent: '*', allow: '/' }],
     additionalSitemaps: [
-      process.env.NEXT_PUBLIC_DOCUMENTATION_URL + '/sitemap.xml', // <==== Add here
+      process.env.NEXT_PUBLIC_DOCUMENTATION_URL + '/sitemap.xml',
     ],
   },
 };
