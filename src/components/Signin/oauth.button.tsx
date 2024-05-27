@@ -6,7 +6,7 @@ const OAuthButton = ({ provider }: { provider: string }) => {
   const handleOauthLogin = async () => {
     const from =
       new URLSearchParams(window.location.search).get('from') ||
-      process.env.NEXT_PUBLIC_API_URL;
+      process.env.NEXT_PUBLIC_SITE_ROOT;
     window.location.href = `${process.env.NEXT_PUBLIC_API_LOGIN_PRE}/${provider}?successUri=${encodeURIComponent(from)}`;
   };
 

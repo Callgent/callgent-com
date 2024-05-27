@@ -16,7 +16,7 @@ const userSlice = createSlice({
     setInfo: (state) => {
       let userInfo: any = localStorage.getItem('userinfo');
       userInfo = userInfo && JSON.parse(userInfo);
-    if (userInfo) {
+      if (userInfo) {
         state.userData = {
           ...userInfo,
           avatar: userInfo?.avatar !== null ? userInfo.avatar : '/images/logo/logo-header.png'

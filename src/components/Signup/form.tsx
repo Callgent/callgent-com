@@ -13,7 +13,6 @@ const SignupPage = () => {
         const formData = new FormData(event.currentTarget);
         const formValues = Object.fromEntries(formData.entries()) as UserSignup;
         dispatch(fetchSignup(formValues)).then((req) => {
-            console.log(req);
             if (req.payload) {
                 const token = req.payload as { meta: { token: string } };
                 setCookie('x-callgent-jwt', token.meta.token);

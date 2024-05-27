@@ -1,23 +1,29 @@
 import axioshead from 'axios';
 
 const axios = axioshead.create({
-    timeout: 20 * 1000,
+
 });
+
 axios.interceptors.request.use(
     (config) => {
         return config;
     },
     (error) => {
-        console.error('error:', error);
-        return error;
+        return Promise.reject(error);
     },
 );
+
 axios.interceptors.response.use(
-    response => {
+    (response) => {
         return response;
     },
-    error => {
-        return error;
+    (error) => {
+        if (error.response.status !== 502) {
+            return Promise.reject(error.response);
+        } else {
+            return Promise.reject({ message: 'The server is abnormal, please try again later' });
+        }
     }
 );
+
 export default axios;

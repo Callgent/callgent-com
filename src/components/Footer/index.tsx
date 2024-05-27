@@ -50,7 +50,7 @@ const Footer = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://twitter.com/callgent"
+                  href="https://twitter.com/callgent_com"
                   aria-label="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
