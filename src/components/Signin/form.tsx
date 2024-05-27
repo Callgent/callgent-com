@@ -1,9 +1,10 @@
 'use client';
+import { AppDispatch } from '@/store';
+import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
+import { UserResponse, UserSignin } from '@/types/user';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
-import { UserResponse, UserSignin } from '@/types/user';
-import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
 
 const SigninPage = () => {
     const dispatch = useDispatch<AppDispatch>();
@@ -150,17 +151,16 @@ const SigninPage = () => {
                     </div>
                     <div className="mb-6">
                         <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
-                            Send Reset Email
+                        Resend Password
                         </button>
                     </div>
                     <div className="mb-6">
-                        <button
-                            type="button"
+                        <Link href="#"
                             onClick={() => { setShowForgotPassword(false); setError(null); }}
-                            className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base font-medium shadow-submit duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
+                            className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base text-body-color font-medium duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
                         >
-                            Back to Sign In
-                        </button>
+                            Return to Sign In
+                        </Link>
                     </div>
                 </form>
             )}
