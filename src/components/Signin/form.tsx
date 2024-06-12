@@ -17,12 +17,11 @@ const SigninPage = () => {
         const formValues = Object.fromEntries(formData.entries()) as UserSignin;
 
         dispatch(fetchSignin(formValues)).then((req) => {
-            const redirect = window.location.search;
-            redirect !== '' && (window.location.href = process.env.NEXT_PUBLIC_DOCUMENTATION_URL + redirect.split('=')[1]);
+            const redirect = window.location.search?.split('=')[1] || '/';
             const payload = req.payload as ApiResponse<UserSignin>;
             if (payload.data) {
                 dispatch(fetchUserInfo()).then(() => {
-                    window.location.href = '/';
+                    window.location.href = redirect;
                 });
             } else {
                 setError(payload as string);
