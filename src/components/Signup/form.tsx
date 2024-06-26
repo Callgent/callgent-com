@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchSignup } from '@/store/thunk';
 import { AppDispatch, } from '@/store';
@@ -8,14 +8,17 @@ import { setCookie } from '@/util/cookie';
 
 const SignupPage = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const [isSubmitting, handleSubmit] = useState<boolean>(false);
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        handleSubmit(true);
         const formData = new FormData(event.currentTarget);
         const formValues = Object.fromEntries(formData.entries()) as UserSignup;
         dispatch(fetchSignup(formValues)).then((req) => {
             if (req.payload) {
                 const token = req.payload as { meta: { token: string } };
                 setCookie('x-callgent-jwt', token.meta.token);
+                handleSubmit(false);
                 window.location.href = '/';
             }
         });
@@ -77,7 +80,6 @@ const SignupPage = () => {
                         <input
                             type="checkbox"
                             id="checkboxLabel"
-                            required
                             className="sr-only"
                         />
                         <div className="box mr-4 mt-1 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
@@ -101,12 +103,12 @@ const SignupPage = () => {
                     </div>
                     <span>
                         By creating account means you agree to the
-                        <a href="#0" className="text-primary hover:underline">
+                        <a href="/terms-of-service" className="text-primary hover:underline">
                             {' '}
                             Terms and Conditions{' '}
                         </a>
                         , and our
-                        <a href="#0" className="text-primary hover:underline">
+                        <a href="/privacy-policy" className="text-primary hover:underline">
                             {' '}
                             Privacy Policy{' '}
                         </a>
@@ -114,7 +116,12 @@ const SignupPage = () => {
                 </label>
             </div>
             <div className="mb-6">
-                <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                        }`}
+                >
                     Sign up
                 </button>
             </div>

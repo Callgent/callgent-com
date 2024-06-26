@@ -10,17 +10,18 @@ const SigninPage = () => {
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [state, setState] = useState(false);
-
+    const [isSubmitting, handleSubmit] = useState<boolean>(false);
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const formValues = Object.fromEntries(formData.entries()) as UserSignin;
-
+        handleSubmit(true);
         dispatch(fetchSignin(formValues)).then((req) => {
             const redirect = window.location.search?.split('=')[1] || '/';
             const payload = req.payload as ApiResponse<UserSignin>;
             if (payload.data) {
                 dispatch(fetchUserInfo()).then(() => {
+                    handleSubmit(false);
                     window.location.href = redirect;
                 });
             } else {
@@ -33,7 +34,7 @@ const SigninPage = () => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         const email = formData.get('email') as string;
-
+        handleSubmit(true);
         dispatch(sendConfirmEmail({ email }))
             .then((req) => {
                 const { data } = req.payload as ApiResponse<UserResponse>;
@@ -42,6 +43,7 @@ const SigninPage = () => {
                     setState(false);
                 } else {
                     setState(true);
+                    handleSubmit(false);
                 }
             });
     };
@@ -89,7 +91,6 @@ const SigninPage = () => {
                                     <input
                                         type="checkbox"
                                         id="checkboxLabel"
-                                        required
                                         className="sr-only"
                                     />
                                     <div className="box mr-4 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
@@ -124,7 +125,12 @@ const SigninPage = () => {
                         </div>
                     </div>
                     <div className="mb-6">
-                        <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                                }`}
+                        >
                             Sign in
                         </button>
                     </div>
@@ -148,7 +154,12 @@ const SigninPage = () => {
                         {state && <div className=" text-sm mt-4 text-lime-700">Please go to your email to set up your account!</div>}
                     </div>
                     <div className="mb-6">
-                        <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                                }`}
+                        >
                             Send Reset Email
                         </button>
                     </div>
