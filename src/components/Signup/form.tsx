@@ -1,25 +1,27 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchSignup } from '@/store/thunk';
 import { AppDispatch, } from '@/store';
 import { UserSignup } from '@/types/user';
 import { setCookie } from '@/util/cookie';
+import useSubmitForm from '@/hooks/button';
 
 const SignupPage = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const [isSubmitting, handleSubmit] = useState<boolean>(false);
+    const { isSubmitting, error, handleSubmit } = useSubmitForm();
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        handleSubmit(true);
-        const formData = new FormData(event.currentTarget);
-        const formValues = Object.fromEntries(formData.entries()) as UserSignup;
-        dispatch(fetchSignup(formValues)).then((req) => {
-            if (req.payload) {
-                const token = req.payload as { meta: { token: string } };
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const formValues = Object.fromEntries(formData.entries()) as UserSignup;
+            const { payload }: any = await dispatch(fetchSignup(formValues));
+            try {
+                const token = payload;
                 setCookie('x-callgent-jwt', token.meta.token);
-                handleSubmit(false);
                 window.location.href = '/';
+            } catch (error) {
+                throw new Error(payload?.message);
             }
         });
     };
@@ -30,8 +32,7 @@ const SignupPage = () => {
                     htmlFor="name"
                     className="mb-3 block text-sm text-dark dark:text-white"
                 >
-                    {' '}
-                    Full Name{' '}
+                    Full Name
                 </label>
                 <input
                     type="text"
@@ -45,8 +46,7 @@ const SignupPage = () => {
                     htmlFor="email"
                     className="mb-3 block text-sm text-dark dark:text-white"
                 >
-                    {' '}
-                    Work Email{' '}
+                    Work Email
                 </label>
                 <input
                     type="email"
@@ -56,13 +56,12 @@ const SignupPage = () => {
                     className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                 />
             </div>
-            <div className="mb-8">
+            <div className="mb-2">
                 <label
                     htmlFor="password"
                     className="mb-3 block text-sm text-dark dark:text-white"
                 >
-                    {' '}
-                    Your Password{' '}
+                    Your Password
                 </label>
                 <input
                     type="password"
@@ -70,6 +69,9 @@ const SignupPage = () => {
                     placeholder="Enter your Password"
                     className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                 />
+            </div>
+            <div className="mb-2">
+                {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
             <div className="mb-8 flex">
                 <label
@@ -80,6 +82,7 @@ const SignupPage = () => {
                         <input
                             type="checkbox"
                             id="checkboxLabel"
+                            required
                             className="sr-only"
                         />
                         <div className="box mr-4 mt-1 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
@@ -104,13 +107,11 @@ const SignupPage = () => {
                     <span>
                         By creating account means you agree to the
                         <a href="/terms-of-service" className="text-primary hover:underline">
-                            {' '}
-                            Terms and Conditions{' '}
+                            Terms and Conditions
                         </a>
                         , and our
                         <a href="/privacy-policy" className="text-primary hover:underline">
-                            {' '}
-                            Privacy Policy{' '}
+                            Privacy Policy
                         </a>
                     </span>
                 </label>

@@ -4,48 +4,44 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
 import { UserResponse, UserSignin } from '@/types/user';
 import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
+import useSubmitForm from '@/hooks/button';
 
 const SigninPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [showForgotPassword, setShowForgotPassword] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [state, setState] = useState(false);
-    const [isSubmitting, handleSubmit] = useState<boolean>(false);
+    const { isSubmitting, error, handleSubmit, setError } = useSubmitForm();
+
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const formValues = Object.fromEntries(formData.entries()) as UserSignin;
-        handleSubmit(true);
-        dispatch(fetchSignin(formValues)).then((req) => {
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const formValues = Object.fromEntries(formData.entries()) as UserSignin;
+            const req = await dispatch(fetchSignin(formValues));
             const redirect = window.location.search?.split('=')[1] || '/';
             const payload = req.payload as ApiResponse<UserSignin>;
             if (payload.data) {
-                dispatch(fetchUserInfo()).then(() => {
-                    handleSubmit(false);
-                    window.location.href = redirect;
-                });
+                await dispatch(fetchUserInfo());
+                window.location.href = redirect;
             } else {
-                setError(payload as string);
+                throw new Error(payload.message as string);
             }
         });
     };
 
     const onForgotPasswordSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const email = formData.get('email') as string;
-        handleSubmit(true);
-        dispatch(sendConfirmEmail({ email }))
-            .then((req) => {
-                const { data } = req.payload as ApiResponse<UserResponse>;
-                if (!data) {
-                    setError(req.payload as string);
-                    setState(false);
-                } else {
-                    setState(true);
-                    handleSubmit(false);
-                }
-            });
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const email = formData.get('email') as string;
+            const req = await dispatch(sendConfirmEmail({ email }));
+            const { data, message } = req.payload as ApiResponse<UserResponse>;
+            if (!data) {
+                throw new Error(message as string);
+            } else {
+                setState(true);
+            }
+        });
     };
 
     return (
@@ -117,7 +113,7 @@ const SigninPage = () => {
                         </div>
                         <div>
                             <span
-                                onClick={() => { setShowForgotPassword(true); setError(null); }}
+                                onClick={() => { setShowForgotPassword(true); setState(false); setError(null); }}
                                 className="text-sm cursor-pointer font-medium text-primary hover:underline"
                             >
                                 Forgot Password?
@@ -150,7 +146,7 @@ const SigninPage = () => {
                             placeholder="Enter your Email"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                         />
-                        {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+                        {error && !state && <p className="text-red-600 text-sm mt-2">{error}</p>}
                         {state && <div className=" text-sm mt-4 text-lime-700">Please go to your email to set up your account!</div>}
                     </div>
                     <div className="mb-6">
@@ -166,7 +162,7 @@ const SigninPage = () => {
                     <div className="mb-6">
                         <button
                             type="button"
-                            onClick={() => { setShowForgotPassword(false); setError(null); }}
+                            onClick={() => { setShowForgotPassword(false); setState(false); setError(null); }}
                             className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base font-medium shadow-submit duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
                         >
                             Back to Sign In
