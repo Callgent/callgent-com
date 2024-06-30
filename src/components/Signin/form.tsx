@@ -57,6 +57,7 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="email"
+                            required
                             name="username"
                             placeholder="Enter your Email"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -71,6 +72,9 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="password"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
+                            required
+                            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
                             name="password"
                             placeholder="Enter your Password"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -142,6 +146,7 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="email"
+                            required
                             name="email"
                             placeholder="Enter your Email"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
