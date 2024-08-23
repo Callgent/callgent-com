@@ -41,8 +41,8 @@ const Feedback = () => {
                 }
                 const user = {
                     avatarURL: userInfo.avatar, // optional, but preferred
-                    email: userInfo.uuid + '@callgent.com',
-                    id: userInfo.uuid,
+                    email: userInfo.id + '@callgent.com',
+                    id: userInfo.id,
                     name: userInfo.name,
                 };
                 const cannyJwt = localStorage.getItem('canny');
