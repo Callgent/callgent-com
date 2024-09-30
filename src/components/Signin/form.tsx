@@ -1,9 +1,10 @@
 'use client';
+import { AppDispatch } from '@/store';
+import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
+import { UserResponse, UserSignin } from '@/types/user';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store';
-import { UserResponse, UserSignin } from '@/types/user';
-import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
 import useSubmitForm from '@/hooks/button';
 
 const SigninPage = () => {
@@ -170,7 +171,7 @@ const SigninPage = () => {
                             onClick={() => { setShowForgotPassword(false); setState(false); setError(null); }}
                             className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base font-medium shadow-submit duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
                         >
-                            Back to Sign In
+                            Return to Sign In
                         </button>
                     </div>
                 </form>
