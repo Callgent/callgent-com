@@ -2,49 +2,48 @@
 import { AppDispatch } from '@/store';
 import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
 import { UserResponse, UserSignin } from '@/types/user';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import useSubmitForm from '@/hooks/button';
+import { useRouter } from 'next/navigation';
 
 const SigninPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [showForgotPassword, setShowForgotPassword] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [state, setState] = useState(false);
+    const router = useRouter();
+    const { isSubmitting, error, handleSubmit, setError } = useSubmitForm();
 
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const formValues = Object.fromEntries(formData.entries()) as UserSignin;
-
-        dispatch(fetchSignin(formValues)).then((req) => {
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const formValues = Object.fromEntries(formData.entries()) as UserSignin;
+            const req = await dispatch(fetchSignin(formValues));
             const redirect = window.location.search?.split('=')[1] || '/';
             const payload = req.payload as ApiResponse<UserSignin>;
             if (payload.data) {
-                dispatch(fetchUserInfo()).then(() => {
-                    window.location.href = redirect;
-                });
+                await dispatch(fetchUserInfo());
+                router.push(redirect);
             } else {
-                setError(payload as string);
+                throw new Error(payload.message as string);
             }
         });
     };
 
     const onForgotPasswordSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const email = formData.get('email') as string;
-
-        dispatch(sendConfirmEmail({ email }))
-            .then((req) => {
-                const { data } = req.payload as ApiResponse<UserResponse>;
-                if (!data) {
-                    setError(req.payload as string);
-                    setState(false);
-                } else {
-                    setState(true);
-                }
-            });
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const email = formData.get('email') as string;
+            const req = await dispatch(sendConfirmEmail({ email }));
+            const { data, message } = req.payload as ApiResponse<UserResponse>;
+            if (!data) {
+                throw new Error(message as string);
+            } else {
+                setState(true);
+            }
+        });
     };
 
     return (
@@ -60,6 +59,7 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="email"
+                            required
                             name="username"
                             placeholder="Enter your Email"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -74,6 +74,9 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="password"
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
+                            required
+                            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
                             name="password"
                             placeholder="Enter your Password"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -90,7 +93,6 @@ const SigninPage = () => {
                                     <input
                                         type="checkbox"
                                         id="checkboxLabel"
-                                        required
                                         className="sr-only"
                                     />
                                     <div className="box mr-4 flex h-5 w-5 items-center justify-center rounded border border-body-color border-opacity-20 dark:border-white dark:border-opacity-10">
@@ -117,7 +119,7 @@ const SigninPage = () => {
                         </div>
                         <div>
                             <span
-                                onClick={() => { setShowForgotPassword(true); setError(null); }}
+                                onClick={() => { setShowForgotPassword(true); setState(false); setError(null); }}
                                 className="text-sm cursor-pointer font-medium text-primary hover:underline"
                             >
                                 Forgot Password?
@@ -125,7 +127,12 @@ const SigninPage = () => {
                         </div>
                     </div>
                     <div className="mb-6">
-                        <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                                }`}
+                        >
                             Sign in
                         </button>
                     </div>
@@ -141,25 +148,32 @@ const SigninPage = () => {
                         </label>
                         <input
                             type="email"
+                            required
                             name="email"
                             placeholder="Enter your Email"
                             className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                         />
-                        {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
+                        {error && !state && <p className="text-red-600 text-sm mt-2">{error}</p>}
                         {state && <div className=" text-sm mt-4 text-lime-700">Please go to your email to set up your account!</div>}
                     </div>
                     <div className="mb-6">
-                        <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
-                        Resend Password
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                                }`}
+                        >
+                            Send Reset Email
                         </button>
                     </div>
                     <div className="mb-6">
-                        <Link href="#"
-                            onClick={() => { setShowForgotPassword(false); setError(null); }}
-                            className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base text-body-color font-medium duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
+                        <button
+                            type="button"
+                            onClick={() => { setShowForgotPassword(false); setState(false); setError(null); }}
+                            className="flex w-full items-center justify-center rounded-sm bg-secondary px-9 py-4 text-base font-medium shadow-submit duration-300 hover:bg-secondary/90 dark:shadow-submit-dark"
                         >
                             Return to Sign In
-                        </Link>
+                        </button>
                     </div>
                 </form>
             )}
