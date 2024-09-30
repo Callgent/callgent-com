@@ -2,15 +2,16 @@
 import { AppDispatch } from '@/store';
 import { ApiResponse, fetchSignin, fetchUserInfo, sendConfirmEmail } from '@/store/thunk';
 import { UserResponse, UserSignin } from '@/types/user';
-import Link from 'next/link';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import useSubmitForm from '@/hooks/button';
+import { useRouter } from 'next/navigation';
 
 const SigninPage = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const [state, setState] = useState(false);
+    const router = useRouter();
     const { isSubmitting, error, handleSubmit, setError } = useSubmitForm();
 
     const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,7 +24,7 @@ const SigninPage = () => {
             const payload = req.payload as ApiResponse<UserSignin>;
             if (payload.data) {
                 await dispatch(fetchUserInfo());
-                window.location.href = redirect;
+                router.push(redirect);
             } else {
                 throw new Error(payload.message as string);
             }
