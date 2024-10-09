@@ -21,13 +21,13 @@ const NewsLatterBox = () => {
   }, []);
 
   return (
-    <div className="relative rounded-lg bg-white px-8 py-8 shadow-lg dark:bg-gray-800 sm:p-12 lg:px-10 xl:p-12 lg:mb-5 mb-12">
+    <div className="relative rounded-lg bg-white px-8 py-8 shadow-lg dark:bg-gray-dark sm:p-12 lg:px-10 xl:p-12 lg:mb-5 mb-12">
       <div className="flex justify-between flex-col-reverse xl:flex-row xl:flex-wrap ">
         <div>
-          <h2 className="mb-3 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl">
-            Subscribe
+          <h2 className="mb-4 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl 2xl:mb-6">
+            Subscribe to Our Newsletter
           </h2>
-          <p className="mb-12 text-base font-medium text-body-color">
+          <p className="mb-6 text-base font-medium text-body-color 2xl:mb-8">
             Stay updated with our latest news and offers directly in your inbox.
           </p>
         </div>
@@ -73,9 +73,15 @@ const NewsLatterBox = () => {
             htmlFor="OPT_IN"
             className="block text-base font-medium text-gray-800 dark:text-gray-300"
           >
-            I agree to receive your newsletters and accept the data privacy statement.
+            I agree to receive newsletters and accept the privacy policy.
           </label>
         </div>
+
+        {status ? <p className="mt-4 text-base text-green-600 dark:text-green-400">{status}</p> :
+          <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+            We value your privacy and won’t send spam. Unsubscribe anytime.
+          </p>
+        }
 
         <button
           type="submit"
@@ -93,10 +99,9 @@ const NewsLatterBox = () => {
           className="hidden"
         ></iframe>
 
-        {status && <p className="mt-4 text-base text-green-600 dark:text-green-400">{status}</p>}
+
       </form>
     </div>
-
   );
 };
 
