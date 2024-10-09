@@ -33,7 +33,6 @@ const Contact = () => {
                     Our support team will get back to you ASAP via email.
                   </p>
                 </div>
-
               </div>
 
               <form>
