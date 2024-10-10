@@ -44,7 +44,7 @@ const featuresData: Feature[] = [
     ),
     title: 'Polymorphic Interface',
     paragraph:
-      'You can interact with the callgent from its different endpoints, like using REST API, Email, SMS, as Web page, in your IM like Slack, or even in an AR/VR app.',
+      'You can interact with the callgent from its different Entries, like using REST API, Email, SMS, as Web page, in your IM like Slack, or even in an AR/VR app.',
   },
   {
     id: 1,
@@ -59,7 +59,7 @@ const featuresData: Feature[] = [
     ),
     title: 'Generative UI',
     paragraph:
-      'Thankful to the advanced AIGC technology, it helps you easily generate rich UI endpoints to interact with your users semantically and graphically, without writing a single line of code.',
+      'Thankful to the advanced AIGC technology, it helps you easily generate rich UI Entries to interact with your users semantically and graphically, without writing a single line of code.',
   },
   {
     id: 1,
