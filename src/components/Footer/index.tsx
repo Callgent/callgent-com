@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
               </Link>
               <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                Service as a Callable Agent.<br />
+                Service as a Callable AI Agent.<br />
                 Break the silos among Users & Systems.
               </p>
               <div className="flex items-center">
