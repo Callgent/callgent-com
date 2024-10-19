@@ -97,7 +97,7 @@ const Hero = () => {
             <div className="relative mx-auto md:max-w-[90vw] lg:max-w-[70vw] 2xl:max-w-[60vw] text-center">
               <h2 ref={TitleRef}
                 className={`sticky top-[90px] text-2xl sm:text-3xl md:text-4xl xl:text-5xl font-bold leading-tight text-black dark:text-white sm:leading-tight  md:leading-tight}`}>
-                Service as a <span className='text'>Call</span>able A<span className='text'>gent</span>
+                Service as a <span className='text'>Call</span>able AI A<span className='text'>gent</span>
               </h2>
               <section id="content" className="md:pt-14">
                 {paragraphs.map((item, index) => (
