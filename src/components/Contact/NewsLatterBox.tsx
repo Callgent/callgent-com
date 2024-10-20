@@ -21,7 +21,8 @@ const NewsLatterBox = () => {
   }, []);
 
   return (
-    <div className="relative rounded-lg bg-white px-8 py-8 shadow-lg dark:bg-gray-dark sm:p-12 lg:px-10 xl:p-12 lg:mb-5 mb-12">
+    <div className="relative rounded-sm bg-white px-8 py-8 shadow-lg dark:bg-gray-dark sm:p-12 lg:px-10 xl:p-12 lg:mb-5 mb-12
+    lg:h-[35rem] ">
       <div className="flex justify-between flex-col-reverse xl:flex-row xl:flex-wrap ">
         <div>
           <h2 className="mb-4 text-2xl font-bold text-black dark:text-white sm:text-3xl lg:text-2xl xl:text-3xl 2xl:mb-6">

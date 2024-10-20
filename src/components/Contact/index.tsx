@@ -8,7 +8,7 @@ const Contact = () => {
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4 lg:w-7/12 xl:w-8/12">
             <div
-              className="relative rounded-sm bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:px-8 xl:p-[55px] lg:mb-5 mb-12"
+              className="relative rounded-sm lg:h-[35rem] bg-white px-8 py-11 shadow-three dark:bg-gray-dark sm:p-[55px] lg:px-8 xl:p-[55px] lg:mb-5 mb-12"
               data-wow-delay=".15s"
             >
               <div className=" absolute right-0 top-0 overflow-hidden h-16">
