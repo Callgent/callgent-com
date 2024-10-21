@@ -8,9 +8,6 @@ const PricingBox = (props: {
   priceUrl: string;
 }) => {
   const { price, duration, packageName, subtitle, children, title, priceUrl } = props;
-  const billing = (url: string) => {
-    location.href = url;
-  };
   return (
     <div className="w-full">
       <div className="relative z-10 rounded-sm bg-white px-8 py-10 shadow-three hover:shadow-one dark:bg-gray-dark dark:shadow-two dark:hover:shadow-gray-dark">
@@ -27,9 +24,9 @@ const PricingBox = (props: {
         </div>
         <p className="mb-7 text-base text-body-color">{subtitle}</p>
         <div className="mb-8 border-b border-body-color border-opacity-10 pb-8 dark:border-white dark:border-opacity-10">
-          <button onClick={() => billing(priceUrl)} className="flex w-full items-center justify-center rounded-sm bg-primary p-3 text-base font-semibold text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
+          <a href={priceUrl} target={priceUrl ? "_blank" : "_self"} className="flex w-full items-center justify-center rounded-sm bg-primary p-3 text-base font-semibold text-white transition duration-300 ease-in-out hover:bg-opacity-80 hover:shadow-signUp">
             {title}
-          </button>
+          </a>
         </div>
         <div>{children}</div>
         <div className="absolute bottom-0 right-0 z-[-1]">
