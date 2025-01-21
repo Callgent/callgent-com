@@ -109,13 +109,14 @@ const Hero = () => {
               </section>
               <div className="flex pt-7 md:pt-14 xl:28 flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <Link
-                  href={process.env.NEXT_PUBLIC_GETTING_STARTED_PATH}
+                  href={process.env.NEXT_PUBLIC_DOCUMENTATION_URL + '/docs/quick-start/register-an-account'}
                   className="rounded-sm bg-primary px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-primary/80"
                 >
                   🔥 Try it Now
                 </Link>
                 <Link
                   href="https://github.com/Callgent/callgent-api"
+                  target="_blank"
                   className="inline-block rounded-sm bg-black px-8 py-4 text-base font-semibold text-white duration-300 ease-in-out hover:bg-black/90 dark:bg-white/10 dark:text-white dark:hover:bg-white/5"
                 >
                   Star on GitHub
