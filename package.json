@@ -22,7 +22,7 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "accept-language": "^3.0.18",
-    "axios": "^1.6.7",
+    "axios": "^1.8.2",
     "i18next": "^23.10.0",
     "i18next-resources-to-backend": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
