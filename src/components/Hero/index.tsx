@@ -12,7 +12,7 @@ const Hero = () => {
     },
     {
       description:
-        "Now you can chat to it by email or slack channels, or invoke it through code libs or restAPIs, ..",
+        "Now you can chat to it by email or slack channels, or invoke it through code libs or RestAPIs, ..",
       img: "/images/hero/bg2.png",
     },
     {
