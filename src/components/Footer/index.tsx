@@ -149,6 +149,14 @@ const Footer = () => {
                     About
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href={'https://steprun.ai'}
+                    className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                  >
+                    Steprun.ai
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
