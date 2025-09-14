@@ -37,7 +37,7 @@ const NewsLatterBox = () => {
         id="sib-form"
         method="POST"
         target="the_iframe"
-        action="https://722998d0.sibforms.com/serve/MUIFAGYzcmiXd_afTJDIcKu-P6nE8QpukoqOh_G8ULC43Cy2iDRLtM-hcSPkTHVCoSfODzAZKKjDmXyxF5yItljsSkjnlefFAYEiXk57_xDMP0ZaBCgTgtOGJg4dC83MfzPLGihGyi3mRaq3-Y8fio61mG2S4g97-Bma0zB2uMvkqSrseF4huyv0Ol6wYKGQFVOtqlfafOSVDTw7"
+        action="https://722998d0.sibforms.com/serve/MUIFAKIg4kkIVQvl0Erygd6NJpg-_ShjuYEXRmiOgm4i2aOCI0zy_z7PXCdzi2FhjVfqKcGU8-KhQkHHJsgvhWdQvLxaW1jKWlul6GLugbBNEaaRZRokIW_cw8keetj3TEnfXlTPNNVRJWSulisGUW0V4gjJJJlYI0dfPVaar4a8JDN3a7FcjrUfkUbcIr_ZRexCJu532xrHSpwD"
         onSubmit={() => { setIsSubmitting(true); setStatus(""); }}
       >
         <div className="space-y-4">
