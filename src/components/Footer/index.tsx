@@ -25,7 +25,7 @@ const Footer = () => {
                 </div>
               </Link>
               <p className="mb-9 text-base leading-relaxed text-body-color dark:text-body-color-dark">
-                Service as a Callable Agent.<br />
+                Service as a Callable AI Agent.<br />
                 Break the silos among Users & Systems.
               </p>
               <div className="flex items-center">
@@ -147,6 +147,14 @@ const Footer = () => {
                     className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
                   >
                     About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href={'https://steprun.ai'}
+                    className="mb-4 inline-block text-base text-body-color duration-300 hover:text-primary dark:text-body-color-dark dark:hover:text-primary"
+                  >
+                    𑢡teprun.ai
                   </Link>
                 </li>
               </ul>

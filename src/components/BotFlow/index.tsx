@@ -68,7 +68,7 @@ const BotFlow = () => {
                             <SectionTitle
                                 titleSize="text-xl"
                                 title="Step 2: Configure an owner for the callgent"
-                                paragraph="Connect the callgent to task owner, through `Receiver Endpoints`: Email, SMS, Slack channel, Twitter account, or your own API services...<br/>So that the tasks can be delivered to anywhere to be handled."
+                                paragraph="Connect the callgent to task owner, through `Server Entries`: Email, SMS, Slack channel, Twitter account, or your own API services...<br/>So that the tasks can be delivered to anywhere to be handled."
                                 mb="44px"
                             />
                         </div>
@@ -83,7 +83,7 @@ const BotFlow = () => {
                             <SectionTitle
                                 titleSize="text-xl"
                                 title="Step 3: Send a request to the callgent"
-                                paragraph="Now the callgent is ready to work, by accepting task requests from anywhere through `Calling Endpoints` in any form: API, Email, Web page, Slack...<br/>The CORE philosophy of Callgent, is to break the silos among Users and systems, with AI empowered `Semantical` and `Progressive` invocation techniques."
+                                paragraph="Now the callgent is ready to work, by accepting task requests from anywhere through `Client Entries` in any form: API, Email, Web page, Slack...<br/>The CORE philosophy of Callgent, is to break the silos among Users and systems, with AI empowered `Semantical` and `Progressive` invocation techniques."
                                 mb="44px"
                             />
                         </div>

@@ -1,18 +1,18 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserSignup, UserSignin, UserResponse, ConfirmEmailParams } from '@/types/user';
-import { ApiResponse } from '..';
-import axios from '@/util/axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { deleteCookie } from '@/util/cookie';
+import axios from '@/util/axios';
+import { ApiResponse } from '..';
 
 // Signup
 export const fetchSignup = createAsyncThunk<ApiResponse<UserResponse>, UserSignup>(
     'users/fetchSignup',
-    async (userData, thunkAPI) => {
+    async (userData) => {
         try {
             const { data } = await axios.post('/api/auth/register', userData);
             return data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
+            return error?.data;
         }
     }
 );
@@ -20,15 +20,12 @@ export const fetchSignup = createAsyncThunk<ApiResponse<UserResponse>, UserSignu
 // Signin
 export const fetchSignin = createAsyncThunk<ApiResponse<UserResponse>, UserSignin>(
     'users/fetchSignin',
-    async (userData, thunkAPI) => {
+    async (userData) => {
         try {
             const { data } = await axios.post('/api/auth/login', userData);
             return data;
         } catch (error) {
-            if (error.status) {
-                return thunkAPI.rejectWithValue(error.data.message);
-            }
-            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
+            return error?.data;
         }
     }
 );
@@ -36,7 +33,7 @@ export const fetchSignin = createAsyncThunk<ApiResponse<UserResponse>, UserSigni
 // UserInfo
 export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
     'users/fetchUserInfo',
-    async (user, thunkAPI) => {
+    async () => {
         try {
             const { data } = await axios.get('/api/users/info');
             if (data?.data) {
@@ -47,7 +44,7 @@ export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
             }
             return data;
         } catch (error) {
-            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
+            return error?.data;
         }
     }
 );
@@ -55,16 +52,13 @@ export const fetchUserInfo = createAsyncThunk<ApiResponse<UserResponse>>(
 // Confirm Email
 export const confirmEmail = createAsyncThunk<ApiResponse<UserResponse>, ConfirmEmailParams>(
     'users/confirmEmail',
-    async ({ token, data }, thunkAPI) => {
+    async ({ token, data }) => {
         try {
             const response = await axios.patch(`/api/users/confirm-email/${token}`, JSON.stringify(data),
                 { headers: { 'accept': '*/*', 'Content-Type': 'application/json' } });
             return response.data;
         } catch (error) {
-            if (error.status) {
-                return thunkAPI.rejectWithValue(error.data.message);
-            }
-            return thunkAPI.rejectWithValue('The server is abnormal, please try again later');
+            return error?.data;
         }
     }
 );
@@ -72,7 +66,7 @@ export const confirmEmail = createAsyncThunk<ApiResponse<UserResponse>, ConfirmE
 // Send a confirmation email
 export const sendConfirmEmail = createAsyncThunk<ApiResponse<any>, { email: string }>(
     'users/sendConfirmEmail',
-    async (emailData, thunkAPI) => {
+    async (emailData) => {
         try {
             const { data } = await axios.post('/api/users/send-confirm-email', {
                 email: emailData.email,
@@ -81,10 +75,7 @@ export const sendConfirmEmail = createAsyncThunk<ApiResponse<any>, { email: stri
             });
             return data;
         } catch (error) {
-            if (error.status) {
-                return thunkAPI.rejectWithValue(error.data.message);
-            }
-            return thunkAPI.rejectWithValue('Failed to send confirmation email');
+            return error?.data;
         }
     }
 );

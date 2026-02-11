@@ -6,41 +6,42 @@ import { AppDispatch } from '@/store';
 import { UserResponse } from '@/types/user';
 import { ApiResponse, confirmEmail } from '@/store/thunk';
 import { useSearchParams } from 'next/navigation';
+import useSubmitForm from '@/hooks/button';
 
 const ResetPage = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const [error, setError] = useState<string | null>(null);
     const params = useSearchParams();
+    const { isSubmitting, error, handleSubmit } = useSubmitForm();
 
     const token = params.get('token');
     const resetPwd = params.get('resetPwd');
 
     const resetSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const formValues = Object.fromEntries(formData.entries()) as { password: string, confirmPassword: string };
+        handleSubmit(async () => {
+            const formData = new FormData(event.currentTarget);
+            const formValues = Object.fromEntries(formData.entries()) as { password: string, confirmPassword: string };
 
-        if (formValues.password !== formValues.confirmPassword) {
-            setError('Passwords do not match');
-            return;
-        }
+            if (formValues.password !== formValues.confirmPassword) {
+                throw new Error('Passwords do not match');
+            }
 
-
-        setError(null);
-        dispatch(confirmEmail({ token, data: formValues.password })).then((req) => {
-            const { data } = req.payload as ApiResponse<UserResponse>;
+            const req = await dispatch(confirmEmail({ token, data: formValues.password }));
+            const { data, message } = req.payload as ApiResponse<UserResponse>;
             if (!data) {
-                setError(req.payload as string);
+                throw new Error(message as string);
             } else {
                 window.location.href = '/';
             }
         });
     };
+
     const confirmSubmit = () => {
-        dispatch(confirmEmail({ token, data: null })).then((req) => {
-            const { data } = req.payload as ApiResponse<UserResponse>;
+        handleSubmit(async () => {
+            const req = await dispatch(confirmEmail({ token, data: null }));
+            const { data, message } = req.payload as ApiResponse<UserResponse>;
             if (!data) {
-                setError(req.payload as string);
+                throw new Error(message as string);
             } else {
                 window.location.href = '/';
             }
@@ -66,6 +67,9 @@ const ResetPage = () => {
                                 type="password"
                                 name="password"
                                 placeholder="Enter your new password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
+                                required
+                                title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
                                 className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
                             />
                         </div>
@@ -78,6 +82,9 @@ const ResetPage = () => {
                             </label>
                             <input
                                 type="password"
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
+                                required
+                                title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
                                 name="confirmPassword"
                                 placeholder="Confirm your new password"
                                 className="border-stroke w-full rounded-sm border bg-[#f8f8f8] px-6 py-3 text-base text-body-color outline-none transition-all duration-300 focus:border-primary dark:border-transparent dark:bg-[#2C303B] dark:text-body-color-dark dark:shadow-two dark:focus:border-primary dark:focus:shadow-none"
@@ -85,7 +92,12 @@ const ResetPage = () => {
                             {error && <p className="text-red-600 text-sm mt-2">{error}</p>}
                         </div>
                         <div className="mb-6">
-                            <button className="flex w-full items-center justify-center rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                            <button
+                                type="submit"
+                                disabled={isSubmitting}
+                                className={`flex w-full items-center justify-center rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                                    }`}
+                            >
                                 Reset Password
                             </button>
                         </div>
@@ -100,7 +112,12 @@ const ResetPage = () => {
                         Please click the button below to confirm your email address.
                     </p>
                     {error && <p className="text-red-600 text-sm  my-2 text-center">{error}</p>}
-                    <button onClick={confirmSubmit} className="w-full rounded-sm bg-primary px-9 py-4 text-base font-medium text-white shadow-submit duration-300 hover:bg-primary/90 dark:shadow-submit-dark">
+                    <button
+                        onClick={confirmSubmit}
+                        disabled={isSubmitting}
+                        className={`w-full rounded-sm px-9 py-4 text-base font-medium text-white shadow-submit duration-300 ${isSubmitting ? 'bg-primary/50 cursor-not-allowed' : 'bg-primary hover:bg-primary/90 dark:shadow-submit-dark'
+                            }`}
+                    >
                         Confirm Email
                     </button>
                 </>
