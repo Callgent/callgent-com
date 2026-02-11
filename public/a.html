@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callgent - Hand your real-world job to AI</title>
+    <meta name="description" content="Turn any SaaS, API, or Human into a reliable AI Agent with one simple definition file.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['JetBrains Mono', 'monospace'] },
+                    colors: {
+                        brand: { dark: '#0B0C15', card: '#161822', primary: '#8b5cf6', secondary: '#06b6d4', accent: '#f43f5e' }
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'flow-line': 'flowLine 2s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        flowLine: {
+                            '0%': { strokeDashoffset: '24' },
+                            '100%': { strokeDashoffset: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0B0C15; color: #e2e8f0; overflow-x: hidden; }
+        .glass-nav { background: rgba(11, 12, 21, 0.7); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-gradient { background: linear-gradient(to right, #8b5cf6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glow-effect { box-shadow: 0 0 30px rgba(139, 92, 246, 0.1); }
+        .step-connector::before { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: linear-gradient(to bottom, transparent, #334155, transparent); transform: translateX(-50%); z-index: -1; }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        /* Workflow Animation */
+        .workflow-node { transition: all 0.5s ease; opacity: 0.5; filter: grayscale(1); }
+        .workflow-node.active { opacity: 1; filter: grayscale(0); transform: scale(1.05); box-shadow: 0 0 20px rgba(6, 182, 212, 0.2); }
+        .workflow-line { height: 2px; background: #334155; flex-grow: 1; position: relative; overflow: hidden; }
+        .workflow-line::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30%; background: #06b6d4; transform: translateX(-100%); transition: transform 0.5s linear; }
+        .workflow-line.active::after { animation: lineRun 1s linear infinite; }
+        @keyframes lineRun { 0% { transform: translateX(-100%); } 100% { transform: translateX(400%); } }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-primary selection:text-white">
+
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-network-wired text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-white">Callgent</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#how" class="text-sm font-medium text-gray-300 hover:text-white transition">How it Works</a>
+                    <a href="#human" class="text-sm font-medium text-gray-300 hover:text-white transition">Colleagues</a>
+                    <a href="#showcase" class="text-sm font-medium text-gray-300 hover:text-white transition">Showcases</a>
+                    <a href="#demo" class="text-sm font-medium text-brand-secondary hover:text-white transition border border-brand-secondary/50 px-3 py-1.5 rounded-lg">Playground</a>
+                </div>
+                <button onclick="toggleLang()" class="text-xs font-mono text-gray-400 hover:text-white border border-gray-700 px-2 py-1 rounded transition">EN/中</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden text-center">
+        <div class="absolute top-0 -left-4 w-96 h-96 bg-brand-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div class="absolute bottom-0 -right-4 w-96 h-96 bg-brand-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-5xl mx-auto px-4 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-xs font-medium tracking-wide text-brand-secondary">Ready to Orchestrate</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
+                <span data-i18n="hero_1">Hand your real-world job</span><br>
+                <span class="text-gradient" data-i18n="hero_2">to Callgent.</span>
+            </h1>
+
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-12" data-i18n="hero_sub">
+                Don't build new tools. Just hand over the manuals. <br class="hidden md:block"/>
+                Callgent orchestrates your <span class="text-white font-bold">APIs</span>, <span class="text-white font-bold">Tools</span>, and <span class="text-brand-secondary font-bold">Colleagues</span> to get things done.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12 text-left">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-xl hover:-translate-y-1 transition duration-300">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="p-2 rounded bg-blue-500/20 text-blue-400"><i class="fa-solid fa-code"></i></div>
+                        <span class="font-bold text-sm text-gray-200" data-i18n="role_dev">For Developers</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed" data-i18n="role_dev_desc">Stop writing glue code. Just import Swagger/OpenAPI. Docs are the implementation.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-5 rounded-xl hover:-translate-y-1 transition duration-300">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="p-2 rounded bg-purple-500/20 text-purple-400"><i class="fa-solid fa-briefcase"></i></div>
+                        <span class="font-bold text-sm text-gray-200" data-i18n="role_biz">For Business</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed" data-i18n="role_biz_desc">Automate complex flows across systems without waiting for IT refactoring.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-5 rounded-xl hover:-translate-y-1 transition duration-300 border-brand-secondary/30 shadow-lg shadow-brand-secondary/10">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="p-2 rounded bg-brand-secondary/20 text-brand-secondary"><i class="fa-solid fa-users"></i></div>
+                        <span class="font-bold text-sm text-gray-200" data-i18n="role_team">For Teams</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed" data-i18n="role_team_desc">Turn colleagues into "Human APIs". Assign tasks to them as if they were software.</p>
+                </div>
+            </div>
+
+            <a href="#demo" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-primary hover:bg-brand-primary/90 text-white font-bold rounded-lg transition shadow-lg shadow-brand-primary/25">
+                <span data-i18n="btn_cta">Start Orchestrating</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="how" class="py-24 bg-[#0f111a] border-y border-white/5 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        <span class="text-brand-secondary">No Code.</span> <span data-i18n="how_title">Just Context.</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed" data-i18n="how_desc">
+                        You already have the instructions: <strong>API Docs, Database Schemas, Standard Operating Procedures.</strong>
+                        <br/><br/>
+                        Simply import these into Callgent. We read the manual, so you don't have to write the code.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span data-i18n="how_p1">Import OpenAPI / Swagger / PDF</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span data-i18n="how_p2">Auto-generates execution logic</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-300">
+                            <i class="fa-solid fa-check-circle text-green-400"></i>
+                            <span data-i18n="how_p3">Zero refactoring required</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative h-80 bg-brand-card rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden group">
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#4b5563 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
+                    <div class="absolute left-10 md:left-20 flex flex-col items-center animate-float">
+                        <div class="w-16 h-20 bg-gray-800 border border-gray-600 rounded flex items-center justify-center mb-2 shadow-xl z-10">
+                            <i class="fa-solid fa-file-code text-3xl text-blue-400"></i>
+                        </div>
+                        <span class="text-xs font-mono text-gray-500">API.yaml</span>
+                    </div>
+
+                    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-1 bg-gray-700 overflow-hidden rounded">
+                        <div class="w-full h-full bg-brand-primary animate-flow-line" style="transform: translateX(-100%); animation: slideRight 1.5s infinite linear;"></div>
+                    </div>
+                    <style>@keyframes slideRight{0%{transform: translateX(-100%)}100%{transform: translateX(100%)}}</style>
+
+                    <div class="absolute right-10 md:right-20 flex flex-col items-center animate-float" style="animation-delay: 1s">
+                        <div class="w-20 h-20 bg-gradient-to-br from-brand-primary to-brand-secondary rounded-xl flex items-center justify-center mb-2 shadow-xl shadow-brand-primary/30 z-10 relative">
+                            <i class="fa-solid fa-robot text-4xl text-white"></i>
+                            <i class="fa-solid fa-bolt absolute -top-2 -right-2 text-yellow-400 animate-pulse"></i>
+                        </div>
+                        <span class="text-xs font-mono text-brand-secondary">Active Agent</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="human" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-accent font-mono text-sm tracking-wider uppercase font-bold">Surprise Feature</span>
+                <h2 class="text-3xl md:text-5xl font-bold mt-2 mb-4" data-i18n="human_title">Assign Tasks to People... via API</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="human_desc">
+                    Import a Job Description (JD) instead of an API spec. <br/>
+                    Callgent treats your colleagues like callable functions. It sends them tasks, waits for replies, and handles the rest.
+                </p>
+            </div>
+
+            <div class="bg-brand-card border border-white/10 rounded-2xl p-8 md:p-12 relative overflow-hidden">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+                    
+                    <div class="text-center w-full md:w-1/3">
+                        <div class="code-window text-left bg-[#0f111a] p-4 rounded-lg border border-white/10 text-xs font-mono shadow-2xl">
+                            <div class="text-gray-500 mb-2"># task_assignment.yaml</div>
+                            <div class="text-purple-400">function: <span class="text-white">get_approval</span></div>
+                            <div class="text-purple-400">assign_to: <span class="text-yellow-400">role:Manager</span></div>
+                            <div class="text-purple-400">timeout: <span class="text-green-400">24h</span></div>
+                        </div>
+                        <p class="mt-4 text-sm font-bold text-gray-400">1. System Calls "Manager"</p>
+                    </div>
+
+                    <div class="hidden md:flex flex-1 items-center justify-center">
+                         <div class="h-0.5 w-full bg-gray-700 relative">
+                             <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-card px-2 text-gray-500 text-xs">Email / Slack</div>
+                             <i class="fa-solid fa-paper-plane absolute right-0 -top-2 text-gray-500"></i>
+                         </div>
+                    </div>
+
+                    <div class="text-center w-full md:w-1/3">
+                        <div class="relative inline-block">
+                            <div class="w-24 h-24 rounded-full bg-gray-700 border-4 border-brand-card flex items-center justify-center overflow-hidden">
+                                <img src="https://ui-avatars.com/api/?name=Manager&background=random" alt="Manager">
+                            </div>
+                            <div class="absolute -bottom-2 -right-2 bg-green-500 w-8 h-8 rounded-full border-4 border-brand-card flex items-center justify-center">
+                                <i class="fa-solid fa-check text-white text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white text-black p-3 rounded-xl rounded-tr-none text-xs text-left mt-4 shadow-xl relative w-48 mx-auto">
+                            "Approved. Proceed with $900."
+                            <div class="absolute -top-2 right-0 w-4 h-4 bg-white transform rotate-45"></div>
+                        </div>
+                        <p class="mt-4 text-sm font-bold text-gray-400">2. Human Replies</p>
+                    </div>
+
+                     <div class="hidden md:flex flex-1 items-center justify-center">
+                        <div class="h-0.5 w-full bg-gray-700 relative">
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-card px-2 text-gray-500 text-xs">Resume</div>
+                            <i class="fa-solid fa-arrow-right absolute right-0 -top-2 text-gray-500"></i>
+                        </div>
+                   </div>
+
+                    <div class="text-center w-full md:w-1/3">
+                        <div class="w-20 h-20 bg-brand-primary/10 border border-brand-primary/50 rounded-lg flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-gears text-3xl text-brand-primary"></i>
+                        </div>
+                        <p class="mt-4 text-sm font-bold text-gray-400">3. Workflow Resumes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="showcase" class="py-24 bg-[#0f111a] border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold mb-12 text-center" data-i18n="case_title">See it in Action: "New Part Inquiry"</h2>
+            
+            <div class="grid lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-4 flex flex-col justify-center">
+                    <h3 class="text-xl font-bold text-white mb-4" data-i18n="case_ex_title">The Challenge</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed" data-i18n="case_ex_desc">
+                        A new part number is received. We need to:
+                        <br>1. Identify what it is (Google).
+                        <br>2. Find who sells it (Internal DB).
+                        <br>3. Ask for price (Email Vendor).
+                        <br>4. Save the result (ERP).
+                    </p>
+                    <div class="p-4 bg-brand-primary/10 border border-brand-primary/20 rounded-lg">
+                        <div class="text-xs text-brand-secondary font-bold uppercase mb-2">Callgent Solution</div>
+                        <div class="text-sm text-gray-300">
+                            Connects <strong>Google Search Tool</strong> + <strong>PostgreSQL</strong> + <strong>Gmail</strong> + <strong>SAP</strong> into one auto-running agent.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8 bg-brand-card rounded-xl border border-white/5 p-8 relative">
+                    <div class="absolute top-4 right-4 text-xs font-mono text-gray-600">execution_log.txt</div>
+                    
+                    <div class="space-y-0 relative" id="workflow-steps">
+                        <div class="absolute left-6 top-6 bottom-6 w-0.5 bg-gray-800 z-0"></div>
+
+                        <div class="relative z-10 flex gap-6 items-center mb-8 workflow-node" id="step-1">
+                            <div class="w-12 h-12 rounded-full bg-[#1e1e2e] border border-gray-600 flex items-center justify-center shrink-0">
+                                <i class="fa-brands fa-google text-white"></i>
+                            </div>
+                            <div class="bg-[#1e1e2e] p-3 rounded border border-white/5 text-sm w-full">
+                                <span class="text-green-400 font-mono">GET /search?q=Part+AX-99</span>
+                                <div class="text-gray-500 text-xs mt-1">Found: "Industrial Hydraulic Valve..."</div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex gap-6 items-center mb-8 workflow-node" id="step-2">
+                            <div class="w-12 h-12 rounded-full bg-[#1e1e2e] border border-gray-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-database text-blue-400"></i>
+                            </div>
+                            <div class="bg-[#1e1e2e] p-3 rounded border border-white/5 text-sm w-full">
+                                <span class="text-blue-400 font-mono">SELECT vendor FROM suppliers...</span>
+                                <div class="text-gray-500 text-xs mt-1">Result: "Apex Industries"</div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex gap-6 items-center mb-8 workflow-node" id="step-3">
+                            <div class="w-12 h-12 rounded-full bg-[#1e1e2e] border border-gray-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-yellow-400"></i>
+                            </div>
+                            <div class="bg-[#1e1e2e] p-3 rounded border border-white/5 text-sm w-full">
+                                <span class="text-yellow-400 font-mono">MAILTO: sales@apex.com</span>
+                                <div class="text-gray-500 text-xs mt-1">Sent inquiry. Waiting for reply... (Paused)</div>
+                            </div>
+                        </div>
+
+                        <div class="relative z-10 flex gap-6 items-center workflow-node" id="step-4">
+                            <div class="w-12 h-12 rounded-full bg-[#1e1e2e] border border-gray-600 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-server text-purple-400"></i>
+                            </div>
+                            <div class="bg-[#1e1e2e] p-3 rounded border border-white/5 text-sm w-full">
+                                <span class="text-purple-400 font-mono">POST /sap/update_price</span>
+                                <div class="text-gray-500 text-xs mt-1">Updated: $450.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-brand-secondary font-mono text-sm tracking-wider uppercase">Your Turn</span>
+                <h2 class="text-3xl font-bold mb-4" data-i18n="demo_title">Describe, Import, Run.</h2>
+                <p class="text-gray-400" data-i18n="demo_sub">See how a simple markdown file becomes a live agent.</p>
+            </div>
+
+            <div id="demo_panel" class="grid lg:grid-cols-2 gap-8 items-stretch h-[600px]">
+                <div class="code-window rounded-xl overflow-hidden flex flex-col glow-effect border-l-4 border-l-brand-primary bg-[#1e1e2e]">
+                    <div class="bg-[#161822] px-4 py-3 border-b border-white/5 flex items-center gap-2">
+                        <div class="flex gap-2 mr-4"><div class="w-3 h-3 rounded-full bg-red-500/20"></div><div class="w-3 h-3 rounded-full bg-yellow-500/20"></div><div class="w-3 h-3 rounded-full bg-green-500/20"></div></div>
+                        <span class="text-xs font-mono text-gray-400">my_agent.md</span>
+                    </div>
+                    <div class="p-6 font-mono text-sm leading-relaxed overflow-y-auto flex-1 relative">
+                        <pre class="whitespace-pre-wrap"><code class="language-yaml" id="typewriter-code"></code></pre>
+                        <span class="cursor-blink text-brand-secondary">|</span>
+                    </div>
+                </div>
+
+                <div class="code-window rounded-xl overflow-hidden flex flex-col glow-effect border-r-4 border-r-brand-secondary bg-[#0f111a]">
+                    <div class="bg-[#161822] px-4 py-3 border-b border-white/5 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                            <span class="text-xs font-medium text-gray-300">Live Agent</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-6 overflow-y-auto space-y-4" id="chat-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">Production Grade Infrastructure</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 hover:bg-white/10 transition">
+                    <i class="fa-solid fa-shield-halved text-2xl text-brand-primary mb-4"></i>
+                    <h3 class="font-bold mb-2">Secure Runtime</h3>
+                    <p class="text-sm text-gray-400">Sandboxed execution environment for all your agents.</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 hover:bg-white/10 transition">
+                    <i class="fa-solid fa-clock-rotate-left text-2xl text-brand-secondary mb-4"></i>
+                    <h3 class="font-bold mb-2">Durable Execution</h3>
+                    <p class="text-sm text-gray-400">Powered by StepRun.ai. Pause for weeks, resume instantly.</p>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 hover:bg-white/10 transition">
+                    <i class="fa-solid fa-plug text-2xl text-brand-accent mb-4"></i>
+                    <h3 class="font-bold mb-2">Universal Connectors</h3>
+                    <p class="text-sm text-gray-400">Works with REST, GraphQL, GRPC, and Email/Slack.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-[#08090f] py-12 text-center text-sm text-gray-500">
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <i class="fa-solid fa-network-wired"></i> <span class="font-bold text-white">Callgent</span>
+        </div>
+        <p>&copy; 2026 Callgent Inc. Service as a Callable AI Agent.</p>
+    </footer>
+
+    <script>
+        // --- 1. Language & Content ---
+        const content = {
+            en: {
+                hero_1: "Hand your real-world job",
+                hero_2: "to Callgent.",
+                hero_sub: "It orchestrates APIs, Tools, and Colleagues to get things done.",
+                role_dev: "For Developers",
+                role_dev_desc: "Stop writing glue code. Docs are the implementation.",
+                role_biz: "For Business",
+                role_biz_desc: "Automate complex flows without waiting for IT.",
+                role_team: "For Teams",
+                role_team_desc: "Turn colleagues into 'Human APIs'.",
+                btn_cta: "Start Orchestrating",
+                how_title: "Just Context.",
+                how_desc: "You already have the instructions. We read the manual, so you don't have to write code.",
+                how_p1: "Import OpenAPI / Swagger / PDF",
+                how_p2: "Auto-generates execution logic",
+                how_p3: "Zero refactoring required",
+                human_title: "Assign Tasks to People... via API",
+                human_desc: "Import a Job Description. Callgent treats colleagues like callable functions.",
+                case_title: "See it in Action: \"New Part Inquiry\"",
+                case_ex_title: "The Challenge",
+                case_ex_desc: "Receive part -> Search Google -> Find Vendor -> Email Inquiry -> Update ERP.",
+                demo_title: "Describe, Import, Run.",
+                demo_sub: "See how a simple markdown file becomes a live agent."
+            },
+            zh: {
+                hero_1: "把你的现实工作",
+                hero_2: "交给 Callgent。",
+                hero_sub: "它能自动编排 API、工具甚至你的同事，帮你搞定一切。",
+                role_dev: "开发者",
+                role_dev_desc: "别再写胶水代码了。文档即实现。",
+                role_biz: "业务人员",
+                role_biz_desc: "无需等待 IT 排期，自动编排复杂流程。",
+                role_team: "团队协作",
+                role_team_desc: "把同事变成“人类 API”，像调用代码一样分配任务。",
+                btn_cta: "开始编排",
+                how_title: "只需上下文。",
+                how_desc: "你已经有了说明书（API文档/SOP）。导入 Callgent，它读文档，你不用写代码。",
+                how_p1: "导入 OpenAPI / Swagger / PDF",
+                how_p2: "自动生成执行逻辑",
+                how_p3: "无需重构现有系统",
+                human_title: "像调用 API 一样... 给同事派活",
+                human_desc: "导入岗位职责书。Callgent 会发送任务、等待回复并自动处理后续。",
+                case_title: "实战演示：“新品询价”",
+                case_ex_title: "挑战",
+                case_ex_desc: "收到新零件号 -> 谷歌搜索规格 -> 查找供应商 -> 发邮件询价 -> 录入 ERP。",
+                demo_title: "描述，导入，运行。",
+                demo_sub: "看一个简单的 Markdown 文件如何变身为活生生的 Agent。"
+            }
+        };
+
+        let currentLang = 'en';
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            const data = content[currentLang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(data[key]) el.innerHTML = data[key];
+            });
+            // Re-run typewriter with new lang
+            startDemo();
+        }
+
+        // --- 2. Showcase Animation Loop ---
+        function runShowcaseAnimation() {
+            const steps = [1, 2, 3, 4];
+            let current = 0;
+            
+            setInterval(() => {
+                // Reset all
+                steps.forEach(i => {
+                    document.getElementById(`step-${i}`).classList.remove('active');
+                });
+                
+                // Activate current
+                const activeId = steps[current];
+                document.getElementById(`step-${activeId}`).classList.add('active');
+                
+                current = (current + 1) % steps.length;
+            }, 1500);
+        }
+        document.addEventListener('DOMContentLoaded', runShowcaseAnimation);
+
+
+        // --- 3. Typewriter & Chat Demo (Simplified from original) ---
+        const demoCode = {
+            en: `# Refund Service Agent
+uses: stripe_api, gmail_tool
+
+## Workflow
+1. Get order details from Stripe.
+2. If amount > $1000, ask Manager via Email.
+3. If approved, process refund.`,
+            zh: `# 退款服务智能体
+uses: stripe_api, gmail_tool
+
+## 工作流
+1. 从 Stripe 获取订单详情。
+2. 如果金额 > $1000，发邮件询问经理。
+3. 如果批准，执行退款。`
+        };
+
+        let typeInterval;
+        function startDemo() {
+            const codeEl = document.getElementById('typewriter-code');
+            const chatEl = document.getElementById('chat-container');
+            if(!codeEl || !chatEl) return;
+
+            clearInterval(typeInterval);
+            codeEl.innerHTML = '';
+            chatEl.innerHTML = '';
+            
+            const text = demoCode[currentLang];
+            let i = 0;
+            
+            // Type Code
+            typeInterval = setInterval(() => {
+                codeEl.textContent += text.charAt(i);
+                i++;
+                if(i >= text.length) {
+                    clearInterval(typeInterval);
+                    // Start Chat
+                    setTimeout(runChat, 500);
+                }
+            }, 30);
+        }
+
+        function runChat() {
+            const chatEl = document.getElementById('chat-container');
+            const msgs = currentLang === 'en' 
+                ? [
+                    {role: 'user', text: "Refund order #9921"},
+                    {role: 'sys', text: "Checking Stripe... Amount: $1,200"},
+                    {role: 'sys', text: "⚠️ Over limit. Emailing Manager..."},
+                    {role: 'agent', text: "Manager approved via Email. Refund processed! ✅"}
+                  ]
+                : [
+                    {role: 'user', text: "退款订单 #9921"},
+                    {role: 'sys', text: "查询 Stripe... 金额: $1,200"},
+                    {role: 'sys', text: "⚠️ 超额。正在邮件联系经理..."},
+                    {role: 'agent', text: "经理已邮件批准。退款完成！✅"}
+                  ];
+
+            let delay = 0;
+            msgs.forEach(msg => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    if(msg.role === 'user') {
+                        div.className = "flex justify-end";
+                        div.innerHTML = `<div class="bg-brand-primary text-white text-sm px-3 py-2 rounded-lg">${msg.text}</div>`;
+                    } else if (msg.role === 'sys') {
+                         div.className = "flex justify-center";
+                        div.innerHTML = `<div class="text-xs font-mono text-gray-500">${msg.text}</div>`;
+                    } else {
+                        div.className = "flex justify-start gap-2";
+                        div.innerHTML = `<div class="w-6 h-6 rounded bg-brand-secondary flex items-center justify-center"><i class="fa-solid fa-robot text-xs text-white"></i></div><div class="bg-gray-700 text-gray-200 text-sm px-3 py-2 rounded-lg">${msg.text}</div>`;
+                    }
+                    chatEl.appendChild(div);
+                    chatEl.scrollTop = chatEl.scrollHeight;
+                }, delay);
+                delay += 1000;
+            });
+        }
+
+        // Trigger demo when visible
+        const observer = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) startDemo();
+        });
+        observer.observe(document.getElementById('demo'));
+
+    </script>
+</body>
+</html>
